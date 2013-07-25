@@ -1,0 +1,1005 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Pincerna::Ip
+  
+    &mdash; Documentation by YARD 0.8.6.2
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../';
+  framesUrl = "../frames.html#!" + escape(window.location.href);
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (I)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../Pincerna.html" title="Pincerna (module)">Pincerna</a></span></span>
+     &raquo; 
+    <span class="title">Ip</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: Pincerna::Ip
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><span class='object_link'><a href="Base.html" title="Pincerna::Base (class)">Base</a></span></span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next"><span class='object_link'><a href="Base.html" title="Pincerna::Base (class)">Base</a></span></li>
+          
+            <li class="next">Pincerna::Ip</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/pincerna/ip.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>Shows the IP addresses of all network interfaces.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="MATCHER-constant" class="">MATCHER =
+          <div class="docstring">
+  <div class="discussion">
+    <p>The expression to match.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^(.*)$</span><span class='regexp_end'>/i</span></span></pre></dd>
+      
+        <dt id="ICON-constant" class="">ICON =
+          <div class="docstring">
+  <div class="discussion">
+    <p>The icon to show for each feedback item.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'>Dir</span><span class='period'>.</span><span class='id identifier rubyid_pwd'>pwd</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/images/network.png</span><span class='tstring_end'>&quot;</span></span></pre></dd>
+      
+    </dl>
+  
+
+
+
+  
+  
+  <h3 class="inherited">Constants inherited
+     from <span class='object_link'><a href="Base.html" title="Pincerna::Base (class)">Base</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Base.html#RELEVANT_MATCHES-constant" title="Pincerna::Base::RELEVANT_MATCHES (constant)">Base::RELEVANT_MATCHES</a></span></p>
+
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#compare_ip_address-instance_method" title="#compare_ip_address (instance method)">- (Fixnum) <strong>compare_ip_address</strong>(left, right) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Compares to IP addresses, giving higher priority to local address such as 127.0.0.1.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#compare_ip_classes-instance_method" title="#compare_ip_classes (instance method)">- (Fixnum) <strong>compare_ip_classes</strong>(left, right) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Compares two IP classes, giving higher priority to IPv4.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_interfaces_names-instance_method" title="#get_interfaces_names (instance method)">- (Hash) <strong>get_interfaces_names</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Get an hash with pair of interfaces and their human names.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_local_addresses-instance_method" title="#get_local_addresses (instance method)">- (Array) <strong>get_local_addresses</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Gets a list of local IP addresses.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#get_public_address-instance_method" title="#get_public_address (instance method)">- (Hash) <strong>get_public_address</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Gets the public IP address for this machine.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#perform_filtering-instance_method" title="#perform_filtering (instance method)">- (Array) <strong>perform_filtering</strong>(query) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Shows the IP addresses of all network interfaces.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#process_results-instance_method" title="#process_results (instance method)">- (Array) <strong>process_results</strong>(results) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Processes items to obtain feedback items.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="Base.html" title="Pincerna::Base (class)">Base</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Base.html#add_feedback_item-instance_method" title="Pincerna::Base#add_feedback_item (method)">#add_feedback_item</a></span>, <span class='object_link'><a href="Base.html#array_to_hash-instance_method" title="Pincerna::Base#array_to_hash (method)">#array_to_hash</a></span>, <span class='object_link'><a href="Base.html#execute%21-class_method" title="Pincerna::Base.execute! (method)">execute!</a></span>, <span class='object_link'><a href="Base.html#filter-instance_method" title="Pincerna::Base#filter (method)">#filter</a></span>, <span class='object_link'><a href="Base.html#initialize-instance_method" title="Pincerna::Base#initialize (method)">#initialize</a></span>, <span class='object_link'><a href="Base.html#output_feedback-instance_method" title="Pincerna::Base#output_feedback (method)">#output_feedback</a></span>, <span class='object_link'><a href="Base.html#round_float-instance_method" title="Pincerna::Base#round_float (method)">#round_float</a></span></p>
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <p class="notice">This class inherits a constructor from <span class='object_link'><a href="Base.html#initialize-instance_method" title="Pincerna::Base#initialize (method)">Pincerna::Base</a></span></p>
+  
+</div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="compare_ip_address-instance_method">
+  
+    - (<tt>Fixnum</tt>) <strong>compare_ip_address</strong>(left, right) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Compares to IP addresses, giving higher priority to local address such as 127.0.0.1.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>left</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The first IP to compare.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>right</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The second IP to compare.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Fixnum</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The result of the comparison.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+104
+105
+106
+107
+108
+109</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/pincerna/ip.rb', line 104</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_compare_ip_address'>compare_ip_address</span><span class='lparen'>(</span><span class='id identifier rubyid_left'>left</span><span class='comma'>,</span> <span class='id identifier rubyid_right'>right</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_higher_priority'>higher_priority</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>::1</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>127.0.0.1</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>10.0.0.1</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_cmp'>cmp</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_higher_priority'>higher_priority</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_left'>left</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='int'>0</span> <span class='op'>:</span> <span class='int'>1</span><span class='rparen'>)</span> <span class='op'>&lt;=&gt;</span> <span class='lparen'>(</span><span class='id identifier rubyid_higher_priority'>higher_priority</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_right'>right</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='int'>0</span> <span class='op'>:</span> <span class='int'>1</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_cmp'>cmp</span> <span class='op'>=</span> <span class='id identifier rubyid_left'>left</span> <span class='op'>&lt;=&gt;</span> <span class='id identifier rubyid_right'>right</span> <span class='kw'>if</span> <span class='id identifier rubyid_cmp'>cmp</span> <span class='op'>==</span> <span class='int'>0</span>
+  <span class='id identifier rubyid_cmp'>cmp</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="compare_ip_classes-instance_method">
+  
+    - (<tt>Fixnum</tt>) <strong>compare_ip_classes</strong>(left, right) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Compares two IP classes, giving higher priority to IPv4.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>left</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The first IP to compare.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>right</span>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The second IP to compare.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Fixnum</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The result of the comparison.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+95
+96
+97</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/pincerna/ip.rb', line 95</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_compare_ip_classes'>compare_ip_classes</span><span class='lparen'>(</span><span class='id identifier rubyid_left'>left</span><span class='comma'>,</span> <span class='id identifier rubyid_right'>right</span><span class='rparen'>)</span>
+  <span class='lparen'>(</span><span class='id identifier rubyid_left'>left</span><span class='period'>.</span><span class='id identifier rubyid_index'>index</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>::</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>?</span> <span class='int'>1</span> <span class='op'>:</span> <span class='int'>0</span><span class='rparen'>)</span> <span class='op'>&lt;=&gt;</span> <span class='lparen'>(</span><span class='id identifier rubyid_right'>right</span><span class='period'>.</span><span class='id identifier rubyid_index'>index</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>::</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>?</span> <span class='int'>1</span> <span class='op'>:</span> <span class='int'>0</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_interfaces_names-instance_method">
+  
+    - (<tt>Hash</tt>) <strong>get_interfaces_names</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Get an hash with pair of interfaces and their human names.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The hash with interfaces’ name.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/pincerna/ip.rb', line 114</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_interfaces_names'>get_interfaces_names</span>
+  <span class='id identifier rubyid_rv'>rv</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>lo0</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Loopback</span><span class='tstring_end'>&quot;</span></span><span class='rbrace'>}</span>
+
+  <span class='id identifier rubyid_names'>names</span> <span class='op'>=</span> <span class='backtick'>`</span><span class='tstring_content'>networksetup -listallhardwareports</span><span class='tstring_end'>`</span></span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\n\n</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_names'>names</span><span class='period'>.</span><span class='id identifier rubyid_shift'>shift</span> <span class='comment'># Discard first whitespace
+</span>  
+  <span class='id identifier rubyid_names'>names</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_port'>port</span><span class='op'>|</span>
+    <span class='id identifier rubyid_port'>port</span> <span class='op'>=</span> <span class='const'>StringScanner</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_port'>port</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='kw'>nil</span>
+    <span class='id identifier rubyid_interface'>interface</span> <span class='op'>=</span> <span class='kw'>nil</span>
+    
+    <span class='kw'>if</span> <span class='id identifier rubyid_port'>port</span><span class='period'>.</span><span class='id identifier rubyid_scan_until'>scan_until</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>Hardware Port: </span><span class='regexp_end'>/</span></span><span class='rparen'>)</span> <span class='kw'>then</span>
+      <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_port'>port</span><span class='period'>.</span><span class='id identifier rubyid_scan_until'>scan_until</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\n</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span>
+      <span class='id identifier rubyid_interface'>interface</span> <span class='op'>=</span> <span class='id identifier rubyid_port'>port</span><span class='period'>.</span><span class='id identifier rubyid_scan_until'>scan_until</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\n</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_strip'>strip</span> <span class='kw'>if</span> <span class='id identifier rubyid_port'>port</span><span class='period'>.</span><span class='id identifier rubyid_scan_until'>scan_until</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>Device: </span><span class='regexp_end'>/</span></span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+
+    <span class='id identifier rubyid_rv'>rv</span><span class='lbracket'>[</span><span class='id identifier rubyid_interface'>interface</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_name'>name</span> <span class='kw'>if</span> <span class='id identifier rubyid_name'>name</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_interface'>interface</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_rv'>rv</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_local_addresses-instance_method">
+  
+    - (<tt>Array</tt>) <strong>get_local_addresses</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Gets a list of local IP addresses.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>A list of IPs data.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/pincerna/ip.rb', line 54</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_local_addresses'>get_local_addresses</span>
+  <span class='id identifier rubyid_rv'>rv</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_names'>names</span> <span class='op'>=</span> <span class='id identifier rubyid_get_interfaces_names'>get_interfaces_names</span>
+
+  <span class='comment'># Split by interfaces
+</span>  <span class='id identifier rubyid_interfaces'>interfaces</span> <span class='op'>=</span> <span class='backtick'>`</span><span class='tstring_content'>ifconfig</span><span class='tstring_end'>`</span></span><span class='period'>.</span><span class='id identifier rubyid_split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>(^\S+:\s+)</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_interfaces'>interfaces</span><span class='period'>.</span><span class='id identifier rubyid_shift'>shift</span> <span class='comment'># Discard first whitespace
+</span>
+  <span class='comment'># For each interface
+</span>  <span class='id identifier rubyid_interfaces'>interfaces</span><span class='period'>.</span><span class='id identifier rubyid_each_slice'>each_slice</span><span class='lparen'>(</span><span class='int'>2</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_interface'>interface</span><span class='comma'>,</span> <span class='id identifier rubyid_configuration'>configuration</span><span class='op'>|</span>
+    <span class='comment'># See if matches the query and then replace public name
+</span>    <span class='id identifier rubyid_interface'>interface</span> <span class='op'>=</span> <span class='id identifier rubyid_interface'>interface</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\s*(.+):\s*</span><span class='regexp_end'>/</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\\1</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_name'>name</span> <span class='op'>=</span> <span class='id identifier rubyid_names'>names</span><span class='lbracket'>[</span><span class='id identifier rubyid_interface'>interface</span><span class='rbracket'>]</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_names'>names</span><span class='lbracket'>[</span><span class='id identifier rubyid_interface'>interface</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_content'> (</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_interface'>interface</span><span class='rbrace'>}</span><span class='tstring_content'>)</span><span class='tstring_end'>&quot;</span></span> <span class='op'>:</span> <span class='id identifier rubyid_interface'>interface</span>
+    <span class='kw'>next</span> <span class='kw'>if</span> <span class='op'>!</span><span class='ivar'>@interface_filter</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+
+    <span class='comment'># Get addresses
+</span>    <span class='id identifier rubyid_addresses'>addresses</span> <span class='op'>=</span> <span class='const'>StringScanner</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_configuration'>configuration</span><span class='rparen'>)</span>
+    <span class='kw'>while</span> <span class='id identifier rubyid_addresses'>addresses</span><span class='period'>.</span><span class='id identifier rubyid_scan_until'>scan_until</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>inet(6?)\s</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span> <span class='kw'>do</span>
+      <span class='id identifier rubyid_rv'>rv</span> <span class='op'>&lt;&lt;</span> <span class='lbrace'>{</span><span class='symbol'>:interface</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='symbol'>:address</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_addresses'>addresses</span><span class='period'>.</span><span class='id identifier rubyid_scan'>scan</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>\S+</span><span class='regexp_end'>/</span></span><span class='rparen'>)</span><span class='rbrace'>}</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+
+  <span class='id identifier rubyid_rv'>rv</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="get_public_address-instance_method">
+  
+    - (<tt>Hash</tt>) <strong>get_public_address</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Gets the public IP address for this machine.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The public IP address data.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+82
+83
+84
+85
+86
+87
+88</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/pincerna/ip.rb', line 82</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_get_public_address'>get_public_address</span>
+  <span class='kw'>begin</span>
+    <span class='id identifier rubyid_request'>request</span> <span class='op'>=</span> <span class='const'>RestClient</span><span class='op'>::</span><span class='const'>Resource</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>http://api.externalip.net/ip</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='symbol'>:timeout</span> <span class='op'>=&gt;</span> <span class='int'>5</span><span class='comma'>,</span> <span class='symbol'>:open_timeout</span> <span class='op'>=&gt;</span> <span class='int'>5</span><span class='rparen'>)</span>
+    <span class='lbrace'>{</span><span class='symbol'>:interface</span> <span class='op'>=&gt;</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='symbol'>:address</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_request'>request</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='lbrace'>{</span><span class='symbol'>:accept</span> <span class='op'>=&gt;</span> <span class='symbol'>:text</span><span class='rbrace'>}</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_body'>body</span><span class='rbrace'>}</span>
+  <span class='kw'>rescue</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="perform_filtering-instance_method">
+  
+    - (<tt>Array</tt>) <strong>perform_filtering</strong>(query) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Shows the IP addresses of all network interfaces.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>query</span>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>A query to match against interfaces names.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>A list of items to process.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/pincerna/ip.rb', line 20</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_perform_filtering'>perform_filtering</span><span class='lparen'>(</span><span class='id identifier rubyid_query'>query</span><span class='rparen'>)</span>    
+  <span class='ivar'>@interface_filter</span> <span class='op'>||=</span> <span class='id identifier rubyid_query'>query</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span> <span class='op'>?</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>.+</span><span class='regexp_end'>/</span></span> <span class='op'>:</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_query'>query</span><span class='rbrace'>}</span><span class='regexp_end'>/i</span></span>
+
+  <span class='comment'># Get local addresses
+</span>  <span class='id identifier rubyid_rv'>rv</span> <span class='op'>=</span> <span class='id identifier rubyid_get_local_addresses'>get_local_addresses</span>
+
+  <span class='comment'># Sort interfaces and address, IPv4 first then IPv6
+</span>  <span class='id identifier rubyid_rv'>rv</span><span class='period'>.</span><span class='id identifier rubyid_sort!'>sort!</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_left'>left</span><span class='comma'>,</span> <span class='id identifier rubyid_right'>right</span><span class='op'>|</span>
+    <span class='id identifier rubyid_cmp'>cmp</span> <span class='op'>=</span> <span class='id identifier rubyid_left'>left</span><span class='lbracket'>[</span><span class='symbol'>:interface</span><span class='rbracket'>]</span> <span class='op'>&lt;=&gt;</span> <span class='id identifier rubyid_right'>right</span><span class='lbracket'>[</span><span class='symbol'>:interface</span><span class='rbracket'>]</span> <span class='comment'># Interface name first
+</span>    <span class='id identifier rubyid_cmp'>cmp</span> <span class='op'>=</span> <span class='id identifier rubyid_compare_ip_classes'>compare_ip_classes</span><span class='lparen'>(</span><span class='id identifier rubyid_left'>left</span><span class='lbracket'>[</span><span class='symbol'>:address</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_right'>right</span><span class='lbracket'>[</span><span class='symbol'>:address</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_cmp'>cmp</span> <span class='op'>==</span> <span class='int'>0</span> <span class='comment'># Now IPv4 first then IPv6
+</span>    <span class='id identifier rubyid_cmp'>cmp</span> <span class='op'>=</span> <span class='id identifier rubyid_compare_ip_address'>compare_ip_address</span><span class='lparen'>(</span><span class='id identifier rubyid_left'>left</span><span class='lbracket'>[</span><span class='symbol'>:address</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_right'>right</span><span class='lbracket'>[</span><span class='symbol'>:address</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_cmp'>cmp</span> <span class='op'>==</span> <span class='int'>0</span> <span class='comment'># Finally addresses
+</span>    <span class='id identifier rubyid_cmp'>cmp</span>
+  <span class='rbrace'>}</span>
+
+  <span class='comment'># Add public address
+</span>  <span class='id identifier rubyid_rv'>rv</span> <span class='op'>=</span> <span class='id identifier rubyid_rv'>rv</span><span class='period'>.</span><span class='id identifier rubyid_insert'>insert</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span> <span class='id identifier rubyid_get_public_address'>get_public_address</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_compact'>compact</span> <span class='kw'>if</span> <span class='ivar'>@interface_filter</span><span class='period'>.</span><span class='id identifier rubyid_match'>match</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>public</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+
+  <span class='id identifier rubyid_rv'>rv</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="process_results-instance_method">
+  
+    - (<tt>Array</tt>) <strong>process_results</strong>(results) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Processes items to obtain feedback items.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>results</span>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The items to process.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The feedback items.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+44
+45
+46
+47
+48
+49</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/pincerna/ip.rb', line 44</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_process_results'>process_results</span><span class='lparen'>(</span><span class='id identifier rubyid_results'>results</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_results'>results</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_result'>result</span><span class='op'>|</span>
+    <span class='id identifier rubyid_title'>title</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_result'>result</span><span class='lbracket'>[</span><span class='symbol'>:interface</span><span class='rbracket'>]</span> <span class='op'>?</span> <span class='id identifier rubyid_result'>result</span><span class='lbracket'>[</span><span class='symbol'>:interface</span><span class='rbracket'>]</span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Public</span><span class='tstring_end'>&quot;</span></span><span class='rbrace'>}</span><span class='tstring_content'> IP: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_result'>result</span><span class='lbracket'>[</span><span class='symbol'>:address</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span>
+    <span class='lbrace'>{</span><span class='symbol'>:title</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_title'>title</span><span class='comma'>,</span> <span class='symbol'>:arg</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_result'>result</span><span class='lbracket'>[</span><span class='symbol'>:address</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='symbol'>:subtitle</span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Action this item to copy the IP on the clipboard.</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='symbol'>:icon</span> <span class='op'>=&gt;</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='op'>::</span><span class='const'>ICON</span><span class='rbrace'>}</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Wed Jul 24 22:19:39 2013 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.6.2 (ruby-1.9.3).
+</div>
+
+  </body>
+</html>
