@@ -61,10 +61,7 @@ module Pincerna
       if query !~ /^(\d+)$/ then
         caching_http_requests("woeids") do
           response = fetch_remote_resource("http://where.yahooapis.com/v1/places.q(#{CGI.escape(query)});count=5", {appid: self.class::API_KEY, format: :json})
-
-          response["places"]["place"].collect do |place|
-            {woeid: place["woeid"], name: ["locality1", "admin3", "admin2", "admin1", "country"].collect { |field| place[field] }.reject(&:empty?).uniq.join(", ")}
-          end
+          response["places"]["place"].collect { |place| parse_place(place) }
         end
       else
         # We already have the woeid. The name will be given by Yahoo!
@@ -87,22 +84,7 @@ module Pincerna
         forecast = response.forecasts.first
         wind = response.wind
 
-        place[:name] ||= get_name(response.location)
-
-        place.merge({
-          image: download_image(response.description_image.attr("src")),
-          link: response.document_root.at_xpath("link").content,
-          current: {
-            description: current["text"],
-            temperature: "#{current["temp"]} #{temperature_unit}",
-            wind: {speed: "#{wind["speed"]} #{response.units["speed"]}", direction: get_wind_direction(wind["direction"])}
-          },
-          forecast: {
-            description: forecast["text"],
-            high: "#{forecast["high"]} #{temperature_unit}",
-            low: "#{forecast["low"]} #{temperature_unit}"
-          },
-        })
+        format_forecast(place, response, current, forecast, wind, temperature_unit)
       end
     end
 
@@ -123,29 +105,69 @@ module Pincerna
       rv
     end
 
-    # Gets and downloads an image for a forecast.
-    #
-    # @param url [String] The image URL.
-    # @return [String] The path of the downloaded image.
-    def download_image(url)
-      # Extract the URL and use it to build the path
-      rv = @cache_dir + "/weather/#{File.basename(URI.parse(url).path)}"
+    private
+      # Gets and downloads an image for a forecast.
+      #
+      # @param url [String] The image URL.
+      # @return [String] The path of the downloaded image.
+      def download_image(url)
+        # Extract the URL and use it to build the path
+        rv = @cache_dir + "/weather/#{File.basename(URI.parse(url).path)}"
 
-      if !File.exists?(rv) then
-        # Create the directory and download the file
-        FileUtils.mkdir_p(@cache_dir + "/weather/")
-        open(rv, 'wb') {|f| f.write(open(url).read) }
+        if !File.exists?(rv) then
+          # Create the directory and download the file
+          FileUtils.mkdir_p(@cache_dir + "/weather/")
+          open(rv, 'wb') {|f| f.write(open(url).read) }
+        end
+
+        rv
       end
 
-      rv
-    end
+      # Gets a location name.
+      #
+      # @param location [Hash] The location data.
+      # @return [String] The location name.
+      def get_name(location)
+        ["city", "region", "country"].collect { |field| location[field].strip }.reject(&:empty?).join(", ")
+      end
 
-    # Gets a location name.
-    #
-    # @param location [Hash] The location data.
-    # @return [String] The location name.
-    def get_name(location)
-      ["city", "region", "country"].collect { |field| location[field].strip }.reject(&:empty?).join(", ")
-    end
+      # Parses a WOEID lookup.
+      #
+      # @param place [Hash] The place to parse.
+      # @return [Hash] The parsed place.
+      def parse_place(place)
+        {
+          woeid: place["woeid"],
+          name: ["locality1", "admin3", "admin2", "admin1", "country"].collect { |field| place[field] }.reject(&:empty?).uniq.join(", ")
+        }
+      end
+
+      # Formats a weather forecast.
+      #
+      # @param place [Hash] The basic place information.
+      # @param response [Weatherman::Response] The server's response.
+      # @param current [Hash] The current weather conditions.
+      # @param forecast [Hash] The weather forecast for tomorrow.
+      # @param wind [Hash] The current wind conditions.
+      # @param unit [String] The temperature unit.
+      # @return [Hash] The parsed forecast.
+      def format_forecast(place, response, current, forecast, wind, unit)
+        place[:name] ||= get_name(response.location)
+
+        place.merge({
+          image: download_image(response.description_image.attr("src")),
+          link: response.document_root.at_xpath("link").content,
+          current: {
+            description: current["text"],
+            temperature: "#{current["temp"]} #{unit}",
+            wind: {speed: "#{wind["speed"]} #{response.units["speed"]}", direction: get_wind_direction(wind["direction"])}
+          },
+          forecast: {
+            description: forecast["text"],
+            high: "#{forecast["high"]} #{unit}",
+            low: "#{forecast["low"]} #{unit}"
+          },
+        })
+      end
   end
 end
