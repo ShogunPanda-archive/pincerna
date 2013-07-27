@@ -4,6 +4,8 @@
 # Licensed under the MIT license, which can be found at http://www.opensource.org/licenses/mit-license.php.
 #
 
+require "strscan"
+
 module Pincerna
   # Connects or disconnects from system's VPNs.
   class Vpn < Base
@@ -35,7 +37,7 @@ module Pincerna
           token.scan_until(/Hardware Port:\s/)
 
           # If type matches
-          rv << {:name => name, :connected => vpn_connected?(name)} if ["L2TP", "IPSec"].include?(token.scan_until(/,/).gsub(/,$/, ""))
+          rv << {name: name, connected: vpn_connected?(name)} if ["L2TP", "IPSec"].include?(token.scan_until(/,/).gsub(/,$/, ""))
         end
       end
 
@@ -52,7 +54,7 @@ module Pincerna
         subtitle = "Action this item to #{result[:connected] ? "disconnect from" : "connect to"} the VPN service."
         arg = "#{result[:connected] ? "disconnect" : "connect"} service \"#{result[:name]}\""
 
-        {:title => title, :arg => arg, :subtitle => subtitle, :icon => self.class::ICON}
+        {title: title, arg: arg, subtitle: subtitle, icon: self.class::ICON}
       end
     end
 

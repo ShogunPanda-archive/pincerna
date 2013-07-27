@@ -11,11 +11,11 @@ module Pincerna
     ROOT = File.expand_path(File.dirname(__FILE__) + "/../../")
 
     # The expression to match.
-    MATCHER = /^(.*)$/i
+    MATCHER = /^(?<all>.*)$/i
 
     # Relevant groups in the match.
     RELEVANT_MATCHES = {
-      1 => Proc.new {|_, value| value }, # The full query
+      "all" => ->(_, value) { value }
     }
 
     # Executes a filtering query.
@@ -24,14 +24,30 @@ module Pincerna
     # @param query [String] The argument of the query.
     # @return [String] The result of the query.
     def self.execute!(type, query)
+      current_dir = File.dirname(__FILE__)
+
       case type
-        when :unit, :c then Pincerna::UnitConversion.new(query).filter
-        when :currency, :cc then Pincerna::CurrencyConversion.new(query).filter
-        when :translate, :t then Pincerna::Translation.new(query).filter
-        when :map, :m then Pincerna::Map.new(query).filter
-        when :weather, :forecast then Pincerna::Weather.new(query).filter
-        when :ip then Pincerna::Ip.new(query).filter
-        when :vpn then Pincerna::Vpn.new(query).filter
+        when :convert, :unit, :c then
+          require current_dir + "/unit_conversion"
+          Pincerna::UnitConversion.new(query).filter
+        when :currency, :cc then
+          require current_dir + "/currency_conversion"
+          Pincerna::CurrencyConversion.new(query).filter
+        when :translate, :t then
+          require current_dir + "/translation"
+          Pincerna::Translation.new(query).filter
+        when :map, :m then
+          require current_dir + "/map"
+          Pincerna::Map.new(query).filter
+        when :weather, :forecast then
+          require current_dir + "/weather"
+          Pincerna::Weather.new(query).filter
+        when :ip then
+          require current_dir + "/ip"
+          Pincerna::Ip.new(query).filter
+        when :vpn then
+          require current_dir + "/vpn"
+          Pincerna::Vpn.new(query).filter
         else ""
       end
     end
@@ -41,6 +57,7 @@ module Pincerna
     # @param query [String] The argument of the query.
     def initialize(query)
       @query = query.strip
+      @cache_dir = File.expand_path("~/Library/Caches/com.runningwithcrayons.Alfred-2/Workflow Data/pincerna") + "/"
       @feedback_items = []
     end
 
@@ -48,17 +65,13 @@ module Pincerna
     #
     # @return [String] The feedback items of the query, formatted as XML.
     def filter
+      # Match the query
       relevant = self.class::RELEVANT_MATCHES
-
-      # Match
       matches = self.class::MATCHER.match(@query)
 
       if matches then
         # Get relevant groups and process them
-        args = relevant.keys.sort.collect {|index| 
-          converter = relevant[index]
-          converter.call(self, matches[index]) 
-        }
+        args = relevant.collect {|key, value| value.call(self, matches[key]) }
 
         # Now perform the operation
         results = perform_filtering(*args)
@@ -97,16 +110,17 @@ module Pincerna
     #
     # @return [String] A XML document.
     def output_feedback
-      xml = Builder::XmlMarkup.new
-      xml.items do |root|
-        @feedback_items.each do |f|
-          childs, attributes = f.partition {|k, _| [:title, :subtitle, :icon].include?(k) }.collect {|a| array_to_hash(a) }
+      Nokogiri::XML::Builder.new { |xml|
+        xml.items do
+          @feedback_items.each do |item|
+            childs, attributes = split_output_item(item)
 
-          root.item(attributes) do |item|
-            childs.each { |name, value| item.__send__(name, value) }
+            xml.item(attributes) do
+              childs.each { |name, value| xml.send(name, value) }
+            end
           end
         end
-      end
+      }.to_xml
     end
 
     # Converts an array of key-value pairs to an hash.
@@ -129,5 +143,44 @@ module Pincerna
       factor = 10**precision
       (value * factor).round.to_f / factor
     end
+
+    # Runs a block using VCR for HTTP caching.
+    #
+    # @param cassette [String] The cassette name.
+    # @return [Object] The return value of the provided block.
+    def caching_http_requests(cassette)
+      setup_vcr if !defined?(VCR)
+      VCR.use_cassette(cassette) { yield }
+    end
+
+    private
+      # Setups the VCR gem.
+      def setup_vcr
+        require "webmock"
+        require "vcr"
+        require "vcr/util/version_checker"
+
+        VCR.configure do |c|
+          # Hide VCR warning about webmock
+          VCR::VersionChecker.class_eval do
+            private
+            def warn_about_too_high
+            end
+          end
+
+          c.allow_http_connections_when_no_cassette = true
+          c.cassette_library_dir = @cache_dir + "/http/"
+          c.default_cassette_options = {record: :new_episodes}
+          c.hook_into :webmock
+        end
+      end
+
+      # Gets attributes and childs for output
+      #
+      # @param item [Hash] The output item.
+      # @return [Array] An array with child and attributes.
+      def split_output_item(item)
+        item.partition {|k, _| [:title, :subtitle, :icon].include?(k) }.collect {|a| array_to_hash(a) }
+      end
   end
 end

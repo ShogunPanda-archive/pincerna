@@ -22,10 +22,12 @@ Gem::Specification.new do |gem|
   gem.test_files = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
 
-  gem.add_dependency("builder", "~> 3.2.2")
-  gem.add_dependency("json_pure", "~> 1.8.0")
+  gem.add_dependency("bundler", "~> 1.3.5")
+  gem.add_dependency("nokogiri", "~> 1.6.0")
+  gem.add_dependency("oj", "~> 2.1.4")
   gem.add_dependency("rest-client", "~> 1.6.7")
   gem.add_dependency("ruby-units", "~> 1.4.4")
+  gem.add_dependency("yahoo_weatherman", "~> 2.0.0")
   gem.add_dependency("webmock", "~> 1.13.0")
   gem.add_dependency("vcr", "~> 2.5.0")
 end

@@ -150,15 +150,14 @@
 				<key>runningsubtext</key>
 				<string>Performing conversion ...</string>
 				<key>script</key>
-				<string>require "lib/pincerna"
-
-puts Pincerna::Base.execute!(:unit, "{query}")</string>
+				<string>source ~/.rvm/scripts/rvm
+$PWD/runner.rb convert {query}</string>
 				<key>subtext</key>
 				<string>Enter an amount to convert ...</string>
 				<key>title</key>
 				<string>Convert between units</string>
 				<key>type</key>
-				<integer>2</integer>
+				<integer>0</integer>
 				<key>withspace</key>
 				<true/>
 			</dict>
@@ -196,15 +195,14 @@ puts Pincerna::Base.execute!(:unit, "{query}")</string>
 				<key>runningsubtext</key>
 				<string>Performing conversion ...</string>
 				<key>script</key>
-				<string>require "lib/pincerna"
-
-puts Pincerna::Base.execute!(:unit, "{query}")</string>
+				<string>source ~/.rvm/scripts/rvm
+$PWD/runner.rb convert {query}</string>
 				<key>subtext</key>
 				<string>Enter an amount to convert ...</string>
 				<key>title</key>
 				<string>Convert between units</string>
 				<key>type</key>
-				<integer>2</integer>
+				<integer>0</integer>
 				<key>withspace</key>
 				<true/>
 			</dict>
@@ -227,15 +225,14 @@ puts Pincerna::Base.execute!(:unit, "{query}")</string>
 				<key>runningsubtext</key>
 				<string>Performing conversion ...</string>
 				<key>script</key>
-				<string>require "lib/pincerna"
-
-puts Pincerna::Base.execute!(:currency, "{query}")</string>
+				<string>source ~/.rvm/scripts/rvm
+$PWD/runner.rb currency {query}</string>
 				<key>subtext</key>
 				<string>Enter an expression to convert ...</string>
 				<key>title</key>
 				<string>Convert currencies</string>
 				<key>type</key>
-				<integer>2</integer>
+				<integer>0</integer>
 				<key>withspace</key>
 				<true/>
 			</dict>
@@ -273,15 +270,14 @@ puts Pincerna::Base.execute!(:currency, "{query}")</string>
 				<key>runningsubtext</key>
 				<string>Performing conversion ...</string>
 				<key>script</key>
-				<string>require "lib/pincerna"
-
-puts Pincerna::Base.execute!(:currency, "{query}")</string>
+				<string>source ~/.rvm/scripts/rvm
+$PWD/runner.rb cc {query}</string>
 				<key>subtext</key>
 				<string>Enter an expression to convert ...</string>
 				<key>title</key>
 				<string>Convert currencies</string>
 				<key>type</key>
-				<integer>2</integer>
+				<integer>0</integer>
 				<key>withspace</key>
 				<true/>
 			</dict>
@@ -304,15 +300,14 @@ puts Pincerna::Base.execute!(:currency, "{query}")</string>
 				<key>runningsubtext</key>
 				<string>Performing translation ...</string>
 				<key>script</key>
-				<string>require "lib/pincerna"
-
-puts Pincerna::Base.execute!(:translate, "{query}")</string>
+				<string>source ~/.rvm/scripts/rvm
+$PWD/runner.rb translate {query}</string>
 				<key>subtext</key>
 				<string>Enter a text to translate ...</string>
 				<key>title</key>
 				<string>Translate text using Google Translate</string>
 				<key>type</key>
-				<integer>2</integer>
+				<integer>0</integer>
 				<key>withspace</key>
 				<true/>
 			</dict>
@@ -350,15 +345,14 @@ puts Pincerna::Base.execute!(:translate, "{query}")</string>
 				<key>runningsubtext</key>
 				<string>Performing translation ...</string>
 				<key>script</key>
-				<string>require "lib/pincerna"
-
-puts Pincerna::Base.execute!(:translate, "{query}")</string>
+				<string>source ~/.rvm/scripts/rvm
+$PWD/runner.rb t {query}</string>
 				<key>subtext</key>
 				<string>Enter text to translate ...</string>
 				<key>title</key>
 				<string>Translate text using Google Translate</string>
 				<key>type</key>
-				<integer>2</integer>
+				<integer>0</integer>
 				<key>withspace</key>
 				<true/>
 			</dict>
@@ -381,15 +375,14 @@ puts Pincerna::Base.execute!(:translate, "{query}")</string>
 				<key>runningsubtext</key>
 				<string>Searching location ...</string>
 				<key>script</key>
-				<string>require "lib/pincerna"
-
-puts Pincerna::Base.execute!(:map, "{query}")</string>
+				<string>source ~/.rvm/scripts/rvm
+$PWD/runner.rb map {query}</string>
 				<key>subtext</key>
 				<string>Enter a location or coordinates ...</string>
 				<key>title</key>
 				<string>Show locations on Google Maps</string>
 				<key>type</key>
-				<integer>2</integer>
+				<integer>0</integer>
 				<key>withspace</key>
 				<true/>
 			</dict>
@@ -429,15 +422,15 @@ puts Pincerna::Base.execute!(:map, "{query}")</string>
 				<key>runningsubtext</key>
 				<string>Searching location ...</string>
 				<key>script</key>
-				<string>require "lib/pincerna"
-
-puts Pincerna::Base.execute!(:map, "{query}")</string>
+				<string>source ~/.rvm/scripts/rvm
+$PWD/runner.rb m {query}
+</string>
 				<key>subtext</key>
 				<string>Enter a location or coordinates ...</string>
 				<key>title</key>
 				<string>Show locations on Google Maps</string>
 				<key>type</key>
-				<integer>2</integer>
+				<integer>0</integer>
 				<key>withspace</key>
 				<true/>
 			</dict>
@@ -477,15 +470,14 @@ puts Pincerna::Base.execute!(:map, "{query}")</string>
 				<key>runningsubtext</key>
 				<string>Getting weather forecast ...</string>
 				<key>script</key>
-				<string>require "lib/pincerna"
-
-puts Pincerna::Base.execute!(:weather, "{query}")</string>
+				<string>source ~/.rvm/scripts/rvm
+$PWD/runner.rb forecast {query}</string>
 				<key>subtext</key>
 				<string>Enter a location or a location code ...</string>
 				<key>title</key>
 				<string>Weather forecast</string>
 				<key>type</key>
-				<integer>2</integer>
+				<integer>0</integer>
 				<key>withspace</key>
 				<true/>
 			</dict>
@@ -523,15 +515,14 @@ puts Pincerna::Base.execute!(:weather, "{query}")</string>
 				<key>runningsubtext</key>
 				<string>Fetching IPs …</string>
 				<key>script</key>
-				<string>require "lib/pincerna"
-
-puts Pincerna::Base.execute!(:ip, "{query}")</string>
+				<string>source ~/.rvm/scripts/rvm
+$PWD/runner.rb ip {query}</string>
 				<key>subtext</key>
 				<string>Show the list of local and remote IPs of this computer</string>
 				<key>title</key>
 				<string>Show the list of IP</string>
 				<key>type</key>
-				<integer>2</integer>
+				<integer>0</integer>
 				<key>withspace</key>
 				<true/>
 			</dict>
@@ -572,15 +563,15 @@ puts Pincerna::Base.execute!(:ip, "{query}")</string>
 				<key>runningsubtext</key>
 				<string>Fetching VPNs statuses ...</string>
 				<key>script</key>
-				<string>require "lib/pincerna"
-
-puts Pincerna::Base.execute!(:vpn, "{query}")</string>
+				<string>#!/bin/bash
+source ~/.rvm/scripts/rvm
+$PWD/runner.rb vpn {query}</string>
 				<key>subtext</key>
 				<string>Connect or disconnect to your VPNs ...</string>
 				<key>title</key>
 				<string>Manage VPNs ...</string>
 				<key>type</key>
-				<integer>2</integer>
+				<integer>0</integer>
 				<key>withspace</key>
 				<true/>
 			</dict>

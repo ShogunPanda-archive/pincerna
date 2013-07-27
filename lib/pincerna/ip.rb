@@ -4,6 +4,9 @@
 # Licensed under the MIT license, which can be found at http://www.opensource.org/licenses/mit-license.php.
 #
 
+require "strscan"
+require "restclient"
+
 module Pincerna
   # Shows the IP addresses of all network interfaces.
   class Ip < Base
@@ -32,7 +35,7 @@ module Pincerna
       }
 
       # Add public address
-      rv = rv.insert(0, get_public_address).compact if @interface_filter.match("public")
+      rv = rv.insert(0, get_public_address) if @interface_filter.match("public")
 
       rv
     end
@@ -44,7 +47,7 @@ module Pincerna
     def process_results(results)
       results.collect do |result|
         title = "#{result[:interface] ? result[:interface] : "Public"} IP: #{result[:address]}"
-        {:title => title, :arg => result[:address], :subtitle => "Action this item to copy the IP on the clipboard.", :icon => self.class::ICON}
+        {title: title, arg: result[:address], subtitle: "Action this item to copy the IP on the clipboard.", icon: self.class::ICON}
       end
     end
 
@@ -69,7 +72,7 @@ module Pincerna
         # Get addresses
         addresses = StringScanner.new(configuration)
         while addresses.scan_until(/inet(6?)\s/) do
-          rv << {:interface => name, :address => addresses.scan(/\S+/)}
+          rv << {interface: name, address: addresses.scan(/\S+/)}
         end
       end
 
@@ -80,11 +83,8 @@ module Pincerna
     #
     # @return [Hash] The public IP address data.
     def get_public_address
-      begin
-        request = RestClient::Resource.new("http://api.externalip.net/ip", :timeout => 5, :open_timeout => 5)
-        {:interface => nil, :address => request.get({:accept => :text}).body}
-      rescue
-      end
+      request = RestClient::Resource.new("http://api.externalip.net/ip", timeout: 5, open_timeout: 5)
+      {interface: nil, address: request.get({accept: :text}).body}
     end
 
     # Compares two IP classes, giving higher priority to IPv4.
