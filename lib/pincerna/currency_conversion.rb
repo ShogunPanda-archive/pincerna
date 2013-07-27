@@ -4,9 +4,6 @@
 # Licensed under the MIT license, which can be found at http://www.opensource.org/licenses/mit-license.php.
 #
 
-require "oj"
-require "restclient"
-
 module Pincerna
   # Converts a value from a currency to another.
   class CurrencyConversion < Base
@@ -40,8 +37,7 @@ module Pincerna
     # @param with_rate [Boolean] If to return the conversion rate in the results.
     # @return [Hash|NilClass] The converted data or `nil` if the conversion failed.
     def perform_filtering(value, from, to, with_rate)
-      request = RestClient::Resource.new("http://rate-exchange.appspot.com/currency", timeout: 5, open_timeout: 5)
-      response = Oj.load(request.get({accept: :json, params: {q: value, from: from, to: to}}))
+      response = fetch_remote_resource("http://rate-exchange.appspot.com/currency", {q: value, from: from, to: to})
       {value: value, from: from, to: to, result: round_float(response["v"]), rate: round_float(response["rate"]), with_rate: with_rate}
     end
 

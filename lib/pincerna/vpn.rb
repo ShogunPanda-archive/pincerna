@@ -10,12 +10,12 @@ module Pincerna
   # Connects or disconnects from system's VPNs.
   class Vpn < Base
     # The expression to match.
-    MATCHER = /^(.*)$/i
+    MATCHER = /^(?<all>.*)$/i
 
     # The icon to show for each feedback item.
     ICON = Pincerna::Base::ROOT + "/images/network.png"
 
-    # Connects or disconnects from system VPN.
+    # Connects to or disconnects from system VPN.
     #
     # @param query [Array] A query to match against VPNs names.
     # @return [Array] A list of items to process.

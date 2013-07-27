@@ -8,6 +8,17 @@
 module Pincerna
   # Base class for all filter.
   class Base
+    # Recognized types of filtering
+    TYPES = {
+      "unit_conversion" => /^(convert|unit|c)$/,
+      "currency_conversion" => /^(currency|cc)$/,
+      "translation" => /^(translate|t)$/,
+      "map" => /^(map|m)$/,
+      "weather" => /^(forecast|weather)$/,
+      "ip" => /^ip$/,
+      "vpn" => /^vpn$/
+    }
+
     ROOT = File.expand_path(File.dirname(__FILE__) + "/../../")
 
     # The expression to match.
@@ -24,32 +35,13 @@ module Pincerna
     # @param query [String] The argument of the query.
     # @return [String] The result of the query.
     def self.execute!(type, query)
-      current_dir = File.dirname(__FILE__)
-
-      case type
-        when :convert, :unit, :c then
-          require current_dir + "/unit_conversion"
-          Pincerna::UnitConversion.new(query).filter
-        when :currency, :cc then
-          require current_dir + "/currency_conversion"
-          Pincerna::CurrencyConversion.new(query).filter
-        when :translate, :t then
-          require current_dir + "/translation"
-          Pincerna::Translation.new(query).filter
-        when :map, :m then
-          require current_dir + "/map"
-          Pincerna::Map.new(query).filter
-        when :weather, :forecast then
-          require current_dir + "/weather"
-          Pincerna::Weather.new(query).filter
-        when :ip then
-          require current_dir + "/ip"
-          Pincerna::Ip.new(query).filter
-        when :vpn then
-          require current_dir + "/vpn"
-          Pincerna::Vpn.new(query).filter
-        else ""
+      type = catch(:type) do
+        TYPES.each do |file, matcher|
+          throw(:type, file) if type =~ matcher
+        end
       end
+
+      create_class(type).new(query).filter if type
     end
 
     # Creates a new query.
@@ -74,7 +66,11 @@ module Pincerna
         args = relevant.collect {|key, value| value.call(self, matches[key]) }
 
         # Now perform the operation
-        results = perform_filtering(*args)
+        results = begin
+          perform_filtering(*args)
+        rescue
+          []
+        end
 
         # Show results if appropriate
         process_results(results).each {|r| add_feedback_item(r) } if results
@@ -154,6 +150,14 @@ module Pincerna
     end
 
     private
+      # Require specified file and instantiate the new class.
+      #
+      # @param file [String] The file name.
+      def self.create_class(file)
+        require "#{File.dirname(__FILE__)}/#{file}"
+        Pincerna.const_get(file.capitalize.gsub(/_(.)/) { $1.upcase})
+      end
+
       # Setups the VCR gem.
       def setup_vcr
         require "webmock"
@@ -175,12 +179,29 @@ module Pincerna
         end
       end
 
-      # Gets attributes and childs for output
+      # Gets attributes and children for output.
       #
       # @param item [Hash] The output item.
-      # @return [Array] An array with child and attributes.
+      # @return [Array] An array with children and attributes.
       def split_output_item(item)
         item.partition {|k, _| [:title, :subtitle, :icon].include?(k) }.collect {|a| array_to_hash(a) }
+      end
+
+      # Fetches remote JSON resource.
+      #
+      # @param url [String] The URL to get.
+      # @param params [Hash] The parameters to pass to the server.
+      # @param json [Boolean] If the response is a JSON object.
+      # @return [Hash] The server's response.
+      def fetch_remote_resource(url, params, json = true)
+        require "oj" if !defined?(Oj)
+        require "restclient" if !defined?(RestClient)
+
+        args = {params: params}
+        args[:accept] = :json if json
+
+        response = RestClient::Resource.new(url, timeout: 5, open_timeout: 5).get(args)
+        json ? Oj.load(response) : response.body
       end
   end
 end

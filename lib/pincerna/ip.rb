@@ -5,13 +5,12 @@
 #
 
 require "strscan"
-require "restclient"
 
 module Pincerna
   # Shows the IP addresses of all network interfaces.
   class Ip < Base
     # The expression to match.
-    MATCHER = /^(.*)$/i
+    MATCHER = /^(?<all>.*)$/i
 
     # The icon to show for each feedback item.
     ICON = Pincerna::Base::ROOT + "/images/network.png"
@@ -83,8 +82,7 @@ module Pincerna
     #
     # @return [Hash] The public IP address data.
     def get_public_address
-      request = RestClient::Resource.new("http://api.externalip.net/ip", timeout: 5, open_timeout: 5)
-      {interface: nil, address: request.get({accept: :text}).body}
+      {interface: nil, address: fetch_remote_resource("http://api.externalip.net/ip", {}, false)}
     end
 
     # Compares two IP classes, giving higher priority to IPv4.
@@ -108,7 +106,7 @@ module Pincerna
       cmp
     end
 
-    # Get an hash with pair of interfaces and their human names.
+    # Gets a hash with pair of interfaces and their human names.
     #
     # @return [Hash] The hash with interfaces' name.
     def get_interfaces_names

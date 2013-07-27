@@ -4,9 +4,6 @@
 # Licensed under the MIT license, which can be found at http://www.opensource.org/licenses/mit-license.php.
 #
 
-require "oj"
-require "restclient"
-
 module Pincerna
   # Translates text using Google Translate.
   class Translation < Base
@@ -42,8 +39,7 @@ module Pincerna
       end
 
       caching_http_requests("translations") do
-        request = RestClient::Resource.new("http://translate.google.com.br/translate_a/t", timeout: 5, open_timeout: 5)
-        response = Oj.load(request.get({accept: :json, params: {client: "p", text: value, sl: from, tl: to, multires: 1, ssel: 0, tsel: 0, sc: 1, ie: "UTF-8", oe: "UTF-8"}}))
+        response = fetch_remote_resource("http://translate.google.com.br/translate_a/t", {client: "p", text: value, sl: from, tl: to, multires: 1, ssel: 0, tsel: 0, sc: 1, ie: "UTF-8", oe: "UTF-8"})
 
         # Parse results
         if response["dict"] then

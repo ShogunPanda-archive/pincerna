@@ -4,8 +4,6 @@
 # Licensed under the MIT license, which can be found at http://www.opensource.org/licenses/mit-license.php.
 #
 
-require "oj"
-require "restclient"
 require "yahoo_weatherman"
 require "fileutils"
 require "open-uri"
@@ -31,7 +29,7 @@ module Pincerna
     # The icon to show for each feedback item.
     ICON = Pincerna::Base::ROOT + "/images/weather.png"
 
-    # Get forecast for a place.
+    # Gets forecast for a place.
     #
     # @param query [String] A place to search.
     # @return [Array] A list of items to process.
@@ -62,9 +60,9 @@ module Pincerna
     def lookup_places(query)
       if query !~ /^(\d+)$/ then
         caching_http_requests("woeids") do
-          request = RestClient::Resource.new("http://where.yahooapis.com/v1/places.q(#{CGI.escape(query)});count=5", timeout: 5, open_timeout: 5)
+          response = fetch_remote_resource("http://where.yahooapis.com/v1/places.q(#{CGI.escape(query)});count=5", {appid: self.class::API_KEY, format: :json})
 
-          Oj.load(request.get({params: {appid: self.class::API_KEY, format: :json}}))["places"]["place"].collect do |place|
+          response["places"]["place"].collect do |place|
             {woeid: place["woeid"], name: ["locality1", "admin3", "admin2", "admin1", "country"].collect { |field| place[field] }.reject(&:empty?).uniq.join(", ")}
           end
         end
@@ -74,10 +72,10 @@ module Pincerna
       end
     end
 
-    # Get weather forecast for one or more places.
+    # Gets weather forecast for one or more places.
     #
     # @param places [Array] The places to query.
-    # @param scale [String] The unit system to use: `f` for the US system and `c` for the SI one.
+    # @param scale [String] The unit system to use: `f` for the US system (Farenheit) and `c` for the SI one (Celsius).
     # @return [Array|NilClass] An array with forecasts data or `nil` if the query failed.
     def get_forecast(places, scale = "c")
       client = Weatherman::Client.new(unit: scale)
@@ -108,10 +106,10 @@ module Pincerna
       end
     end
 
-    # Converts the degrees direction of the wind to the N-S, E-W notation.
+    # Converts the degrees direction of the wind to the cardinal points notation (like NE or SW).
     #
     # @param degrees [Fixnum] The direction in degrees.
-    # @return [String] The direction in N-S, E-W notation.
+    # @return [String] The direction in cardinal points notation.
     def get_wind_direction(degrees) 
       # Get sin and cos for locating.
       radians = degrees * Math::PI / 180 
@@ -127,7 +125,7 @@ module Pincerna
 
     # Gets and downloads an image for a forecast.
     #
-    # @param description [String] The image URL.
+    # @param url [String] The image URL.
     # @return [String] The path of the downloaded image.
     def download_image(url)
       # Extract the URL and use it to build the path
@@ -149,7 +147,5 @@ module Pincerna
     def get_name(location)
       ["city", "region", "country"].collect { |field| location[field].strip }.reject(&:empty?).join(", ")
     end
-
-    private
   end
 end
