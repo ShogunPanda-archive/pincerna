@@ -80,10 +80,7 @@ module Pincerna
 
       places.collect do |place|
         response = client.lookup_by_woeid(place[:woeid])
-        image = download_image(response.description_image.attr("src"))
-        link = response.document_root.at_xpath("link").content
-
-        format_forecast(place, image, link, response.condition, response.forecasts.first, response.wind, temperature_unit, response.units["speed"])
+        format_forecast(place, response.description_image.attr("src"), response.document_root.at_xpath("link").content, response.condition, response.forecasts.first, response.wind, temperature_unit, response.units["speed"])
       end
     end
 
@@ -144,7 +141,7 @@ module Pincerna
       # Formats a weather forecast.
       #
       # @param place [Hash] The basic place information.
-      # @param image [String] The icon for the current weather conditions.
+      # @param image [String] The icon URL for the current weather conditions.
       # @param link [String] The link to view weather conditions on Yahoo!.
       # @param current [Hash] The current weather conditions.
       # @param forecast [Hash] The weather forecast for tomorrow.
@@ -152,11 +149,11 @@ module Pincerna
       # @param temperature_unit [String] The temperature unit.
       # @param speed_unit [String] The speed unit.
       # @return [Hash] The parsed forecast.
-      def format_forecast(place, image, link, current, forecast, wind, temperature_unit)
+      def format_forecast(place, image, link, current, forecast, wind, temperature_unit, speed_unit)
         place[:name] ||= get_name(response.location)
 
         place.merge({
-          image: image,
+          image: download_image(image),
           link: link,
           current: {
             description: current["text"],
