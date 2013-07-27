@@ -80,11 +80,10 @@ module Pincerna
 
       places.collect do |place|
         response = client.lookup_by_woeid(place[:woeid])
-        current = response.condition
-        forecast = response.forecasts.first
-        wind = response.wind
+        image = download_image(response.description_image.attr("src"))
+        link = response.document_root.at_xpath("link").content
 
-        format_forecast(place, response, current, forecast, wind, temperature_unit)
+        format_forecast(place, image, link, response.condition, response.forecasts.first, response.wind, temperature_unit, response.units["speed"])
       end
     end
 
@@ -145,27 +144,29 @@ module Pincerna
       # Formats a weather forecast.
       #
       # @param place [Hash] The basic place information.
-      # @param response [Weatherman::Response] The server's response.
+      # @param image [String] The icon for the current weather conditions.
+      # @param link [String] The link to view weather conditions on Yahoo!.
       # @param current [Hash] The current weather conditions.
       # @param forecast [Hash] The weather forecast for tomorrow.
       # @param wind [Hash] The current wind conditions.
-      # @param unit [String] The temperature unit.
+      # @param temperature_unit [String] The temperature unit.
+      # @param speed_unit [String] The speed unit.
       # @return [Hash] The parsed forecast.
-      def format_forecast(place, response, current, forecast, wind, unit)
+      def format_forecast(place, image, link, current, forecast, wind, temperature_unit)
         place[:name] ||= get_name(response.location)
 
         place.merge({
-          image: download_image(response.description_image.attr("src")),
-          link: response.document_root.at_xpath("link").content,
+          image: image,
+          link: link,
           current: {
             description: current["text"],
-            temperature: "#{current["temp"]} #{unit}",
-            wind: {speed: "#{wind["speed"]} #{response.units["speed"]}", direction: get_wind_direction(wind["direction"])}
+            temperature: "#{current["temp"]} #{temperature_unit}",
+            wind: {speed: "#{wind["speed"]} #{speed_unit}", direction: get_wind_direction(wind["direction"])}
           },
           forecast: {
             description: forecast["text"],
-            high: "#{forecast["high"]} #{unit}",
-            low: "#{forecast["low"]} #{unit}"
+            high: "#{forecast["high"]} #{temperature_unit}",
+            low: "#{forecast["low"]} #{temperature_unit}"
           },
         })
       end
