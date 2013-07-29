@@ -35,7 +35,7 @@ module Pincerna
           token.scan_until(/Hardware Port:\s/)
 
           # If type matches
-          rv << {name: name, connected: vpn_connected?(name)} if ["L2TP", "IPSec"].include?(token.scan_until(/,/).gsub(/,$/, ""))
+          rv << {name: name, connected: vpn_connected?(name)} if is_vpn_service?(token.scan_until(/,/))
         end
       end
 
@@ -63,5 +63,14 @@ module Pincerna
     def vpn_connected?(name)
       execute_command("/usr/sbin/networksetup", "-showpppoestatus", "\"#{name}\"").strip == "connected"
     end
+
+    private
+      # Check if a service is a VPN.
+      #
+      # @param service [String] The service name.
+      # @return `true` if the service is a VPN service, `false` otherwise.
+      def is_vpn_service?(service)
+        ["L2TP", "IPSec"].include?(service.gsub(/,$/, ""))
+      end
   end
 end
