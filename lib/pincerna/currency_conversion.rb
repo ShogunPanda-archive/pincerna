@@ -46,10 +46,10 @@ module Pincerna
     # @param results [Hash] The item to process.
     # @return [Array] The feedback items.
     def process_results(results)
-      title = "%0.3f #{results[:from]} = %0.3f #{results[:to]}" % [results[:value], results[:result]]
-      title << " (1 #{results[:from]} = %0.3f #{results[:to]})" % results[:rate] if results[:with_rate]
+      title = "%s %s = %s %s" % [format_float(results[:value]), results[:from], format_float(results[:result]), results[:to]]
+      title << " (1 %s = %s %s)" % [results[:from], format_float(results[:rate]), results[:to]] if results[:with_rate]
 
-      [{title: title, arg: "%0.3f" % results[:result], subtitle: "Action this item to copy the converted amount on the clipboard.", icon: self.class::ICON}]
+      [{title: title, arg: format_float(results[:value]), subtitle: "Action this item to copy the converted amount on the clipboard.", icon: self.class::ICON}]
     end
   end
 end

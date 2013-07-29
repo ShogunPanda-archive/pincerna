@@ -20,7 +20,7 @@ module Pincerna
     # @param query [Array] A query to match against interfaces names.
     # @return [Array] A list of items to process.
     def perform_filtering(query)    
-      @interface_filter ||= query.empty? ? /.+/ : /#{query}/i
+      @interface_filter ||= query.empty? ? /.*/ : /#{query}/i
 
       # Get local addresses
       rv = get_local_addresses
@@ -29,7 +29,7 @@ module Pincerna
       rv.sort! {|left, right|
         cmp = left[:interface] <=> right[:interface] # Interface name first
         cmp = compare_ip_classes(left[:address], right[:address]) if cmp == 0 # Now IPv4 first then IPv6
-        cmp = compare_ip_address(left[:address], right[:address]) if cmp == 0 # Finally addresses
+        cmp = compare_ip_addresses(left[:address], right[:address]) if cmp == 0 # Finally addresses
         cmp
       }
 
@@ -58,7 +58,7 @@ module Pincerna
       names = get_interfaces_names
 
       # Split by interfaces
-      interfaces = `ifconfig`.split(/(^\S+:\s+)/)
+      interfaces = execute_command("/sbin/ifconfig").split(/(^\S+:\s+)/)
       interfaces.shift # Discard first whitespace
 
       # For each interface
@@ -91,7 +91,7 @@ module Pincerna
     # @param right [String] The second IP to compare.
     # @return [Fixnum] The result of the comparison.
     def compare_ip_classes(left, right)
-      (left.index("::") ? 1 : 0) <=> (right.index("::") ? 1 : 0)
+      (left.index(":") ? 1 : 0) <=> (right.index(":") ? 1 : 0)
     end
 
     # Compares to IP addresses, giving higher priority to local address such as 127.0.0.1.
@@ -99,7 +99,7 @@ module Pincerna
     # @param left [String] The first IP to compare.
     # @param right [String] The second IP to compare.
     # @return [Fixnum] The result of the comparison.
-    def compare_ip_address(left, right)
+    def compare_ip_addresses(left, right)
       higher_priority = ["::1", "127.0.0.1", "10.0.0.1"]
       cmp = (higher_priority.include?(left) ? 0 : 1) <=> (higher_priority.include?(right) ? 0 : 1)
       cmp = left <=> right if cmp == 0
@@ -112,7 +112,7 @@ module Pincerna
     def get_interfaces_names
       rv = {"lo0" => "Loopback"}
 
-      names = `networksetup -listallhardwareports`.split(/\n\n/)
+      names = execute_command("/usr/sbin/networksetup", "-listallhardwareports").split(/\n\n/)
       names.shift # Discard first whitespace
       
       names.each do |port|

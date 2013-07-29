@@ -39,6 +39,8 @@ module Pincerna
         TYPES.each do |file, matcher|
           throw(:type, file) if type =~ matcher
         end
+
+        nil
       end
 
       create_class(type).new(query).filter if type
@@ -68,7 +70,8 @@ module Pincerna
         # Now perform the operation
         results = begin
           perform_filtering(*args)
-        rescue
+        rescue => e
+          raise e if debug_mode == :error
           []
         end
 
@@ -106,28 +109,22 @@ module Pincerna
     #
     # @return [String] A XML document.
     def output_feedback
-      Nokogiri::XML::Builder.new { |xml|
-        xml.items do
-          @feedback_items.each do |item|
-            childs, attributes = split_output_item(item)
+      if !debug_mode then
+        Nokogiri::XML::Builder.new { |xml|
+          xml.items do
+            @feedback_items.each do |item|
+              childs, attributes = split_output_item(item)
 
-            xml.item(attributes) do
-              childs.each { |name, value| xml.send(name, value) }
+              xml.item(attributes) do
+                childs.each { |name, value| xml.send(name, value) }
+              end
             end
           end
-        end
-      }.to_xml
-    end
-
-    # Converts an array of key-value pairs to an hash.
-    #
-    # @param array [Array] The array to convert.
-    # @return [Hash] The converted hash.
-    def array_to_hash(array)
-      array.inject({}){ |rv, entry|
-        rv[entry[0]] = entry[1]
-        rv
-      }
+        }.to_xml
+      else
+        require "yaml"
+        @feedback_items.to_yaml
+      end
     end
 
     # Rounds a float to a certain precision.
@@ -140,22 +137,44 @@ module Pincerna
       (value * factor).round.to_f / factor
     end
 
-    # Runs a block using VCR for HTTP caching.
+    # Rounds a float to a certain precision and prints it as a string. Unneeded leading zero are remove.
     #
-    # @param cassette [String] The cassette name.
-    # @return [Object] The return value of the provided block.
-    def caching_http_requests(cassette)
-      setup_vcr if !defined?(VCR)
-      VCR.use_cassette(cassette) { yield }
+    # @param value [Float] The value to print.
+    # @param precision [Fixnum] The precision to use.
+    # @return [String] The formatted value.
+    def format_float(value, precision = 3)
+      value = round_float(value, precision)
+      value = "%0.#{precision}f" % value
+      value.gsub(/\.?0+$/, "")
     end
 
-    private
+    protected
       # Require specified file and instantiate the new class.
       #
       # @param file [String] The file name.
       def self.create_class(file)
         require "#{File.dirname(__FILE__)}/#{file}"
         Pincerna.const_get(file.capitalize.gsub(/_(.)/) { $1.upcase})
+      end
+
+      # Converts an array of key-value pairs to an hash.
+      #
+      # @param array [Array] The array to convert.
+      # @return [Hash] The converted hash.
+      def array_to_hash(array)
+        array.inject({}){ |rv, entry|
+          rv[entry[0]] = entry[1]
+          rv
+        }
+      end
+
+      # Runs a block using VCR for HTTP caching.
+      #
+      # @param cassette [String] The cassette name.
+      # @return [Object] The return value of the provided block.
+      def caching_http_requests(cassette)
+        setup_vcr if !defined?(VCR)
+        VCR.use_cassette(cassette) { yield }
       end
 
       # Setups the VCR gem.
@@ -202,6 +221,21 @@ module Pincerna
 
         response = RestClient::Resource.new(url, timeout: 5, open_timeout: 5).get(args)
         json ? Oj.load(response) : response.body
+      end
+
+      # Executes a command and returns its output.
+      #
+      # @param args [Array] The command to execute, with its arguments.
+      # @return [String] The output of the command
+      def execute_command(*args)
+        rv = ""
+        IO.popen(args) {|f| rv = f.read }
+        rv
+      end
+
+      # Returns the current debug mode
+      def debug_mode
+        !ENV["PINCERNA_DEBUG"].nil? ? ENV["PINCERNA_DEBUG"].to_sym : nil
       end
   end
 end

@@ -12,6 +12,14 @@ http://sw.cow.tc/pincerna
 
 http://rdoc.info/gems/pincerna
 
+# Installation
+
+# \curl -L https://get.rvm.io | sudo bash -s stable
+# rvm install 1.9.3
+# rvm use 1.9.3 --default
+# gem i bundler pincerna
+
+
 ## Contributing to pincerna
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.

@@ -17,8 +17,8 @@ module Pincerna
 
     # Relevant groups in the match.
     RELEVANT_MATCHES = {
-      "from" => ->(_, value) { value },
-      "to" => ->(_, value) { value },
+      "from" => ->(_, value) { value.downcase },
+      "to" => ->(_, value) { value && value.downcase },
       "text" => ->(_, value) { value.strip },
     }
 

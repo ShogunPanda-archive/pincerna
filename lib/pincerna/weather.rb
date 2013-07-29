@@ -82,7 +82,7 @@ module Pincerna
         response = client.lookup_by_woeid(place[:woeid])
         image, link = extract_forecast_media(response)
 
-        format_forecast(place, image, link, response.condition, response.forecasts.first, response.wind, temperature_unit, response.units["speed"])
+        format_forecast(place, download_image(image), link, response.condition, response.forecasts.first, response.wind, temperature_unit, response.units["speed"])
       end
     end
 

@@ -23,7 +23,7 @@ module Pincerna
       interface_filter ||= query.empty? ? /.+/ : /#{query}/i
 
       rv = []
-      interfaces = `networksetup -listnetworkserviceorder`.split(/\n\n/)
+      interfaces = execute_command("/usr/sbin/networksetup", "-listnetworkserviceorder").split(/\n\n/)
 
       interfaces.each do |i|
         # Scan every interface
@@ -63,7 +63,7 @@ module Pincerna
     # @param name [String] The VPN's name.
     # @return [Boolean] `true` if the VPN is connected, `false` otherwise.
     def vpn_connected?(name)
-      `networksetup -showpppoestatus \"#{name}\"`.strip == "connected"
+      execute_command("/usr/sbin/networksetup", "-showpppoestatus", "\"#{name}\"").strip == "connected"
     end
   end
 end

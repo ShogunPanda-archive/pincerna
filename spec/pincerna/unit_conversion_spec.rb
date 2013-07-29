@@ -4,7 +4,8 @@
 # Licensed under the MIT license, which can be found at http://www.opensource.org/licenses/mit-license.php.
 #
 
-require "nokogiri"
-$: << File.dirname(__FILE__)
-require "pincerna/version" if !defined?(Pincerna::Version)
-require "pincerna/base"
+require "spec_helper"
+
+describe Pincerna::UnitConversion do
+
+end
