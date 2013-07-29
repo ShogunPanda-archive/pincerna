@@ -19,13 +19,11 @@ module Pincerna
     #
     # @param query [Array] A query to match against VPNs names.
     # @return [Array] A list of items to process.
-    def perform_filtering(query)    
+    def perform_filtering(query)
+      rv = []
       interface_filter ||= query.empty? ? /.+/ : /#{query}/i
 
-      rv = []
-      interfaces = execute_command("/usr/sbin/networksetup", "-listnetworkserviceorder").split(/\n\n/)
-
-      interfaces.each do |i|
+      execute_command("/usr/sbin/networksetup", "-listnetworkserviceorder").split(/\n\n/).each do |i|
         # Scan every interface
         token = StringScanner.new(i)
 
