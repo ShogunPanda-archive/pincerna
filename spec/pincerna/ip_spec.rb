@@ -7,6 +7,8 @@
 require "spec_helper"
 
 describe Pincerna::Ip do
+  subject { Pincerna::Ip.new("") }
+
   before(:each) do
     @ifconfig = <<EOIP
 lo0: flags=8049<UP,LOOPBACK,RUNNING,MULTICAST> mtu 16384
@@ -80,8 +82,6 @@ EONAMES
   end
 
   describe "#perform_filtering" do
-    subject { Pincerna::Ip.new("") }
-
     before(:each) do
       allow(subject).to receive(:get_public_address).and_return({interface: nil, address: "76.126.167.79"})
     end
@@ -118,8 +118,6 @@ EONAMES
   end
 
   describe "#process_results" do
-    subject { Pincerna::Ip.new("") }
-
     before(:each) do
       @value = [{interface: "INTERFACE", address: "IP 1"}, {interface: nil, address: "IP 2"}]
     end
@@ -132,8 +130,6 @@ EONAMES
     end
   end
   describe "#get_local_addresses", :vcr do
-    subject { Pincerna::Ip.new("") }
-
     before(:each) do
       subject.instance_variable_set(:@interface_filter, /.*/i)
       expect(subject).to receive(:get_interfaces_names).and_return({"en0" => "Ethernet", "fw0" => "FireWire", "en1" => "Wi-Fi", "en2" => "Bluetooth PAN", "lo0" => "Loopback"})
@@ -154,16 +150,16 @@ EONAMES
   end
 
   describe "#get_public_address", :vcr do
-    subject { Pincerna::Ip.new("") }
-
     it "should return public IP address" do
-      expect(subject.get_public_address).to eq({interface: nil, address: "76.126.167.79"})
+      address = subject.get_public_address
+
+      expect(address.keys).to eq([:interface, :address])
+      expect(address[:interface]).to be_nil
+      expect(address[:address]).to match(/^((\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})|([0-9a-f:%]+))$/)
     end
   end
 
   describe "#compare_ip_classes" do
-    subject { Pincerna::Ip.new("") }
-
     it "should compare IP classes" do
       expect(subject.compare_ip_classes("127.0.0.1", "::1")).to eq(-1)
       expect(subject.compare_ip_classes("::1", "::fe80:aabb")).to eq(0)
@@ -172,8 +168,6 @@ EONAMES
   end
 
   describe "#compare_ip_addresses" do
-    subject { Pincerna::Ip.new("") }
-
     it "should correctly compare IP addresses" do
       expect(subject.compare_ip_addresses("127.0.0.1", "::1")).to eq(-1)
       expect(subject.compare_ip_addresses("::1", "127.0.0.1")).to eq(1)
@@ -188,8 +182,6 @@ EONAMES
   end
 
   describe "#get_interfaces_names" do
-    subject { Pincerna::Ip.new("") }
-
     before(:each) do
       expect(subject).to receive(:execute_command).with("/usr/sbin/networksetup", "-listallhardwareports").and_return(@networksetup)
     end

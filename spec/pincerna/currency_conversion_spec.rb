@@ -7,6 +7,8 @@
 require "spec_helper"
 
 describe Pincerna::CurrencyConversion do
+  subject { Pincerna::CurrencyConversion.new("QUERY") }
+
   describe "matching" do
     it "should match valid queries" do
       allow_any_instance_of(Pincerna::CurrencyConversion).to receive(:perform_filtering) { |*args| args }
@@ -26,16 +28,12 @@ describe Pincerna::CurrencyConversion do
   end
 
   describe "#perform_filtering", :vcr do
-    subject { Pincerna::CurrencyConversion.new("QUERY") }
-
     it "should return valid values" do
       expect(subject.perform_filtering(123.45, "EUR", "USD", "RATE")).to eq({value: 123.45, from: "EUR", to: "USD", result: 163.892, rate: 1.328, with_rate: "RATE"})
     end
   end
 
   describe "#process_results" do
-    subject { Pincerna::CurrencyConversion.new("QUERY") }
-
     before(:each) do
       @value = {value: 123.45, from: "EUR", to: "USD", result: 163.892, rate: 1.328, with_rate: nil}
     end
