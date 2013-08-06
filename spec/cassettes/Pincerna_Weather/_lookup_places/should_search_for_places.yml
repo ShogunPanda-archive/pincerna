@@ -1,0 +1,189 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://where.yahooapis.com/v1/places.q(Campobasso);count=5?appid=dj0yJmk9ZUpBZk1hQTJGRHM5JmQ9WVdrOVlUSnBjMGhUTjJVbWNHbzlOemsyTURNeU5EWXkmcz1jb25zdW1lcnNlY3JldCZ4PWRi&format=json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - public, must-revalidate
+      Connection:
+      - Keep-Alive
+      Content-Encoding:
+      - gzip
+      Content-Language:
+      - en-US
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Tue, 06 Aug 2013 17:58:57 GMT
+      P3p:
+      - policyref="http://info.yahoo.com/w3c/p3p.xml", CP="CAO DSP COR CUR ADM DEV
+        TAI PSA PSD IVAi IVDi CONi TELo OTPi OUR DELi SAMi OTRi UNRi PUBi IND PHY
+        ONL UNI PUR FIN COM NAV INT DEM CNT STA POL HEA PRE LOC GOV"
+      Server:
+      - HTTP/1.1 UserFiberFramework/1.0
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      Via:
+      - HTTP/1.1 r03.ycpi.sjb.yahoo.net UserFiberFramework/1.0
+      X-Yahoo-Serving-Host:
+      - wws5.geotech.gq1.yahoo.com
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAA2yTTW+jMBCG/8rKZxpsDMbJsdEeemi1arPaw7IHl1jBWvAg
+        MM2iiP/ecSAlG3IbvZ738XzYJ1KXKtct2ZzGiGx+n8gRtNmTTcqYXEfBeLDr
+        a/2iKkwgOzhaciN/U841Z0wOe0xKh4DYMX2rqhreVdsCmnLorGt6lJ+cKvtZ
+        mQEOkd42ZQYTkTztMJ5Ki3gcxTLheIvaV8YyPH+G0rSaXJQF8FUfDNiZN9NS
+        lnAe0wssui16VBfAHw18GJvr6xIfto8zl0XJmslYXsD8Lpjfab2qOqvvlRpR
+        mgq59o2XkKvSuJ7dUr8OFuBpc//t94oUjVfV0OJuMJaCUfolLPsf5a2v8apn
+        GacJF4jNNS4QvHgipXLGdb6ZmK2SRMjUX2sPk8jilRBSrNH1jnvfG3t4hH/e
+        2ELnil+6dUtKTGnCFpiE8cQ/Pmhc8V3d86VcyKVPCsoHv6lGq1dl/+Ksfef1
+        GDMakK4x2HXhXL3Jwiw8FrrRq14VAKo27SqHKgs/WBaeP0YWjuP1+1D2gEZt
+        H36+keFPQHBsDdZFp8eP9IA4OM+cDcMnAAAA//8DAIw6xkGUAwAA
+    http_version: 
+  recorded_at: Tue, 06 Aug 2013 17:58:57 GMT
+- request:
+    method: get
+    uri: http://where.yahooapis.com/v1/places.q(San+Mateo);count=5?appid=dj0yJmk9ZUpBZk1hQTJGRHM5JmQ9WVdrOVlUSnBjMGhUTjJVbWNHbzlOemsyTURNeU5EWXkmcz1jb25zdW1lcnNlY3JldCZ4PWRi&format=json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - public, must-revalidate
+      Connection:
+      - Keep-Alive
+      Content-Encoding:
+      - gzip
+      Content-Language:
+      - en-US
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Tue, 06 Aug 2013 17:58:57 GMT
+      P3p:
+      - policyref="http://info.yahoo.com/w3c/p3p.xml", CP="CAO DSP COR CUR ADM DEV
+        TAI PSA PSD IVAi IVDi CONi TELo OTPi OUR DELi SAMi OTRi UNRi PUBi IND PHY
+        ONL UNI PUR FIN COM NAV INT DEM CNT STA POL HEA PRE LOC GOV"
+      Server:
+      - HTTP/1.1 UserFiberFramework/1.0
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      Via:
+      - HTTP/1.1 r14.ycpi.sjb.yahoo.net UserFiberFramework/1.0
+      X-Yahoo-Serving-Host:
+      - wws19.geotech.gq1.yahoo.com
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAA9yXTW/bRhCG/4rAs0zt94duqZscitowqiQFWvWwpliLCMUl
+        qKUdw9B/7ywpWaT4YcuBD+mNWO68nB2+D2f4FOSpieJtMH+qr4L530/Bg42T
+        VTAnTCnMyLS+8/kxj6/NBnYEn+1DFpwsT4xzRaUT2RVskrtpkNXbFyabXBkX
+        W4iJbJm54hFWv2SJi1eThYM72+Odo44DZdh3uY+Y7oWDLwu4PqRIGWFa+oeZ
+        1SbJsA8wafKvLbLEBIfVjmj11KbkxeWHlqrkgh5EyckZ6sX+RBt5HvUw4UpK
+        jA6CtL6b2ghSdY/4RP95vfOIfeHb72d3jCC1cG63zqT1dRRD9azf/hSkxiWu
+        9MlRGXImEcU+Nrvbr15gQkKKmSK+oLdwnlWS3f1iv/vgrS3d+s9467pKcL5e
+        Jc4R1t4HtnDrj6YvVBPaF0okVWrn61XE5g+TfQvmzJ8rr68xmgZlkcAJ187l
+        8+VsOXtYx0UcPpq1tSZPtmFkN8vZPV7OKpcuZ/ti+fKa7A4i4+wCnLSbtu1O
+        9c9m90+pLZLVWV7/9Pup11XT6zelg6O82eiKi/cwOtUjRqcEK/m80JH7K8kn
+        lz7ZRqYAJBcenn5CiA4FElq0valwyBVD9NV4gAzXUmnc1dGMMzpMh08ACyS7
+        gZIKwtpwkCYcb2OD6hE2pIRTyHdCY5GbJDsHiY8dJDhqIvHVpHEWjX3/P5TO
+        ZnZjyy34YrMpAc6W/sXXlqmlQrSFyCW8rjiFFzNMyU1h75Msivs5EYjgoySt
+        a+Oq4pQHTdrRvIJEoySvEBjQ1fDRRbsfZ65+4yPIYYIlGkbupl5uU0cQAhaI
+        HqSOoZAJoXjL9CjE8FHRr2bOi1AuhTpVobxqbAPA+TANH4WTKIKE0G3aaIM2
+        dTZtdWVfakQM/2yN6Dp+mFzF35PIDnPX7UXXVye9SKMWaMmtTc0wZeO9SBNF
+        3mXowiNgKInICBi9vUgzjeQgFZSHMCX50aQ1JyEZCkYQFa8f1kAIBi5JepQ4
+        VmKkHVU5aNYXWTXfNiH4hwjZ1/glRDjqIrIob8vi9iVICPkfjWu/lvfguzdP
+        a1iNEPKbib5tbXafpGl8FiREUcZOILn2ztomq6ZSN9/nN3jQUkQpSb01G+Me
+        WO78cU/xYcTg488Q0Z1pS2B91u8Q6MDU1h33BGOMkhG+fOeD36VuBtAttCbD
+        894b/4U46vD1zzSAehau0qwcH8yhHTpbVZ1DDv8BAAD//wMAhgyCWTAQAAA=
+    http_version: 
+  recorded_at: Tue, 06 Aug 2013 17:58:57 GMT
+- request:
+    method: get
+    uri: http://where.yahooapis.com/v1/places.q(asdfghjkl);count=5?appid=dj0yJmk9ZUpBZk1hQTJGRHM5JmQ9WVdrOVlUSnBjMGhUTjJVbWNHbzlOemsyTURNeU5EWXkmcz1jb25zdW1lcnNlY3JldCZ4PWRi&format=json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - public, must-revalidate
+      Connection:
+      - Keep-Alive
+      Content-Encoding:
+      - gzip
+      Content-Language:
+      - en-US
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Tue, 06 Aug 2013 17:58:57 GMT
+      P3p:
+      - policyref="http://info.yahoo.com/w3c/p3p.xml", CP="CAO DSP COR CUR ADM DEV
+        TAI PSA PSD IVAi IVDi CONi TELo OTPi OUR DELi SAMi OTRi UNRi PUBi IND PHY
+        ONL UNI PUR FIN COM NAV INT DEM CNT STA POL HEA PRE LOC GOV"
+      Server:
+      - HTTP/1.1 UserFiberFramework/1.0
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      Via:
+      - HTTP/1.1 r08.ycpi.sjb.yahoo.net UserFiberFramework/1.0
+      X-Yahoo-Serving-Host:
+      - wws4.geotech.gq1.yahoo.com
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAA6pWKshJTE4tVrKqViouSSwqUbIy0FFKzi/Ng7BK8ksSc4Cs
+        2loAAAAA//8DAACYu9cqAAAA
+    http_version: 
+  recorded_at: Tue, 06 Aug 2013 17:58:57 GMT
+recorded_with: VCR 2.5.0

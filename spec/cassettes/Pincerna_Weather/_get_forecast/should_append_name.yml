@@ -1,0 +1,177 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://weather.yahooapis.com/forecastrss?u=c&w=2488139
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 06 Aug 2013 17:58:58 GMT
+      P3p:
+      - policyref="http://info.yahoo.com/w3c/p3p.xml", CP="CAO DSP COR CUR ADM DEV
+        TAI PSA PSD IVAi IVDi CONi TELo OTPi OUR DELi SAMi OTRi UNRi PUBi IND PHY
+        ONL UNI PUR FIN COM NAV INT DEM CNT STA POL HEA PRE LOC GOV"
+      Cache-Control:
+      - max-age=200, public
+      Vary:
+      - Accept-Encoding
+      Content-Type:
+      - text/xml;charset=UTF-8
+      Age:
+      - '0'
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Server:
+      - YTS/1.20.13
+    body:
+      encoding: UTF-8
+      string: "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\" ?>\n\t\t<rss
+        version=\"2.0\" xmlns:yweather=\"http://xml.weather.yahoo.com/ns/rss/1.0\"
+        xmlns:geo=\"http://www.w3.org/2003/01/geo/wgs84_pos#\">\n\t\t\t<channel>\n\t\t\n<title>Yahoo!
+        Weather - San Mateo, FL</title>\n<link>http://us.rd.yahoo.com/dailynews/rss/weather/San_Mateo__FL/*http://weather.yahoo.com/forecast/USFL0538_c.html</link>\n<description>Yahoo!
+        Weather for San Mateo, FL</description>\n<language>en-us</language>\n<lastBuildDate>Tue,
+        06 Aug 2013 12:49 pm EDT</lastBuildDate>\n<ttl>60</ttl>\n<yweather:location
+        city=\"San Mateo\" region=\"FL\"   country=\"United States\"/>\n<yweather:units
+        temperature=\"C\" distance=\"km\" pressure=\"mb\" speed=\"km/h\"/>\n<yweather:wind
+        chill=\"31\"   direction=\"90\"   speed=\"14.48\" />\n<yweather:atmosphere
+        humidity=\"66\"  visibility=\"11.27\"  pressure=\"982.05\"  rising=\"2\" />\n<yweather:astronomy
+        sunrise=\"6:46 am\"   sunset=\"8:12 pm\"/>\n<image>\n<title>Yahoo! Weather</title>\n<width>142</width>\n<height>18</height>\n<link>http://weather.yahoo.com</link>\n<url>http://l.yimg.com/a/i/brand/purplelogo//uh/us/news-wea.gif</url>\n</image>\n<item>\n<title>Conditions
+        for San Mateo, FL at 12:49 pm EDT</title>\n<geo:lat>29.61</geo:lat>\n<geo:long>-81.58</geo:long>\n<link>http://us.rd.yahoo.com/dailynews/rss/weather/San_Mateo__FL/*http://weather.yahoo.com/forecast/USFL0538_c.html</link>\n<pubDate>Tue,
+        06 Aug 2013 12:49 pm EDT</pubDate>\n<yweather:condition  text=\"Partly Cloudy\"
+        \ code=\"30\"  temp=\"31\"  date=\"Tue, 06 Aug 2013 12:49 pm EDT\" />\n<description><![CDATA[\n<img
+        src=\"http://l.yimg.com/a/i/us/we/52/30.gif\"/><br />\n<b>Current Conditions:</b><br
+        />\nPartly Cloudy, 31 C<BR />\n<BR /><b>Forecast:</b><BR />\nTue - Scattered
+        Thunderstorms. High: 32 Low: 24<br />\nWed - Isolated Thunderstorms. High:
+        33 Low: 24<br />\nThu - Scattered Thunderstorms. High: 32 Low: 24<br />\nFri
+        - Partly Cloudy. High: 32 Low: 23<br />\nSat - Partly Cloudy. High: 33 Low:
+        23<br />\n<br />\n<a href=\"http://us.rd.yahoo.com/dailynews/rss/weather/San_Mateo__FL/*http://weather.yahoo.com/forecast/USFL0538_c.html\">Full
+        Forecast at Yahoo! Weather</a><BR/><BR/>\n(provided by <a href=\"http://www.weather.com\"
+        >The Weather Channel</a>)<br/>\n]]></description>\n<yweather:forecast day=\"Tue\"
+        date=\"6 Aug 2013\" low=\"24\" high=\"32\" text=\"Scattered Thunderstorms\"
+        code=\"38\" />\n<yweather:forecast day=\"Wed\" date=\"7 Aug 2013\" low=\"24\"
+        high=\"33\" text=\"Isolated Thunderstorms\" code=\"37\" />\n<yweather:forecast
+        day=\"Thu\" date=\"8 Aug 2013\" low=\"24\" high=\"32\" text=\"Scattered Thunderstorms\"
+        code=\"38\" />\n<yweather:forecast day=\"Fri\" date=\"9 Aug 2013\" low=\"23\"
+        high=\"32\" text=\"Partly Cloudy\" code=\"30\" />\n<yweather:forecast day=\"Sat\"
+        date=\"10 Aug 2013\" low=\"23\" high=\"33\" text=\"Partly Cloudy\" code=\"30\"
+        />\n<guid isPermaLink=\"false\">USFL0538_2013_08_10_7_00_EDT</guid>\n</item>\n</channel>\n</rss>\n\n<!--
+        api3.weather.gq1.yahoo.com Tue Aug  6 17:58:58 PST 2013 -->\n"
+    http_version: 
+  recorded_at: Tue, 06 Aug 2013 17:58:58 GMT
+- request:
+    method: get
+    uri: http://l.yimg.com/a/i/us/we/52/30.gif
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 31 Jul 2013 05:44:19 GMT
+      Cache-Control:
+      - max-age=315360000
+      Expires:
+      - Sat, 29 Jul 2023 05:44:19 GMT
+      Last-Modified:
+      - Mon, 02 Jul 2001 21:34:25 GMT
+      Accept-Ranges:
+      - bytes
+      Content-Length:
+      - '2480'
+      Content-Type:
+      - image/gif
+      Age:
+      - '562479'
+      Connection:
+      - keep-alive
+      Via:
+      - http/1.1 l3.ycs.swp.yahoo.com (ApacheTrafficServer/3.2.0)
+      Server:
+      - ATS/3.2.0
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        R0lGODlhNAA0APf/ANKiNOTk4///jJmZs/3ri7OKNMjHufjqlvi4RKenqP3l
+        ef///7e3peelMvf4aYF8ZP//q3V1eKSlu+rt9P3+nLR9KPvlaP/bVOzsiZOK
+        UrarVv7/oqWkdcGzadna2f7+k/ynNOfnuNzHWpWUsGhnVuzs7Ovjk//6xomJ
+        htjVrLm3iPr6+dbWxvnKRf/+9vy5Nrm3d7q7lfLJUvP1+8rM2///hv/+8sbF
+        esC9iVlYT/irNqurwsPE1O23OP795P//+uvUaOPl7tPV4/LoodXV1GZmZfz8
+        sYKHTP/93dnNhtjYmoWEos3NzLy8vLy9z8HBv5ubm+bp86SkZG5mPPb29r7A
+        07O1wfPy5ObleOWyRf//pf/90rm50v/5ztTNaaSZVu7w+LS0tP//fm5YJpSU
+        abS1yZOTkv/VToZoK9mbOf7965+HYNXY4uLeqvfxb+XLaOjo5srO4vHx8Pz8
+        /MacOoSDau7ryuvt+ZOSif/fbfv8/tK+VK+xxcC6WMWJKsHApPn6/aemnuiu
+        R8nJxeTm8v3GPvLTW9m2R+roqcfChv//v/f2pdnZz3JQG/X17qGdbv/3yOrG
+        VdjY2+LXj/3cX+OYL9vb5NvbjLicRLCsbv/2tH59j/by1EpJNtrd6aOORpKB
+        QJx5OcvN1Zx1J/z+/6edg8TG2s/R4ZyclvXrsdfa6P33jf7ypPz9/8XI1aJq
+        JYtpN//ugtOMK6eURMCRNW5tcvX2e////a6urEc5FvTzr9/h7PDy94+Np83Q
+        3Le5y8fJ25+ht19fXv//cvvAUeLgy3FobHh4cohcH5NlIX1cIoBxOtSYL39+
+        fpKMbZ+bfMOqTd6kP8qwUvmuPuS7UuzBTuLQWszCcdjbbPHVZv/YavTgauLa
+        ed3jcujsYP/0evf6fo6BgI6OkZeXkbGxi52dtaKhu8LBstLPn9DHmvDwjfDw
+        lv7wns7OttPSwf/0q/T0s7e3wbW5xry8w8/Rzt7f3/Huvv/4wfDu2O7v2ff1
+        0Ojq8PT09Pf4/f39+////yH/C0FET0JFOklSMS4wAt7tACH5BAEAAP8ALAAA
+        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
+        gQQEADs=
+    http_version: 
+  recorded_at: Tue, 06 Aug 2013 17:58:58 GMT
+recorded_with: VCR 2.5.0

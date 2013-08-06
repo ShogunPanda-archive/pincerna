@@ -1,0 +1,71 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://translate.google.com.br/translate_a/t?client=p&ie=UTF-8&multires=1&oe=UTF-8&sc=1&sl=it&ssel=0&text=Ciao&tl=en&tsel=0
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Pragma:
+      - no-cache
+      Date:
+      - Tue, 06 Aug 2013 17:58:57 GMT
+      Expires:
+      - Tue, 06 Aug 2013 17:58:57 GMT
+      Cache-Control:
+      - private, max-age=600
+      Content-Type:
+      - text/javascript; charset=UTF-8
+      Content-Language:
+      - en
+      Set-Cookie:
+      - PREF=ID=f4d7671b268eca38:TM=1375811937:LM=1375811937:S=VElvRxvoy6a-N74U; expires=Thu,
+        06-Aug-2015 17:58:57 GMT; path=/; domain=.google.com.br
+      X-Content-Type-Options:
+      - nosniff
+      Content-Disposition:
+      - attachment
+      Server:
+      - HTTP server (unknown)
+      X-Xss-Protection:
+      - 1; mode=block
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJzZW50ZW5jZXMiOlt7InRyYW5zIjoiSGVsbG8iLCJvcmlnIjoiQ2lhbyIs
+        InRyYW5zbGl0IjoiIiwic3JjX3RyYW5zbGl0IjoiIn1dLCJkaWN0IjpbeyJw
+        b3MiOiJpbnRlcmplacOnw6NvIiwidGVybXMiOlsiSGVsbG8hIiwiSGkhIiwi
+        QnllLUJ5ZSEiLCJCeWUhIiwiU28gbG9uZyEiLCJDaGVlcmlvISIsIkhhbGxv
+        ISIsIkh1bGxvISJdLCJlbnRyeSI6W3sid29yZCI6IkhlbGxvISIsInJldmVy
+        c2VfdHJhbnNsYXRpb24iOlsiU2FsdmUhIiwiQ2lhbyEiLCJQcm9udG8/Iiwi
+        UHJvbnRvISIsIlBpYWNlcmUhIl0sInNjb3JlIjowLjUwMjgzMTU3OH0seyJ3
+        b3JkIjoiSGkhIiwicmV2ZXJzZV90cmFuc2xhdGlvbiI6WyJDaWFvISIsIlNh
+        bHZlISIsIlBpYWNlcmUhIl0sInNjb3JlIjowLjEyMTMxMzc2Nn0seyJ3b3Jk
+        IjoiQnllLUJ5ZSEiLCJyZXZlcnNlX3RyYW5zbGF0aW9uIjpbIkFycml2ZWRl
+        cmNpISIsIkFycml2ZWRlcmxhISIsIkNpYW8hIiwiQWRkaW8hIl19LHsid29y
+        ZCI6IkJ5ZSEiLCJyZXZlcnNlX3RyYW5zbGF0aW9uIjpbIkNpYW8hIiwiQXJy
+        aXZlZGVyY2khIiwiQWRkaW8hIl19LHsid29yZCI6IlNvIGxvbmchIiwicmV2
+        ZXJzZV90cmFuc2xhdGlvbiI6WyJDaWFvISIsIkNpIHZlZGlhbW8hIl19LHsi
+        d29yZCI6IkNoZWVyaW8hIiwicmV2ZXJzZV90cmFuc2xhdGlvbiI6WyJDaWFv
+        ISIsIkNpbmNpbiEiXX0seyJ3b3JkIjoiSGFsbG8hIiwicmV2ZXJzZV90cmFu
+        c2xhdGlvbiI6WyJDaWFvISIsIlNhbHZlISIsIlByb250byEiXX0seyJ3b3Jk
+        IjoiSHVsbG8hIiwicmV2ZXJzZV90cmFuc2xhdGlvbiI6WyJDaWFvISIsIlBy
+        b250byEiXX1dLCJiYXNlX2Zvcm0iOiJDaWFvISIsInBvc19lbnVtIjo5fV0s
+        InNyYyI6Iml0Iiwic2VydmVyX3RpbWUiOjR9
+    http_version: 
+  recorded_at: Tue, 06 Aug 2013 17:58:57 GMT
+recorded_with: VCR 2.5.0
