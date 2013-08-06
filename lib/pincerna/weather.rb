@@ -61,7 +61,7 @@ module Pincerna
       if query !~ /^(\d+)$/ then
         caching_http_requests("woeids") do
           response = fetch_remote_resource("http://where.yahooapis.com/v1/places.q(#{CGI.escape(query)});count=5", {appid: self.class::API_KEY, format: :json})
-          response["places"]["place"].collect { |place| parse_place(place) }
+          response["places"].fetch("place", []).collect { |place| parse_place(place) }
         end
       else
         # We already have the woeid. The name will be given by Yahoo!
@@ -81,6 +81,7 @@ module Pincerna
       places.collect do |place|
         response = client.lookup_by_woeid(place[:woeid])
         image, link = extract_forecast_media(response)
+        place[:name] ||= get_name(response.location)
 
         format_forecast(place, download_image(image), link, response.condition, response.forecasts.first, response.wind, temperature_unit, response.units["speed"])
       end
@@ -90,17 +91,15 @@ module Pincerna
     #
     # @param degrees [Fixnum] The direction in degrees.
     # @return [String] The direction in cardinal points notation.
-    def get_wind_direction(degrees) 
-      # Get sin and cos for locating.
-      radians = degrees * Math::PI / 180 
-      sin = round_float(Math.sin(radians), 2)
-      cos = round_float(Math.cos(radians), 2)
+    def get_wind_direction(degrees)
+      # Normalize value
+      degrees += 360 if degrees < 0
+      degrees = degrees % 360
 
-      # Format result
-      rv = ""
-      rv << (sin > 0 ? "N" : "S") if sin != 0
-      rv << (cos > 0 ? "E" : "W") if cos != 0
-      rv
+      # Get the position
+      directions = ["N", "NE", "NE", "E", "E", "SE", "SE", "S", "S", "SW", "SW", "W", "W", "NW", "NW", "N"]
+      position = ((degrees.to_f / 22.5) - 0.5).ceil.to_i % directions.count # The mod operation is needed for values close to 360 who, after ceiling, would otherwise overflow.
+      directions[position]
     end
 
     private
@@ -110,7 +109,7 @@ module Pincerna
       # @return [String] The path of the downloaded image.
       def download_image(url)
         # Extract the URL and use it to build the path
-        rv = @cache_dir + "/weather/#{File.basename(URI.parse(url).path)}"
+        rv = (@cache_dir + "/weather/#{File.basename(URI.parse(url).path)}")
 
         if !File.exists?(rv) then
           # Create the directory and download the file
@@ -152,8 +151,6 @@ module Pincerna
       # @param speed_unit [String] The speed unit.
       # @return [Hash] The parsed forecast.
       def format_forecast(place, image, link, current, forecast, wind, temperature_unit, speed_unit)
-        place[:name] ||= get_name(response.location)
-
         place.merge({
           image: image,
           link: link,

@@ -5,6 +5,8 @@
 #
 
 require "nokogiri"
+require "oj"
+
 $: << File.dirname(__FILE__)
 require "pincerna/version" if !defined?(Pincerna::Version)
 require "pincerna/base"

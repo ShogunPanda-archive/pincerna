@@ -44,13 +44,8 @@ module Pincerna
     def perform_filtering(value, from, to, with_rate, multiple)
       from = check_temperature(from)
       to = check_temperature(to)
-
-      original = convert_value(value, from, from)
-      base = convert_value(1, from, from)
       converted = convert_value(value, from, to)
-      rate = convert_value(1, from, to)
-
-      converted ? {from: from, to: to, value: original, unit: base, result: converted, rate: rate, with_rate: with_rate, multiple: multiple} : nil
+      converted ? {from: from, to: to, value: convert_value(value, from, from), unit: convert_value(1, from, from), result: converted, rate: convert_value(1, from, to), with_rate: with_rate, multiple: multiple} : nil
     end
 
     # Processes items to obtain feedback items.
@@ -71,7 +66,7 @@ module Pincerna
     # @return [String] The adjusted unit.
     def check_temperature(unit)
       unit = unit.gsub("°", "")
-      /^[CFKR]$/.match(unit.upcase) ? "temp#{unit}" : unit
+      /^[CFKR]$/.match(unit.upcase) ? "temp#{unit.upcase}" : unit
     end
 
     # Converts a value from a unit to another.
@@ -87,22 +82,25 @@ module Pincerna
     # Formats a value.
     #
     # @param value [String] The value to format.
-    # @param multiple [Boolean] If to use multiple units for ft (ft+in) and lb/oz (lb+oz).
-    # @return [String] The formatted value.
-    def format_value(value, multiple)
-      if multiple != :raw then
-        format = "%0.3f"
+    # @param modifier [Boolean|Symbol] If to use multiple units for ft (ft+in) and lb/oz (lb+oz). If `:raw`, only the unitless (float) value is returned.
+    # @param precision [Fixnum] The precision to use for rounding.
+    # @return [String|Float] The formatted value or the unitless value.
+    def format_value(value, modifier = nil, precision = 3)
+      rounded = round_float(value.scalar.to_f, precision)
+
+      if modifier != :raw then
+        format = "%0.#{precision}f"
         units = value.units
 
-        if multiple && units =~ /ft|oz|lb/ then
+        if modifier && units =~ /ft|oz|lb/ then
           format = units == "ft" ? :ft : :lbs
-        elsif value.round == value then
+        elsif rounded.to_i == rounded then
           format = "%0.0f"
         end
 
         value.to_s(format).gsub(", ", " ").gsub(/ temp([CFKR])/, "°\\1")
       else
-        round_float(value.scalar)
+        rounded
       end
     end
   end

@@ -7,6 +7,7 @@
 require "pathname"
 require "simplecov"
 require "coveralls"
+require "json"
 
 Coveralls.wear! if ENV["CI"] || ENV["JENKINS_URL"] # Do not load outside Travis
 

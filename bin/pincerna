@@ -6,6 +6,6 @@
 #
 
 require "rubygems"
-require File.dirname(__FILE__) + "/lib/pincerna"
+require File.absolute_path(File.dirname(__FILE__)) + "/../lib/pincerna"
 
 puts Pincerna::Base.execute!(ARGV.shift.to_sym, ARGV.join(" ")) if !ARGV.empty?

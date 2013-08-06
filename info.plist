@@ -151,7 +151,7 @@
 				<string>Performing conversion ...</string>
 				<key>script</key>
 				<string>source ~/.rvm/scripts/rvm
-$PWD/runner.rb convert {query}</string>
+$PWD/bin/pincerna convert {query}</string>
 				<key>subtext</key>
 				<string>Enter an amount to convert ...</string>
 				<key>title</key>
@@ -196,7 +196,7 @@ $PWD/runner.rb convert {query}</string>
 				<string>Performing conversion ...</string>
 				<key>script</key>
 				<string>source ~/.rvm/scripts/rvm
-$PWD/runner.rb convert {query}</string>
+$PWD/bin/pincerna convert {query}</string>
 				<key>subtext</key>
 				<string>Enter an amount to convert ...</string>
 				<key>title</key>
@@ -226,7 +226,7 @@ $PWD/runner.rb convert {query}</string>
 				<string>Performing conversion ...</string>
 				<key>script</key>
 				<string>source ~/.rvm/scripts/rvm
-$PWD/runner.rb currency {query}</string>
+$PWD/bin/pincerna currency {query}</string>
 				<key>subtext</key>
 				<string>Enter an expression to convert ...</string>
 				<key>title</key>
@@ -271,7 +271,7 @@ $PWD/runner.rb currency {query}</string>
 				<string>Performing conversion ...</string>
 				<key>script</key>
 				<string>source ~/.rvm/scripts/rvm
-$PWD/runner.rb cc {query}</string>
+$PWD/bin/pincerna cc {query}</string>
 				<key>subtext</key>
 				<string>Enter an expression to convert ...</string>
 				<key>title</key>
@@ -301,7 +301,7 @@ $PWD/runner.rb cc {query}</string>
 				<string>Performing translation ...</string>
 				<key>script</key>
 				<string>source ~/.rvm/scripts/rvm
-$PWD/runner.rb translate {query}</string>
+$PWD/bin/pincerna translate {query}</string>
 				<key>subtext</key>
 				<string>Enter a text to translate ...</string>
 				<key>title</key>
@@ -346,7 +346,7 @@ $PWD/runner.rb translate {query}</string>
 				<string>Performing translation ...</string>
 				<key>script</key>
 				<string>source ~/.rvm/scripts/rvm
-$PWD/runner.rb t {query}</string>
+$PWD/bin/pincerna t {query}</string>
 				<key>subtext</key>
 				<string>Enter text to translate ...</string>
 				<key>title</key>
@@ -376,7 +376,7 @@ $PWD/runner.rb t {query}</string>
 				<string>Searching location ...</string>
 				<key>script</key>
 				<string>source ~/.rvm/scripts/rvm
-$PWD/runner.rb map {query}</string>
+$PWD/bin/pincerna map {query}</string>
 				<key>subtext</key>
 				<string>Enter a location or coordinates ...</string>
 				<key>title</key>
@@ -423,7 +423,7 @@ $PWD/runner.rb map {query}</string>
 				<string>Searching location ...</string>
 				<key>script</key>
 				<string>source ~/.rvm/scripts/rvm
-$PWD/runner.rb m {query}
+$PWD/bin/pincerna m {query}
 </string>
 				<key>subtext</key>
 				<string>Enter a location or coordinates ...</string>
@@ -471,7 +471,7 @@ $PWD/runner.rb m {query}
 				<string>Getting weather forecast ...</string>
 				<key>script</key>
 				<string>source ~/.rvm/scripts/rvm
-$PWD/runner.rb forecast {query}</string>
+$PWD/bin/pincerna forecast {query}</string>
 				<key>subtext</key>
 				<string>Enter a location or a location code ...</string>
 				<key>title</key>
@@ -516,7 +516,7 @@ $PWD/runner.rb forecast {query}</string>
 				<string>Fetching IPs …</string>
 				<key>script</key>
 				<string>source ~/.rvm/scripts/rvm
-$PWD/runner.rb ip {query}</string>
+$PWD/bin/pincerna ip {query}</string>
 				<key>subtext</key>
 				<string>Show the list of local and remote IPs of this computer</string>
 				<key>title</key>
@@ -565,7 +565,7 @@ $PWD/runner.rb ip {query}</string>
 				<key>script</key>
 				<string>#!/bin/bash
 source ~/.rvm/scripts/rvm
-$PWD/runner.rb vpn {query}</string>
+$PWD/bin/pincerna vpn {query}</string>
 				<key>subtext</key>
 				<string>Connect or disconnect to your VPNs ...</string>
 				<key>title</key>

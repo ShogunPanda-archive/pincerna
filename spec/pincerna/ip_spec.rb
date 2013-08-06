@@ -129,6 +129,7 @@ EONAMES
       ])
     end
   end
+
   describe "#get_local_addresses", :vcr do
     before(:each) do
       subject.instance_variable_set(:@interface_filter, /.*/i)
@@ -149,6 +150,7 @@ EONAMES
     end
   end
 
+  # TODO@SP: Make this work on Travis with VCR.
   describe "#get_public_address", :vcr do
     it "should return public IP address" do
       address = subject.get_public_address

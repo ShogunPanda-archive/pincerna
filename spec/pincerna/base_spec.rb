@@ -36,7 +36,7 @@ EOXML
     end
 
     it "should create a query and then filter" do
-      query = Object.new
+      query = ::Object.new
       expect(query).to receive(:filter).and_return("FILTER")
       expect(Pincerna::Map).to receive(:new).with("QUERY").and_return(query)
       expect(Pincerna::Base.execute!("map", "QUERY"))
@@ -50,7 +50,7 @@ EOXML
   describe "#initalize" do
     it "should initialize correct attributes" do
       expect(subject.instance_variable_get(:@query)).to eq("QUERY")
-      expect(subject.instance_variable_get(:@cache_dir)).to eq(File.expand_path("~/Library/Caches/com.runningwithcrayons.Alfred-2/Workflow Data/pincerna") + "/")
+      expect(subject.instance_variable_get(:@cache_dir)).to eq(::File.expand_path("~/Library/Caches/com.runningwithcrayons.Alfred-2/Workflow Data/pincerna"))
       expect(subject.instance_variable_get(:@feedback_items)).to eq([])
     end
   end
@@ -66,7 +66,7 @@ EOXML
     end
 
     it "should return an array if a failure occurs" do
-      allow(subject).to receive(:perform_filtering).and_raise(ArgumentError)
+      allow(subject).to receive(:perform_filtering).and_raise(::ArgumentError)
       allow(subject).to receive(:process_results).with([]).and_return([])
       expect(subject.filter).to eq_as_yaml([])
     end
@@ -74,13 +74,13 @@ EOXML
 
   describe "#perform_filtering" do
     it "should abort with a warning" do
-      expect { subject.perform_filtering([]) }.to raise_error(ArgumentError)
+      expect { subject.perform_filtering([]) }.to raise_error(::ArgumentError)
     end
   end
 
   describe "#process_results" do
     it "should abort with a warning" do
-      expect { subject.process_results([]) }.to raise_error(ArgumentError)
+      expect { subject.process_results([]) }.to raise_error(::ArgumentError)
     end
   end
 
@@ -144,17 +144,38 @@ EOXML
   end
 
   describe "#setup_vcr" do
-    it "should load VCR and WebMock and set some constants" do
-      config = VCR::Configuration.new
-      expect(config).to receive(:hook_into).with(:webmock)
-      expect(VCR).to receive(:configure).and_yield(config)
+    after(:each) do
+      configure_vcr
+    end
+
+    it "should load ::VCR and ::WebMock and set some constants" do
+      config = ::VCR::Configuration.new
+      expect(config).to receive(:hook_into).with(:webmock).at_least(1)
+      expect(::VCR).to receive(:configure).at_least(1).and_yield(config)
 
       subject.send(:setup_vcr)
-      expect(VCR).to be_a(Module)
-      expect(WebMock).to be_a(Module)
+      expect(::VCR).to be_a(::Module)
+      expect(::WebMock).to be_a(::Module)
       expect(config.allow_http_connections_when_no_cassette?).to be_true
-      expect(config.cassette_library_dir).to eq(File.expand_path("~/Library/Caches/com.runningwithcrayons.Alfred-2/Workflow Data/pincerna") + "/http")
-      expect(config.default_cassette_options[:record]).to eq(:new_episodes)
+      expect(config.cassette_library_dir).to eq(::File.expand_path("~/Library/Caches/com.runningwithcrayons.Alfred-2/Workflow Data/pincerna") + "/http")
+      expect(config.default_cassette_options[:record]).to eq(:once)
+    end
+  end
+
+  describe "#log" do
+    before(:each) do
+      @log_path = "/tmp/pincerna.log"
+      allow(subject).to receive(:debug_mode).and_return(true)
+      expect_any_instance_of(Time).to receive(:strftime).and_return("TIME")
+      allow(::File).to receive(:absolute_path).and_return(@log_path)
+    end
+
+    it "should log a message" do
+      ::File.absolute_path(::File.expand_path("~/Library/Logs/pincerna.log"))
+      ::File.delete(@log_path) if ::File.exists?(@log_path)
+      subject.send(:log, "MESSAGE")
+      expect(::File.read(@log_path)).to eq("[TIME] MESSAGE\n")
+      ::File.delete(@log_path)
     end
   end
 end

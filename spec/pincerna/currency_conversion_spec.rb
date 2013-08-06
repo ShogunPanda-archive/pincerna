@@ -29,7 +29,7 @@ describe Pincerna::CurrencyConversion do
 
   describe "#perform_filtering", :vcr do
     it "should return valid values" do
-      expect(subject.perform_filtering(123.45, "EUR", "USD", "RATE")).to eq({value: 123.45, from: "EUR", to: "USD", result: 163.892, rate: 1.328, with_rate: "RATE"})
+      expect(subject.perform_filtering(123.45, "EUR", "USD", "RATE")).to eq({value: 123.45, from: "EUR", to: "USD", result: 163.756, rate: 1.327, with_rate: "RATE"})
     end
   end
 

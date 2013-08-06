@@ -50,8 +50,8 @@ module Pincerna
     #
     # @param query [String] The argument of the query.
     def initialize(query)
-      @query = query.strip
-      @cache_dir = File.expand_path("~/Library/Caches/com.runningwithcrayons.Alfred-2/Workflow Data/pincerna") + "/"
+      @query = query.strip.gsub("\\ ", " ")
+      @cache_dir = File.expand_path("~/Library/Caches/com.runningwithcrayons.Alfred-2/Workflow Data/pincerna")
       @feedback_items = []
     end
 
@@ -59,11 +59,15 @@ module Pincerna
     #
     # @return [String] The feedback items of the query, formatted as XML.
     def filter
+      log("Filtering query: #{@query}")
+
       # Match the query
       relevant = self.class::RELEVANT_MATCHES
       matches = self.class::MATCHER.match(@query)
 
       if matches then
+        log("Found matches: #{Oj.dump(array_to_hash(matches.names.collect {|n| [n, matches[n]] }))}")
+
         # Get relevant groups and process them
         args = relevant.collect {|key, value| value.call(self, matches[key]) }
 
@@ -173,8 +177,12 @@ module Pincerna
       # @param cassette [String] The cassette name.
       # @return [Object] The return value of the provided block.
       def caching_http_requests(cassette)
-        setup_vcr if !defined?(VCR)
-        VCR.use_cassette(cassette) { yield }
+        if !defined?(VCR) then
+          setup_vcr
+          VCR.use_cassette(cassette) { yield }
+        else
+          yield
+        end
       end
 
       # Setups the VCR gem.
@@ -193,7 +201,7 @@ module Pincerna
 
           c.allow_http_connections_when_no_cassette = true
           c.cassette_library_dir = @cache_dir + "/http/"
-          c.default_cassette_options = {record: :new_episodes}
+          c.default_cassette_options = {record: :once}
           c.hook_into :webmock
         end
       end
@@ -236,6 +244,21 @@ module Pincerna
       # Returns the current debug mode
       def debug_mode
         !ENV["PINCERNA_DEBUG"].nil? ? ENV["PINCERNA_DEBUG"].to_sym : nil
+      end
+
+      # TODO@SP: Test me.
+      # Logs a message.
+      #
+      # @param message [String] The message to log.
+      def log(message)
+        if debug_mode
+          @log_path ||= File.absolute_path(File.expand_path("~/Library/Logs/pincerna.log"))
+
+          File.open(@log_path, "w+") {|f|
+            f.flock(File::LOCK_SH)
+            f.write("[%s] %s\n" % [Time.now.strftime("%Y-%m-%d %H:%M:%S.%L"), message])
+          }
+        end
       end
   end
 end

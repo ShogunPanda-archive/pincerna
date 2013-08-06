@@ -25,14 +25,14 @@ http_interactions:
       Vary:
       - Accept-Encoding
       Date:
-      - Sun, 28 Jul 2013 22:36:28 GMT
+      - Tue, 06 Aug 2013 17:58:56 GMT
       Server:
       - Google Frontend
       Transfer-Encoding:
       - chunked
     body:
-      encoding: US-ASCII
-      string: ! '{"to": "USD", "rate": 1.3275999999999999, "from": "EUR", "v": 163.89221999999998}'
+      encoding: UTF-8
+      string: '{"to": "USD", "rate": 1.3265, "from": "EUR", "v": 163.75642500000001}'
     http_version: 
-  recorded_at: Sun, 28 Jul 2013 22:36:28 GMT
+  recorded_at: Tue, 06 Aug 2013 17:58:56 GMT
 recorded_with: VCR 2.5.0

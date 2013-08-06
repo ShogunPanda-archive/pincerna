@@ -5,8 +5,9 @@
 #
 
 require "rubygems"
-require "bundler/setup"
+require "webmock"
 require "vcr"
+require "bundler/setup"
 
 require "pincerna"
 require "pincerna/currency_conversion"
@@ -19,6 +20,16 @@ require "pincerna/weather"
 
 ENV["PINCERNA_DEBUG"] = "true"
 
+def configure_vcr
+  VCR.configure do |config|
+    config.cassette_library_dir = File.dirname(__FILE__) + "/cassettes"
+    config.hook_into(:webmock)
+    config.default_cassette_options = {record: :once}
+    config.configure_rspec_metadata!
+    config.allow_http_connections_when_no_cassette = false
+  end
+end
+
 RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
@@ -27,15 +38,15 @@ RSpec.configure do |config|
   config.treat_symbols_as_metadata_keys_with_true_values = true
 end
 
-VCR.configure do |config|
-  config.cassette_library_dir = 'spec/cassettes'
-  config.hook_into(:webmock)
-  config.default_cassette_options = {record: :new_episodes}
-  config.configure_rspec_metadata!
-end
-
 RSpec::Matchers.define(:eq_as_yaml) { |expected|
   match do |actual| YAML.load(actual) == expected end
 }
 
+RSpec::Matchers.define(:eq_as_unit) { |expected|
+  match do |actual|
+    actual.scalar.to_f == expected.scalar.to_f && actual.unit_name == expected.unit_name
+  end
+}
+
+configure_vcr
 
