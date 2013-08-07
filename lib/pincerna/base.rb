@@ -62,22 +62,13 @@ module Pincerna
       log("Filtering query: #{@query}")
 
       # Match the query
-      relevant = self.class::RELEVANT_MATCHES
       matches = self.class::MATCHER.match(@query)
 
       if matches then
         log("Found matches: #{Oj.dump(array_to_hash(matches.names.collect {|n| [n, matches[n]] }))}")
 
-        # Get relevant groups and process them
-        args = relevant.collect {|key, value| value.call(self, matches[key]) }
-
-        # Now perform the operation
-        results = begin
-          perform_filtering(*args)
-        rescue => e
-          raise e if debug_mode == :error
-          []
-        end
+        # Execute the filtering
+        results = execute_filtering(matches)
 
         # Show results if appropriate
         process_results(results).each {|r| add_feedback_item(r) } if results
@@ -159,6 +150,24 @@ module Pincerna
       def self.create_class(file)
         require "#{File.dirname(__FILE__)}/#{file}"
         Pincerna.const_get(file.capitalize.gsub(/_(.)/) { $1.upcase})
+      end
+
+      # Executes filtering on matched data.
+      #
+      # @param matches [MatchData] The matched data.
+      # @return [Array] The results of filtering.
+      def execute_filtering(matches)
+        # Get relevant matches and arguments.
+        relevant = self.class::RELEVANT_MATCHES
+        args = relevant.collect {|key, value| value.call(self, matches[key]) }
+
+        # Now perform the operation
+        begin
+          perform_filtering(*args)
+        rescue => e
+          raise e if debug_mode == :error
+          []
+        end
       end
 
       # Converts an array of key-value pairs to an hash.
