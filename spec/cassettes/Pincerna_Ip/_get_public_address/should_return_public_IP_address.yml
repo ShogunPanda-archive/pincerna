@@ -30,18 +30,15 @@ http_interactions:
       - sameorigin
       Vary:
       - Accept-Encoding
-      Content-Encoding:
-      - gzip
       Content-Length:
-      - '34'
+      - '7'
       Connection:
       - close
       Content-Type:
       - text/html
     body:
       encoding: ASCII-8BIT
-      string: !binary |-
-        H4sIAAAAAAAAAzMysNQztdAzMjTRMzI2AQAk4XkgDgAAAA==
+      string: 8.8.8.8
     http_version: 
   recorded_at: Tue, 06 Aug 2013 17:58:57 GMT
 recorded_with: VCR 2.5.0

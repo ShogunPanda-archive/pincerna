@@ -246,19 +246,23 @@ module Pincerna
         !ENV["PINCERNA_DEBUG"].nil? ? ENV["PINCERNA_DEBUG"].to_sym : nil
       end
 
-      # TODO@SP: Test me.
       # Logs a message.
       #
       # @param message [String] The message to log.
       def log(message)
-        if debug_mode
-          @log_path ||= File.absolute_path(File.expand_path("~/Library/Logs/pincerna.log"))
-
-          File.open(@log_path, "w+") {|f|
+        if debug_mode && debug_mode != :spec then
+          File.open(log_path, "w+") {|f|
             f.flock(File::LOCK_SH)
             f.write("[%s] %s\n" % [Time.now.strftime("%Y-%m-%d %H:%M:%S.%L"), message])
           }
         end
+      end
+
+      # Returns the path of the log file.
+      #
+      # @return [String] The path of the log file.
+      def log_path
+        @log_path ||= File.absolute_path(File.expand_path("~/Library/Logs/pincerna.log"))
       end
   end
 end

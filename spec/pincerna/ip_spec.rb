@@ -150,14 +150,13 @@ EONAMES
     end
   end
 
-  # TODO@SP: Make this work on Travis with VCR.
   describe "#get_public_address", :vcr do
     it "should return public IP address" do
       address = subject.get_public_address
 
       expect(address.keys).to eq([:interface, :address])
       expect(address[:interface]).to be_nil
-      expect(address[:address]).to match(/^((\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})|([0-9a-f:%]+))$/)
+      expect(address[:address]).to eq("8.8.8.8")
     end
   end
 

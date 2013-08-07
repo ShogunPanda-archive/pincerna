@@ -18,7 +18,7 @@ require "pincerna/unit_conversion"
 require "pincerna/vpn"
 require "pincerna/weather"
 
-ENV["PINCERNA_DEBUG"] = "true"
+ENV["PINCERNA_DEBUG"] = "spec"
 
 def configure_vcr
   VCR.configure do |config|

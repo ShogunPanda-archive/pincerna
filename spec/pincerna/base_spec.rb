@@ -166,12 +166,12 @@ EOXML
     before(:each) do
       @log_path = "/tmp/pincerna.log"
       allow(subject).to receive(:debug_mode).and_return(true)
+      allow(subject).to receive(:log_path).and_return(@log_path)
       expect_any_instance_of(Time).to receive(:strftime).and_return("TIME")
       allow(::File).to receive(:absolute_path).and_return(@log_path)
     end
 
     it "should log a message" do
-      ::File.absolute_path(::File.expand_path("~/Library/Logs/pincerna.log"))
       ::File.delete(@log_path) if ::File.exists?(@log_path)
       subject.send(:log, "MESSAGE")
       expect(::File.read(@log_path)).to eq("[TIME] MESSAGE\n")
