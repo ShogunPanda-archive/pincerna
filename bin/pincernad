@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # encoding: utf-8
 #
-# This file is part of the pincerna gem. Copyright (C) 2013 and above Shogun <shogun_panda@me.com>.
+# This file is part of the pincerna gem. Copyright (C) 2013 and above Shogun <shogun@cowtech.it>.
 # Licensed under the MIT license, which can be found at http://www.opensource.org/licenses/mit-license.php.
 #
 
@@ -16,6 +16,21 @@ module Pincerna
     use Goliath::Rack::Validation::RequestMethod, %w(GET)
 
     DELAY=0.15
+
+    # Enqueues a request.
+    def self.enqueue_request
+      @requests ||= Queue.new
+      @requests << Time.now.to_f
+      EM::Synchrony.sleep(DELAY)
+    end
+
+    # Enqueues a request.
+    #
+    # @return [Boolean] `true` if the request was the last arrived and therefore must be performed, `false` otherwise.
+    def self.perform_request?
+      @requests.pop
+      @requests.empty?
+    end
 
     # Handles a valid request.
     #
@@ -54,21 +69,6 @@ module Pincerna
       rescue => e
         [500, {"X-Error" => e.class.to_s, "X-Error-Message" => e.message, "Content-Type" => "text/plain"}, e.backtrace.join("\n")]
       end
-    end
-
-    # Enqueues a request.
-    def self.enqueue_request
-      @requests ||= Queue.new
-      @requests << Time.now.to_f
-      EM::Synchrony.sleep(DELAY)
-    end
-
-    # Enqueues a request.
-    #
-    # @return [Boolean] `true` if the request was the last arrived and therefore must be performed, `false` otherwise.
-    def self.perform_request?
-      @requests.pop
-      @requests.empty?
     end
   end
 end

@@ -1,18 +1,8 @@
 # encoding: utf-8
 #
-# This file is part of the pincerna gem. Copyright (C) 2013 and above Shogun <shogun_panda@me.com>.
+# This file is part of the pincerna gem. Copyright (C) 2013 and above Shogun <shogun@cowtech.it>.
 # Licensed under the MIT license, which can be found at http://www.opensource.org/licenses/mit-license.php.
 #
-
-RubyUnits::Unit.define('miles per gallon') do |mpg|
-  mpg.definition  = RubyUnits::Unit.new('1 mi/gal')
-  mpg.aliases     = %w{mpg miles-per-gallon}
-end
-
-RubyUnits::Unit.define('kilometers per liter') do |mpg|
-  mpg.definition  = RubyUnits::Unit.new('1 km/L')
-  mpg.aliases     = %w{kpl kilometers-per-liter}
-end
 
 module Pincerna
   # Converts a value from a unit to another.
@@ -40,6 +30,18 @@ module Pincerna
 
     # The icon to show for each feedback item.
     ICON = Pincerna::Base::ROOT + "/images/unit.png"
+
+    # Defines a new unit.
+    #
+    # @param name [String] The name of the unit.
+    # @param definition [String] The definition of the unit.
+    # @param aliases [Array] The aliases of this unit.
+    def self.define_unit(name, definition, aliases)
+      RubyUnits::Unit.define(name) do |unit|
+        unit.definition = RubyUnits::Unit.new(definition)
+        unit.aliases = aliases
+      end
+    end
 
     # Converts a value from a unit to another.
     #
@@ -113,3 +115,6 @@ module Pincerna
     end
   end
 end
+
+Pincerna::UnitConversion.define_unit("miles per gallon", "1 mi/gal", ["mpg" "miles-per-gallon"])
+Pincerna::UnitConversion.define_unit("kilometers per liter", "1 km/L", ["kpl" "kilometers-per-liter"])

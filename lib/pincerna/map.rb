@@ -1,6 +1,6 @@
 # encoding: utf-8
 #
-# This file is part of the pincerna gem. Copyright (C) 2013 and above Shogun <shogun_panda@me.com>.
+# This file is part of the pincerna gem. Copyright (C) 2013 and above Shogun <shogun@cowtech.it>.
 # Licensed under the MIT license, which can be found at http://www.opensource.org/licenses/mit-license.php.
 #
 
@@ -24,7 +24,7 @@ module Pincerna
     # @return [Array] The feedback items.
     def process_results(results)
       type = results[:query] =~ /((-?)\d+(\.\d+)?)\s*,\s*((-?)\d+(\.\d+)?)/ ? "coordinates" : "location"
-      [{title: "View #{type} on Google Maps", arg: CGI.escape(results[:query]), subtitle: "Action this item to open Google Maps on the browser.", icon: self.class::ICON}]
+      [{title: "View #{type} on Google Maps", arg: CGI.escape(results[:query]), subtitle: "Action this item to open Google Maps in the browser.", icon: self.class::ICON}]
     end
   end
 end
