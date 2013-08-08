@@ -1,0 +1,56 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://where.yahooapis.com/v1/places.q(QUERY);count=5?appid=dj0yJmk9ZUpBZk1hQTJGRHM5JmQ9WVdrOVlUSnBjMGhUTjJVbWNHbzlOemsyTURNeU5EWXkmcz1jb25zdW1lcnNlY3JldCZ4PWRi&format=json
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Origin:
+      - '*'
+      Cache-Control:
+      - public, must-revalidate
+      Connection:
+      - Keep-Alive
+      Content-Encoding:
+      - gzip
+      Content-Language:
+      - en-US
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Wed, 07 Aug 2013 16:16:16 GMT
+      P3p:
+      - policyref="http://info.yahoo.com/w3c/p3p.xml", CP="CAO DSP COR CUR ADM DEV
+        TAI PSA PSD IVAi IVDi CONi TELo OTPi OUR DELi SAMi OTRi UNRi PUBi IND PHY
+        ONL UNI PUR FIN COM NAV INT DEM CNT STA POL HEA PRE LOC GOV"
+      Server:
+      - HTTP/1.1 UserFiberFramework/1.0
+      Transfer-Encoding:
+      - chunked
+      Vary:
+      - Accept-Encoding
+      Via:
+      - HTTP/1.1 r04.ycpi.gq1.yahoo.net UserFiberFramework/1.0
+      X-Yahoo-Serving-Host:
+      - wws5.geotech.gq1.yahoo.com
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        H4sIAAAAAAAAA6pWKshJTE4tVrKqViouSSwqUbIy0FFKzi/Ng7BK8ksSc4Cs
+        2loAAAAA//8DAACYu9cqAAAA
+    http_version: 
+  recorded_at: Wed, 07 Aug 2013 16:16:16 GMT
+recorded_with: VCR 2.5.0
