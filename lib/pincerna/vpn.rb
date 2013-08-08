@@ -4,8 +4,6 @@
 # Licensed under the MIT license, which can be found at http://www.opensource.org/licenses/mit-license.php.
 #
 
-require "strscan"
-
 module Pincerna
   # Connects or disconnects from system's VPNs.
   class Vpn < Base

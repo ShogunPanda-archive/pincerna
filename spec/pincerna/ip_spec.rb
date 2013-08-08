@@ -7,7 +7,7 @@
 require "spec_helper"
 
 describe Pincerna::Ip do
-  subject { Pincerna::Ip.new("") }
+  subject { Pincerna::Ip.new("", "yml") }
 
   before(:each) do
     @ifconfig = <<EOIP
@@ -76,20 +76,20 @@ EONAMES
       allow_any_instance_of(Pincerna::Ip).to receive(:perform_filtering) { |args| [args] }
       allow_any_instance_of(Pincerna::Ip).to receive(:process_results) { |args| args }
 
-      expect(Pincerna::Ip.new("QUERY").filter).to eq_as_yaml(["QUERY"])
-      expect(Pincerna::Ip.new("").filter).to eq_as_yaml([""])
+      expect(Pincerna::Ip.new("QUERY", "yml").filter).to eq_as_yaml(["QUERY"])
+      expect(Pincerna::Ip.new("", "yml").filter).to eq_as_yaml([""])
     end
   end
 
   describe "#perform_filtering" do
     before(:each) do
-      allow(subject).to receive(:get_public_address).and_return({interface: nil, address: "76.126.167.79"})
+      allow(subject).to receive(:get_public_address).and_return({interface: nil, address: "8.8.8.8"})
     end
 
     describe "should return list of IPs" do
       it "with no query" do
         expect(subject.perform_filtering("")).to eq([
-          {interface: nil, address: "76.126.167.79"},
+          {interface: nil, address: "8.8.8.8"},
           {interface: "Loopback (lo0)", address: "127.0.0.1"},
           {interface: "Loopback (lo0)", address: "::1"},
           {interface: "Loopback (lo0)", address: "fe80::1%lo0"},
@@ -102,7 +102,7 @@ EONAMES
 
       it "with query" do
         expect(subject.perform_filtering("p")).to eq([
-          {interface: nil, address: "76.126.167.79"},
+          {interface: nil, address: "8.8.8.8"},
           {interface: "Loopback (lo0)", address: "127.0.0.1"},
           {interface: "Loopback (lo0)", address: "::1"},
           {interface: "Loopback (lo0)", address: "fe80::1%lo0"}
@@ -150,7 +150,7 @@ EONAMES
     end
   end
 
-  describe "#get_public_address", :vcr do
+  describe "#get_public_address", :vcr, :synchronous do
     it "should return public IP address" do
       address = subject.get_public_address
 

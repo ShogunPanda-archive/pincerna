@@ -7,27 +7,27 @@
 require "spec_helper"
 
 describe Pincerna::CurrencyConversion do
-  subject { Pincerna::CurrencyConversion.new("QUERY") }
+  subject { Pincerna::CurrencyConversion.new("QUERY", "yml") }
 
   describe "matching" do
     it "should match valid queries" do
       allow_any_instance_of(Pincerna::CurrencyConversion).to receive(:perform_filtering) { |*args| args }
       allow_any_instance_of(Pincerna::CurrencyConversion).to receive(:process_results) { |*args| args }
 
-      expect(Pincerna::CurrencyConversion.new("123 EUR to GBP").filter).to eq_as_yaml([[123.0, "EUR", "GBP", false]])
-      expect(Pincerna::CurrencyConversion.new("-123.45 eur usd").filter).to eq_as_yaml([[-123.45, "EUR", "USD", false]])
-      expect(Pincerna::CurrencyConversion.new("123 EUR to GBP with rate").filter).to eq_as_yaml([[123.0, "EUR", "GBP", true]])
+      expect(Pincerna::CurrencyConversion.new("123 EUR to GBP", "yml").filter).to eq_as_yaml([[123.0, "EUR", "GBP", false]])
+      expect(Pincerna::CurrencyConversion.new("-123.45 eur usd", "yml").filter).to eq_as_yaml([[-123.45, "EUR", "USD", false]])
+      expect(Pincerna::CurrencyConversion.new("123 EUR to GBP with rate", "yml").filter).to eq_as_yaml([[123.0, "EUR", "GBP", true]])
     end
 
     it "should not match invalid queries" do
       expect_any_instance_of(Pincerna::CurrencyConversion).not_to receive(:perform_filtering)
       expect_any_instance_of(Pincerna::CurrencyConversion).not_to receive(:process_results)
 
-      expect(Pincerna::CurrencyConversion.new("12A3 EUR to GBP").filter).to eq_as_yaml([])
+      expect(Pincerna::CurrencyConversion.new("12A3 EUR to GBP", "yml").filter).to eq_as_yaml([])
     end
   end
 
-  describe "#perform_filtering", :vcr do
+  describe "#perform_filtering", :vcr, :synchronous do
     it "should return valid values" do
       expect(subject.perform_filtering(123.45, "EUR", "USD", "RATE")).to eq({value: 123.45, from: "EUR", to: "USD", result: 163.756, rate: 1.327, with_rate: "RATE"})
     end

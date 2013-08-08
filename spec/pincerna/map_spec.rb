@@ -7,7 +7,7 @@
 require "spec_helper"
 
 describe Pincerna::Map do
-  subject { Pincerna::Map.new("QUERY") }
+  subject { Pincerna::Map.new("QUERY", "yml") }
 
   describe "#perform_filtering" do
     it "should simply return the query" do

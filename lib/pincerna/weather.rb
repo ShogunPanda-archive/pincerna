@@ -4,10 +4,6 @@
 # Licensed under the MIT license, which can be found at http://www.opensource.org/licenses/mit-license.php.
 #
 
-require "yahoo_weatherman"
-require "fileutils"
-require "open-uri"
-
 module Pincerna
   # Gets weather forecast from Yahoo! Weather.
   class Weather < Base
@@ -59,10 +55,9 @@ module Pincerna
     # @return [Array] A list of matching places data.
     def lookup_places(query)
       if query !~ /^(\d+)$/ then
-        caching_http_requests("woeids") do
-          response = fetch_remote_resource("http://where.yahooapis.com/v1/places.q(#{CGI.escape(query)});count=5", {appid: self.class::API_KEY, format: :json})
-          response["places"].fetch("place", []).collect { |place| parse_place(place) }
-        end
+        # TODO@SP: Cache and reuse results. Even with persistence.
+        response = fetch_remote_resource("http://where.yahooapis.com/v1/places.q(#{CGI.escape(query)});count=5", {appid: self.class::API_KEY, format: :json})
+        response["places"].fetch("place", []).collect { |place| parse_place(place) }
       else
         # We already have the woeid. The name will be given by Yahoo!
         [{woeid: query}]

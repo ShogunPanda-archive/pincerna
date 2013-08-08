@@ -9,7 +9,7 @@ require "yaml"
 require "pincerna/map"
 
 describe Pincerna::Base do
-  subject { Pincerna::Base.new("QUERY") }
+  subject { Pincerna::Base.new("QUERY", "yml") }
 
   let(:reference_xml) {
     <<EOXML
@@ -38,8 +38,8 @@ EOXML
     it "should create a query and then filter" do
       query = ::Object.new
       expect(query).to receive(:filter).and_return("FILTER")
-      expect(Pincerna::Map).to receive(:new).with("QUERY").and_return(query)
-      expect(Pincerna::Base.execute!("map", "QUERY"))
+      expect(Pincerna::Map).to receive(:new).with("QUERY", "FORMAT", "DEBUG").and_return(query)
+      expect(Pincerna::Base.execute!("map", "QUERY", "FORMAT", "DEBUG"))
     end
 
     it "should not fail if a matching class is not found" do
@@ -52,6 +52,27 @@ EOXML
       expect(subject.instance_variable_get(:@query)).to eq("QUERY")
       expect(subject.instance_variable_get(:@cache_dir)).to eq(::File.expand_path("~/Library/Caches/com.runningwithcrayons.Alfred-2/Workflow Data/pincerna"))
       expect(subject.instance_variable_get(:@feedback_items)).to eq([])
+      expect(subject.format).to eq(:yml)
+
+    end
+
+    it "should save debug mode" do
+      reference = Pincerna::Base.new("QUERY", "yml", "DEBUG")
+      expect(reference.instance_variable_get(:@debug)).to eq("DEBUG")
+    end
+
+    it "should save format" do
+      reference = Pincerna::Base.new("QUERY", "yml", "DEBUG")
+      expect(reference.format).to eq(:yml)
+      expect(reference.format_content_type).to eq("text/x-yaml")
+
+      reference = Pincerna::Base.new("QUERY", "yaml", "DEBUG")
+      expect(reference.format).to eq(:yml)
+      expect(reference.format_content_type).to eq("text/x-yaml")
+
+      reference = Pincerna::Base.new("QUERY", "FOO", "DEBUG")
+      expect(reference.format).to eq(:xml)
+      expect(reference.format_content_type).to eq("text/xml")
     end
   end
 
@@ -100,6 +121,7 @@ EOXML
       before(:each) do
         subject.add_feedback_item({title: "TITLE 1", subtitle: "SUBTITLE 1", icon: "ICON 1", first: "FIRST", second: "SECOND", third: "THIRD"})
         subject.add_feedback_item({title: "TITLE 2", subtitle: "SUBTITLE 2", icon: "ICON 2", fourth: "FOURTH", fifth: "FIFTH", sixth: "SIXTH"})
+        allow(subject).to receive(:format).and_return(:xml)
         allow(subject).to receive(:debug_mode).and_return(nil)
       end
 
@@ -140,42 +162,6 @@ EOXML
   describe "#execute_command" do
     it "should return the output of a command" do
       expect(subject.send(:execute_command, "date", "+%s")).to match(/\d+/)
-    end
-  end
-
-  describe "#setup_vcr" do
-    after(:each) do
-      configure_vcr
-    end
-
-    it "should load ::VCR and ::WebMock and set some constants" do
-      config = ::VCR::Configuration.new
-      expect(config).to receive(:hook_into).with(:webmock).at_least(1)
-      expect(::VCR).to receive(:configure).at_least(1).and_yield(config)
-
-      subject.send(:setup_vcr)
-      expect(::VCR).to be_a(::Module)
-      expect(::WebMock).to be_a(::Module)
-      expect(config.allow_http_connections_when_no_cassette?).to be_true
-      expect(config.cassette_library_dir).to eq(::File.expand_path("~/Library/Caches/com.runningwithcrayons.Alfred-2/Workflow Data/pincerna") + "/http")
-      expect(config.default_cassette_options[:record]).to eq(:once)
-    end
-  end
-
-  describe "#log" do
-    before(:each) do
-      @log_path = "/tmp/pincerna.log"
-      allow(subject).to receive(:debug_mode).and_return(true)
-      allow(subject).to receive(:log_path).and_return(@log_path)
-      expect_any_instance_of(Time).to receive(:strftime).and_return("TIME")
-      allow(::File).to receive(:absolute_path).and_return(@log_path)
-    end
-
-    it "should log a message" do
-      ::File.delete(@log_path) if ::File.exists?(@log_path)
-      subject.send(:log, "MESSAGE")
-      expect(::File.read(@log_path)).to eq("[TIME] MESSAGE\n")
-      ::File.delete(@log_path)
     end
   end
 end

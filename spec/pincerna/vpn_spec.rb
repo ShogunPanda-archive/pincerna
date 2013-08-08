@@ -7,7 +7,7 @@
 require "spec_helper"
 
 describe Pincerna::Vpn do
-  subject { Pincerna::Vpn.new("QUERY") }
+  subject { Pincerna::Vpn.new("QUERY", "yml") }
 
   describe "#perform_filtering" do
     before(:each) do

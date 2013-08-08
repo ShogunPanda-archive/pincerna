@@ -17,6 +17,28 @@
 				<string></string>
 			</dict>
 		</array>
+		<key>07821F09-3DFB-4D17-B3D0-1B2DE18D040E</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>A1CB5BBC-1B37-404A-AD35-09EBD651790D</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>37937AA8-DB0B-4482-B595-D88FA9116370</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>07821F09-3DFB-4D17-B3D0-1B2DE18D040E</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>3D9EDB97-E47C-4144-B1EA-4D0293018412</key>
 		<array>
 			<dict>
@@ -150,8 +172,7 @@
 				<key>runningsubtext</key>
 				<string>Performing conversion ...</string>
 				<key>script</key>
-				<string>source ~/.rvm/scripts/rvm
-$PWD/bin/pincerna convert {query}</string>
+				<string>$PWD/bin/pincerna.sh convert {query}</string>
 				<key>subtext</key>
 				<string>Enter an amount to convert ...</string>
 				<key>title</key>
@@ -195,8 +216,7 @@ $PWD/bin/pincerna convert {query}</string>
 				<key>runningsubtext</key>
 				<string>Performing conversion ...</string>
 				<key>script</key>
-				<string>source ~/.rvm/scripts/rvm
-$PWD/bin/pincerna convert {query}</string>
+				<string>$PWD/bin/pincerna.sh convert {query}</string>
 				<key>subtext</key>
 				<string>Enter an amount to convert ...</string>
 				<key>title</key>
@@ -225,8 +245,7 @@ $PWD/bin/pincerna convert {query}</string>
 				<key>runningsubtext</key>
 				<string>Performing conversion ...</string>
 				<key>script</key>
-				<string>source ~/.rvm/scripts/rvm
-$PWD/bin/pincerna currency {query}</string>
+				<string>$PWD/bin/pincerna.sh currency {query}</string>
 				<key>subtext</key>
 				<string>Enter an expression to convert ...</string>
 				<key>title</key>
@@ -270,8 +289,7 @@ $PWD/bin/pincerna currency {query}</string>
 				<key>runningsubtext</key>
 				<string>Performing conversion ...</string>
 				<key>script</key>
-				<string>source ~/.rvm/scripts/rvm
-$PWD/bin/pincerna cc {query}</string>
+				<string>$PWD/bin/pincerna.sh currency {query}</string>
 				<key>subtext</key>
 				<string>Enter an expression to convert ...</string>
 				<key>title</key>
@@ -300,8 +318,7 @@ $PWD/bin/pincerna cc {query}</string>
 				<key>runningsubtext</key>
 				<string>Performing translation ...</string>
 				<key>script</key>
-				<string>source ~/.rvm/scripts/rvm
-$PWD/bin/pincerna translate {query}</string>
+				<string>$PWD/bin/pincerna.sh translate {query}</string>
 				<key>subtext</key>
 				<string>Enter a text to translate ...</string>
 				<key>title</key>
@@ -345,8 +362,7 @@ $PWD/bin/pincerna translate {query}</string>
 				<key>runningsubtext</key>
 				<string>Performing translation ...</string>
 				<key>script</key>
-				<string>source ~/.rvm/scripts/rvm
-$PWD/bin/pincerna t {query}</string>
+				<string>$PWD/bin/pincerna.sh translate {query}</string>
 				<key>subtext</key>
 				<string>Enter text to translate ...</string>
 				<key>title</key>
@@ -375,8 +391,7 @@ $PWD/bin/pincerna t {query}</string>
 				<key>runningsubtext</key>
 				<string>Searching location ...</string>
 				<key>script</key>
-				<string>source ~/.rvm/scripts/rvm
-$PWD/bin/pincerna map {query}</string>
+				<string>$PWD/bin/pincerna.sh map {query}</string>
 				<key>subtext</key>
 				<string>Enter a location or coordinates ...</string>
 				<key>title</key>
@@ -422,9 +437,7 @@ $PWD/bin/pincerna map {query}</string>
 				<key>runningsubtext</key>
 				<string>Searching location ...</string>
 				<key>script</key>
-				<string>source ~/.rvm/scripts/rvm
-$PWD/bin/pincerna m {query}
-</string>
+				<string>$PWD/bin/pincerna.sh map {query}</string>
 				<key>subtext</key>
 				<string>Enter a location or coordinates ...</string>
 				<key>title</key>
@@ -438,6 +451,35 @@ $PWD/bin/pincerna m {query}
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>4E4A4ECD-E3F1-41D9-BFD9-5836DC960B35</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>keyword</key>
+				<string>forecast</string>
+				<key>runningsubtext</key>
+				<string>Getting weather forecast ...</string>
+				<key>script</key>
+				<string>$PWD/bin/pincerna.sh forecast {query}</string>
+				<key>subtext</key>
+				<string>Enter a location or a location code ...</string>
+				<key>title</key>
+				<string>Weather forecast</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>CB129197-F1F3-47B8-AE13-CAAA8195B1BA</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -462,20 +504,19 @@ $PWD/bin/pincerna m {query}
 			<key>config</key>
 			<dict>
 				<key>argumenttype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>escaping</key>
 				<integer>127</integer>
 				<key>keyword</key>
-				<string>forecast</string>
+				<string>ip</string>
 				<key>runningsubtext</key>
-				<string>Getting weather forecast ...</string>
+				<string>Fetching IPs …</string>
 				<key>script</key>
-				<string>source ~/.rvm/scripts/rvm
-$PWD/bin/pincerna forecast {query}</string>
+				<string>$PWD/bin/pincerna.sh ip {query}</string>
 				<key>subtext</key>
-				<string>Enter a location or a location code ...</string>
+				<string>Show the list of local and remote IPs of this computer</string>
 				<key>title</key>
-				<string>Weather forecast</string>
+				<string>Show the list of IP</string>
 				<key>type</key>
 				<integer>0</integer>
 				<key>withspace</key>
@@ -484,7 +525,7 @@ $PWD/bin/pincerna forecast {query}</string>
 			<key>type</key>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
-			<string>CB129197-F1F3-47B8-AE13-CAAA8195B1BA</string>
+			<string>D1AD056E-EA13-47AD-BFD2-8E4B97A1DEEA</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -500,36 +541,6 @@ $PWD/bin/pincerna forecast {query}</string>
 			<string>alfred.workflow.output.clipboard</string>
 			<key>uid</key>
 			<string>CCCE8103-8F1B-4DBE-BB44-ED430927994D</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>1</integer>
-				<key>escaping</key>
-				<integer>127</integer>
-				<key>keyword</key>
-				<string>ip</string>
-				<key>runningsubtext</key>
-				<string>Fetching IPs …</string>
-				<key>script</key>
-				<string>source ~/.rvm/scripts/rvm
-$PWD/bin/pincerna ip {query}</string>
-				<key>subtext</key>
-				<string>Show the list of local and remote IPs of this computer</string>
-				<key>title</key>
-				<string>Show the list of IP</string>
-				<key>type</key>
-				<integer>0</integer>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
-			<key>uid</key>
-			<string>D1AD056E-EA13-47AD-BFD2-8E4B97A1DEEA</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -563,9 +574,7 @@ $PWD/bin/pincerna ip {query}</string>
 				<key>runningsubtext</key>
 				<string>Fetching VPNs statuses ...</string>
 				<key>script</key>
-				<string>#!/bin/bash
-source ~/.rvm/scripts/rvm
-$PWD/bin/pincerna vpn {query}</string>
+				<string>$PWD/bin/pincerna.sh vpn {query}</string>
 				<key>subtext</key>
 				<string>Connect or disconnect to your VPNs ...</string>
 				<key>title</key>
@@ -579,6 +588,71 @@ $PWD/bin/pincerna vpn {query}</string>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
 			<string>3D9EDB97-E47C-4144-B1EA-4D0293018412</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>0</integer>
+				<key>script</key>
+				<string>QUERY={query}
+[ "$QUERY" = "" ] &amp;&amp; QUERY=quit
+$PWD/bin/pincerna.sh $QUERY</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>A1CB5BBC-1B37-404A-AD35-09EBD651790D</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>action</key>
+				<integer>1</integer>
+				<key>argument</key>
+				<integer>2</integer>
+				<key>hotkey</key>
+				<integer>35</integer>
+				<key>hotmod</key>
+				<integer>1572864</integer>
+				<key>hotstring</key>
+				<string>P</string>
+				<key>leftcursor</key>
+				<true/>
+				<key>modsmode</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.trigger.hotkey</string>
+			<key>uid</key>
+			<string>37937AA8-DB0B-4482-B595-D88FA9116370</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>keyword</key>
+				<string>pincerna</string>
+				<key>subtext</key>
+				<string>Send a command to the pincernad server.</string>
+				<key>text</key>
+				<string>Call Pincerna</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>07821F09-3DFB-4D17-B3D0-1B2DE18D040E</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -597,10 +671,20 @@ $PWD/bin/pincerna vpn {query}</string>
 			<key>ypos</key>
 			<real>1210</real>
 		</dict>
+		<key>07821F09-3DFB-4D17-B3D0-1B2DE18D040E</key>
+		<dict>
+			<key>ypos</key>
+			<real>1330</real>
+		</dict>
 		<key>2AF6DAE2-BD50-4E45-A1F9-24FD003468D2</key>
 		<dict>
 			<key>ypos</key>
 			<real>550</real>
+		</dict>
+		<key>37937AA8-DB0B-4482-B595-D88FA9116370</key>
+		<dict>
+			<key>ypos</key>
+			<real>1330</real>
 		</dict>
 		<key>3D9EDB97-E47C-4144-B1EA-4D0293018412</key>
 		<dict>
@@ -641,6 +725,11 @@ $PWD/bin/pincerna vpn {query}</string>
 		<dict>
 			<key>ypos</key>
 			<real>370</real>
+		</dict>
+		<key>A1CB5BBC-1B37-404A-AD35-09EBD651790D</key>
+		<dict>
+			<key>ypos</key>
+			<real>1330</real>
 		</dict>
 		<key>AC358C4D-4A41-4D15-A1EA-3159E9318E7D</key>
 		<dict>

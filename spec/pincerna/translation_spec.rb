@@ -7,26 +7,26 @@
 require "spec_helper"
 
 describe Pincerna::Translation do
-  subject { Pincerna::Translation.new("QUERY") }
+  subject { Pincerna::Translation.new("QUERY", "yml") }
 
   describe "matching" do
     it "should match valid queries" do
       allow_any_instance_of(Pincerna::Translation).to receive(:perform_filtering) { |*args| args }
       allow_any_instance_of(Pincerna::Translation).to receive(:process_results) { |*args| args }
 
-      expect(Pincerna::Translation.new("zh-cn en FOO").filter).to eq_as_yaml([["zh-cn", "en", "FOO"]])
-      expect(Pincerna::Translation.new("IT to EN FOO").filter).to eq_as_yaml([["it", "en", "FOO"]])
+      expect(Pincerna::Translation.new("zh-cn en FOO", "yml").filter).to eq_as_yaml([["zh-cn", "en", "FOO"]])
+      expect(Pincerna::Translation.new("IT to EN FOO", "yml").filter).to eq_as_yaml([["it", "en", "FOO"]])
     end
 
     it "should not match invalid queries" do
       expect_any_instance_of(Pincerna::Translation).not_to receive(:perform_filtering)
       expect_any_instance_of(Pincerna::Translation).not_to receive(:process_results)
 
-      expect(Pincerna::Translation.new("abc").filter).to eq_as_yaml([])
+      expect(Pincerna::Translation.new("abc", "yml").filter).to eq_as_yaml([])
     end
   end
 
-  describe "#perform_filtering", :vcr do
+  describe "#perform_filtering", :vcr, :synchronous do
     it "should query Google Translate for single words" do
       expect(subject.perform_filtering("it", "en", "Ciao")).to eq({main: "Hello!", alternatives: ["Hi!", "Bye-Bye!", "Bye!", "So long!", "Cheerio!", "Hallo!", "Hullo!"]})
     end

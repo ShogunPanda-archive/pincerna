@@ -38,17 +38,16 @@ module Pincerna
         from = "en"
       end
 
-      caching_http_requests("translations") do
-        response = fetch_remote_resource("http://translate.google.com.br/translate_a/t", {client: "p", text: value, sl: from, tl: to, multires: 1, ssel: 0, tsel: 0, sc: 1, ie: "UTF-8", oe: "UTF-8"})
+      # TODO@SP: Cache and reuse results. Even with persistence.
+      response = fetch_remote_resource("http://translate.google.com.br/translate_a/t", {client: "p", text: value, sl: from, tl: to, multires: 1, ssel: 0, tsel: 0, sc: 1, ie: "UTF-8", oe: "UTF-8"})
 
-        # Parse results
-        if response["dict"] then
-          translations = response["dict"][0]["entry"].collect {|t| t["word"] }
-          {main: translations.shift, alternatives: translations}
-        else
-          translation = response["sentences"][0]["trans"]
-          {main: translation} if translation != value
-        end
+      # Parse results
+      if response["dict"] then
+        translations = response["dict"][0]["entry"].collect {|t| t["word"] }
+        {main: translations.shift, alternatives: translations}
+      else
+        translation = response["sentences"][0]["trans"]
+        {main: translation} if translation != value
       end
     end
 

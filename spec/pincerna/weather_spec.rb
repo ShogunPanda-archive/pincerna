@@ -7,16 +7,16 @@
 require "spec_helper"
 
 describe Pincerna::Weather do
-  subject { Pincerna::Weather.new("QUERY") }
+  subject { Pincerna::Weather.new("QUERY", "yml") }
 
   describe "matching" do
     it "should match valid queries" do
       allow_any_instance_of(Pincerna::Weather).to receive(:perform_filtering) { |*args| args }
       allow_any_instance_of(Pincerna::Weather).to receive(:process_results) { |*args| args }
 
-      expect(Pincerna::Weather.new("Campobasso").filter).to eq_as_yaml([["Campobasso", "c"]])
-      expect(Pincerna::Weather.new("Campobasso in c").filter).to eq_as_yaml([["Campobasso", "c"]])
-      expect(Pincerna::Weather.new("Campobasso in F").filter).to eq_as_yaml([["Campobasso", "f"]])
+      expect(Pincerna::Weather.new("Campobasso", "yml").filter).to eq_as_yaml([["Campobasso", "c"]])
+      expect(Pincerna::Weather.new("Campobasso in c", "yml").filter).to eq_as_yaml([["Campobasso", "c"]])
+      expect(Pincerna::Weather.new("Campobasso in F", "yml").filter).to eq_as_yaml([["Campobasso", "f"]])
     end
   end
 
@@ -47,7 +47,7 @@ describe Pincerna::Weather do
     end
   end
 
-  describe "#lookup_places", :vcr do
+  describe "#lookup_places", :vcr, :synchronous do
     it "should search for places" do
       expect(subject.lookup_places("Campobasso")).to eq([{woeid: 711892, name: "Campobasso, Molise, Italy"}])
       expect(subject.lookup_places("San Mateo")).to eq([{woeid: 2488142, name: "San Mateo, California, United States"}, {woeid: 2488139, name: "San Mateo, Putnam, Florida, United States"}, {woeid: 775977, name: "San Mateo, Sant Mateu, Castellon, Valencia, Spain"}, {woeid: 2488141, name: "San Mateo, Cibola, New Mexico, United States"}, {woeid: 2488150, name: "Jacksonville, Duval, Florida, United States"}])
@@ -55,7 +55,6 @@ describe Pincerna::Weather do
     end
 
     it "should return an existing WOEID without making any request" do
-      expect(subject).not_to receive(:caching_http_requests)
       expect(subject.lookup_places("123")).to eq([{woeid: "123"}])
     end
   end

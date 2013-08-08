@@ -7,23 +7,23 @@
 require "spec_helper"
 
 describe Pincerna::UnitConversion do
-  subject { Pincerna::UnitConversion.new("QUERY") }
+  subject { Pincerna::UnitConversion.new("QUERY", "yml") }
 
   describe "matching" do
     it "should match valid queries" do
       allow_any_instance_of(Pincerna::UnitConversion).to receive(:perform_filtering) { |*args| args }
       allow_any_instance_of(Pincerna::UnitConversion).to receive(:process_results) { |*args| args }
 
-      expect(Pincerna::UnitConversion.new("123 m to F").filter).to eq_as_yaml([[123.0, "m", "F", false, false]])
-      expect(Pincerna::UnitConversion.new("-123.45 oz kg split units").filter).to eq_as_yaml([[-123.45, "oz", "kg", false, true]])
-      expect(Pincerna::UnitConversion.new("123 m to yd with rate").filter).to eq_as_yaml([[123.0, "m", "yd", true, false]])
+      expect(Pincerna::UnitConversion.new("123 m to F", "yml").filter).to eq_as_yaml([[123.0, "m", "F", false, false]])
+      expect(Pincerna::UnitConversion.new("-123.45 oz kg split units", "yml").filter).to eq_as_yaml([[-123.45, "oz", "kg", false, true]])
+      expect(Pincerna::UnitConversion.new("123 m to yd with rate", "yml").filter).to eq_as_yaml([[123.0, "m", "yd", true, false]])
     end
 
     it "should not match invalid queries" do
       expect_any_instance_of(Pincerna::UnitConversion).not_to receive(:perform_filtering)
       expect_any_instance_of(Pincerna::UnitConversion).not_to receive(:process_results)
 
-      expect(Pincerna::UnitConversion.new("12A3 EUR to GBP").filter).to eq_as_yaml([])
+      expect(Pincerna::UnitConversion.new("12A3 EUR to GBP", "yml").filter).to eq_as_yaml([])
     end
   end
 

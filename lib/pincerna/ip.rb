@@ -4,8 +4,6 @@
 # Licensed under the MIT license, which can be found at http://www.opensource.org/licenses/mit-license.php.
 #
 
-require "strscan"
-
 module Pincerna
   # Shows the IP addresses of all network interfaces.
   class Ip < Base

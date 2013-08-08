@@ -11,6 +11,8 @@ gemspec
 # Testing
 gem "rspec", "~> 2.14.1"
 gem "rake", "~> 10.1.0"
+gem "vcr", "~> 2.5.0"
+gem "webmock", "~> 1.13.0"
 
 # Documentation
 gem "simplecov", ">= 0.7.1"

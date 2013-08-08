@@ -4,7 +4,15 @@
 # Licensed under the MIT license, which can be found at http://www.opensource.org/licenses/mit-license.php.
 #
 
-require "ruby-units"
+RubyUnits::Unit.define('miles per gallon') do |mpg|
+  mpg.definition  = RubyUnits::Unit.new('1 mi/gal')
+  mpg.aliases     = %w{mpg miles-per-gallon}
+end
+
+RubyUnits::Unit.define('kilometers per liter') do |mpg|
+  mpg.definition  = RubyUnits::Unit.new('1 km/L')
+  mpg.aliases     = %w{kpl kilometers-per-liter}
+end
 
 module Pincerna
   # Converts a value from a unit to another.
@@ -13,10 +21,10 @@ module Pincerna
     MATCHER = /^
       (?<value>([+-]?)(\d+)([.,]\d+)?)
       \s+
-      (?<from>[a-z°]+?)
+      (?<from>\S+?)
       \s+
       (to\s+)?
-      (?<to>[a-z°]+)
+      (?<to>\S+)
       (?<rate>\s+with\s+rate)?
       (?<split>\s+split\s+units)?
     $/mix

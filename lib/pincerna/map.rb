@@ -4,8 +4,6 @@
 # Licensed under the MIT license, which can be found at http://www.opensource.org/licenses/mit-license.php.
 #
 
-require "cgi"
-
 module Pincerna
   # Shows an address on Google Maps.
   class Map < Base

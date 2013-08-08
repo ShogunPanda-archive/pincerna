@@ -7,6 +7,13 @@
 # A bunch of useful Alfred 2 workflows.
 module Pincerna
   # Base class for all filter.
+  #
+  # @attribute [r] output
+  #   @return [String] The output of filtering.
+  # @attribute [r] format
+  #   @return [Symbol] The format of output. Can be `:xml` (default) or `:yml`.
+  # @attribute [r] format_content_type
+  #   @return [Symbol] The content type of the format. Can be `:xml` (default) or `:yml`.
   class Base
     # Recognized types of filtering
     TYPES = {
@@ -29,12 +36,18 @@ module Pincerna
       "all" => ->(_, value) { value }
     }
 
+    attr_reader :output, :format, :format_content_type
+
     # Executes a filtering query.
     #
     # @param type [Symbol] The type of the query.
     # @param query [String] The argument of the query.
+    # @param format [String] The format to use. Valid values are `:xml` (default) and `:yml`.
+    # @param debug [String] The debug mode.
     # @return [String] The result of the query.
-    def self.execute!(type, query)
+    def self.execute!(type, query, format = :xml, debug = nil)
+      instance = nil
+
       type = catch(:type) do
         TYPES.each do |file, matcher|
           throw(:type, file) if type =~ matcher
@@ -43,15 +56,32 @@ module Pincerna
         nil
       end
 
-      create_class(type).new(query).filter if type
+      if type
+        instance = find_class(type).new(query, format, debug)
+        instance.filter
+      end
+
+      instance
     end
 
     # Creates a new query.
     #
     # @param query [String] The argument of the query.
-    def initialize(query)
+    # @param requested_format [String] The format to use. Valid values are `:xml` (default) and `:yml`.
+    # @param debug [String] The debug mode.
+    def initialize(query, requested_format = :xml, debug = nil)
       @query = query.strip.gsub("\\ ", " ")
       @cache_dir = File.expand_path("~/Library/Caches/com.runningwithcrayons.Alfred-2/Workflow Data/pincerna")
+
+      if requested_format =~ /^y(a?)ml$/ then
+        @format = :yml
+        @format_content_type = "text/x-yaml"
+      else
+        @format = :xml
+        @format_content_type = "text/xml"
+      end
+
+      @debug = debug
       @feedback_items = []
     end
 
@@ -59,19 +89,15 @@ module Pincerna
     #
     # @return [String] The feedback items of the query, formatted as XML.
     def filter
-      log("Filtering query: #{@query}")
-
       # Match the query
       matches = self.class::MATCHER.match(@query)
 
       if matches then
-        log("Found matches: #{Oj.dump(array_to_hash(matches.names.collect {|n| [n, matches[n]] }))}")
-
         # Execute the filtering
         results = execute_filtering(matches)
 
         # Show results if appropriate
-        process_results(results).each {|r| add_feedback_item(r) } if results
+        process_results(results).each {|r| add_feedback_item(r) } if !results.empty?
       end
 
       output_feedback
@@ -104,8 +130,8 @@ module Pincerna
     #
     # @return [String] A XML document.
     def output_feedback
-      if !debug_mode then
-        Nokogiri::XML::Builder.new { |xml|
+      if format == :xml then
+        @output = Nokogiri::XML::Builder.new { |xml|
           xml.items do
             @feedback_items.each do |item|
               childs, attributes = split_output_item(item)
@@ -117,8 +143,7 @@ module Pincerna
           end
         }.to_xml
       else
-        require "yaml"
-        @feedback_items.to_yaml
+        @output = @feedback_items.to_yaml
       end
     end
 
@@ -144,11 +169,10 @@ module Pincerna
     end
 
     protected
-      # Require specified file and instantiate the new class.
+      # Instantiates the new class.
       #
       # @param file [String] The file name.
-      def self.create_class(file)
-        require "#{File.dirname(__FILE__)}/#{file}"
+      def self.find_class(file)
         Pincerna.const_get(file.capitalize.gsub(/_(.)/) { $1.upcase})
       end
 
@@ -181,40 +205,6 @@ module Pincerna
         }
       end
 
-      # Runs a block using VCR for HTTP caching.
-      #
-      # @param cassette [String] The cassette name.
-      # @return [Object] The return value of the provided block.
-      def caching_http_requests(cassette)
-        if !defined?(VCR) then
-          setup_vcr
-          VCR.use_cassette(cassette) { yield }
-        else
-          yield
-        end
-      end
-
-      # Setups the VCR gem.
-      def setup_vcr
-        require "webmock"
-        require "vcr"
-        require "vcr/util/version_checker"
-
-        VCR.configure do |c|
-          # Hide VCR warning about webmock
-          VCR::VersionChecker.class_eval do
-            private
-            def warn_about_too_high
-            end
-          end
-
-          c.allow_http_connections_when_no_cassette = true
-          c.cassette_library_dir = @cache_dir + "/http/"
-          c.default_cassette_options = {record: :once}
-          c.hook_into :webmock
-        end
-      end
-
       # Gets attributes and children for output.
       #
       # @param item [Hash] The output item.
@@ -230,14 +220,10 @@ module Pincerna
       # @param json [Boolean] If the response is a JSON object.
       # @return [Hash] The server's response.
       def fetch_remote_resource(url, params, json = true)
-        require "oj" if !defined?(Oj)
-        require "restclient" if !defined?(RestClient)
-
-        args = {params: params}
-        args[:accept] = :json if json
-
-        response = RestClient::Resource.new(url, timeout: 5, open_timeout: 5).get(args)
-        json ? Oj.load(response) : response.body
+        args = {query: params}
+        args[:head] = {"accept" => "application/json"} if json
+        response = EM::HttpRequest.new(url, {connect_timeout: 5}).get(args).response
+        json ? Oj.load(response) : response
       end
 
       # Executes a command and returns its output.
@@ -250,28 +236,12 @@ module Pincerna
         rv
       end
 
-      # Returns the current debug mode
+      # Returns the current debug mode.
+      #
+      # @return [Boolean|NilClass] The current debug mode.
       def debug_mode
-        !ENV["PINCERNA_DEBUG"].nil? ? ENV["PINCERNA_DEBUG"].to_sym : nil
-      end
-
-      # Logs a message.
-      #
-      # @param message [String] The message to log.
-      def log(message)
-        if debug_mode && debug_mode != :spec then
-          File.open(log_path, "w+") {|f|
-            f.flock(File::LOCK_SH)
-            f.write("[%s] %s\n" % [Time.now.strftime("%Y-%m-%d %H:%M:%S.%L"), message])
-          }
-        end
-      end
-
-      # Returns the path of the log file.
-      #
-      # @return [String] The path of the log file.
-      def log_path
-        @log_path ||= File.absolute_path(File.expand_path("~/Library/Logs/pincerna.log"))
+        mode = ENV["PINCERNA_DEBUG"] || @debug
+        !mode.nil? ? mode.to_sym : nil
       end
   end
 end

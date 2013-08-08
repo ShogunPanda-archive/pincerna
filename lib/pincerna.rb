@@ -4,9 +4,23 @@
 # Licensed under the MIT license, which can be found at http://www.opensource.org/licenses/mit-license.php.
 #
 
+require "open-uri"
+require "strscan"
+require "cgi"
+require "fileutils"
 require "nokogiri"
 require "oj"
+require "yahoo_weatherman"
+require "ruby-units"
+require "em-synchrony"
+require "em-synchrony/em-http"
 
-$: << File.dirname(__FILE__)
 require "pincerna/version" if !defined?(Pincerna::Version)
 require "pincerna/base"
+require "pincerna/currency_conversion"
+require "pincerna/ip"
+require "pincerna/map"
+require "pincerna/translation"
+require "pincerna/unit_conversion"
+require "pincerna/vpn"
+require "pincerna/weather"
