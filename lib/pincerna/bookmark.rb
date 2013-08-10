@@ -19,21 +19,10 @@ module Pincerna
     # @return [Array] A list of boomarks.
     def perform_filtering(query)
       Pincerna::Cache.instance.use("bookmarks:#{self.class.to_s}", Pincerna::Cache::EXPIRATIONS[:short]) do
-        matcher = !query.empty? ? /^#{Regexp.escape(query.downcase)}/i : nil
-
         # Get bookmarks and then only keep valid ones
         @bookmarks = []
         read_bookmarks
-        @bookmarks.select! {|bookmark| bookmark[:name] =~ matcher } if matcher
-
-        # Now sort them
-        @bookmarks.sort! {|first, second|
-          cmp = first[:name] <=> second[:name]
-          cmp = first[:path] <=> second[:path] if cmp == 0
-          cmp
-        }
-
-        @bookmarks
+        filter_and_sort(@bookmarks, query)
       end
     end
 
@@ -52,6 +41,24 @@ module Pincerna
     def read_bookmarks
       raise ArgumentError.new("Must be overriden by subclasses.")
     end
+
+    private
+      # Filters and sorts bookmarks.
+      #
+      # @param bookmarks [Array] The bookmarks list.
+      # @param query [String] The query to filter.
+      def filter_and_sort(bookmarks, query)
+        # Filtering
+        matcher = !query.empty? ? /^#{Regexp.escape(query.downcase)}/i : nil
+        bookmarks = bookmarks.select {|bookmark| bookmark[:name] =~ matcher } if matcher
+
+        # Sorting
+        bookmarks.sort {|first, second|
+          cmp = first[:name] <=> second[:name]
+          cmp = first[:path] <=> second[:path] if cmp == 0
+          cmp
+        }
+      end
 
     protected
       # Adds a bookmarks to the list.

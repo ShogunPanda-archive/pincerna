@@ -76,12 +76,7 @@ module Pincerna
 
       places.collect do |place|
         Pincerna::Cache.instance.use("forecast:#{place[:woeid]}", Pincerna::Cache::EXPIRATIONS[:short]) {
-          response = client.lookup_by_woeid(place[:woeid])
-
-          image, link = extract_forecast_media(response)
-          place[:name] ||= get_name(response.location)
-
-          format_forecast(place, download_image(image), link, response.condition, response.forecasts.first, response.wind, temperature_unit, response.units["speed"])
+          parse_forecast_response(place, client.lookup_by_woeid(place[:woeid]), temperature_unit)
         }
       end
     end
@@ -136,6 +131,19 @@ module Pincerna
           woeid: place["woeid"],
           name: ["locality1", "admin3", "admin2", "admin1", "country"].collect { |field| place[field] }.reject(&:empty?).uniq.join(", ")
         }
+      end
+
+      # Formats a weather forecast.
+      #
+      # @param place [Hash] The basic place information.
+      # @param response [Weatherman::Response] The forecast response.
+      # @param temperature_unit [String] The temperature unit.
+      # @return [Hash] A formatted forecast.
+      def parse_forecast_response(place, response, temperature_unit)
+        image, link = extract_forecast_media(response)
+        place[:name] ||= get_name(response.location)
+
+        format_forecast(place, download_image(image), link, response.condition, response.forecasts.first, response.wind, temperature_unit, response.units["speed"])
       end
 
       # Formats a weather forecast.
