@@ -6,9 +6,17 @@
 
 module Pincerna
   # A utility class to handle caching.
+  #
+  # @attribute [r] data
+  #   @return [Daybreak::DB] The cache store.
   class Cache
     # Expiration of keys.
     EXPIRATIONS = {short: 1800, long: 2592000} # 30 min, 1 month
+
+    # Location of the cache file
+    LOCATION = "~/Library/Caches/com.runningwithcrayons.Alfred-2/Workflow Data/it.cowtech.pincerna/cache.db"
+
+    attr_reader :data
 
     # Returns the instance of the cache.
     def self.instance
@@ -17,16 +25,15 @@ module Pincerna
 
     # Creates a new cache object.
     def initialize
-      FileUtils.mkdir_p("~/Library/Caches/com.runningwithcrayons.Alfred-2/Workflow Data/it.cowtech.pincerna")
-
-      @data = Daybreak::DB.new(File.expand_path("~/Library/Caches/com.runningwithcrayons.Alfred-2/Workflow Data/it.cowtech.pincerna/cache.db"))
-      @flusher = EM.add_periodic_timer(5) do Pincerna::Cache.instance.flush end
+      FileUtils.mkdir_p(File.dirname(LOCATION))
+      @data = Daybreak::DB.new(File.expand_path(LOCATION))
+      @flusher = EM.add_periodic_timer(5) { Pincerna::Cache.instance.flush }
     end
 
     # Closes the cache data.
     def destroy
       @flusher.cancel
-      @data.close
+      @data.close rescue nil
     end
 
     # Flush data into disk.

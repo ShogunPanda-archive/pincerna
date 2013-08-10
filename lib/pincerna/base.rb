@@ -76,7 +76,7 @@ module Pincerna
       @query = query.strip.gsub("\\ ", " ")
       @cache_dir = File.expand_path("~/Library/Caches/com.runningwithcrayons.Alfred-2/Workflow Data/it.cowtech.pincerna")
 
-      if requested_format =~ /^y(a?)ml$/ then
+      if requested_format =~ /^y(a?)ml$/i then
         @format = :yml
         @format_content_type = "text/x-yaml"
       else

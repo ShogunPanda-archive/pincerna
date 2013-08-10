@@ -6,7 +6,6 @@
 
 require "spec_helper"
 require "yaml"
-require "pincerna/map"
 
 describe Pincerna::Base do
   subject { Pincerna::Base.new("QUERY", "yml") }
