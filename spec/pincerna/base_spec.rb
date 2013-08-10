@@ -50,7 +50,7 @@ EOXML
   describe "#initalize" do
     it "should initialize correct attributes" do
       expect(subject.instance_variable_get(:@query)).to eq("QUERY")
-      expect(subject.instance_variable_get(:@cache_dir)).to eq(::File.expand_path("~/Library/Caches/com.runningwithcrayons.Alfred-2/Workflow Data/pincerna"))
+      expect(subject.instance_variable_get(:@cache_dir)).to eq(::File.expand_path("~/Library/Caches/com.runningwithcrayons.Alfred-2/Workflow Data/it.cowtech.pincerna"))
       expect(subject.instance_variable_get(:@feedback_items)).to eq([])
       expect(subject.format).to eq(:yml)
 

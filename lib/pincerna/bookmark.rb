@@ -17,23 +17,24 @@ module Pincerna
     #
     # @param query [Array] A query to match against bookmarks names.
     # @return [Array] A list of boomarks.
-    # TODO@SP: Cache for at least 5 minutes
     def perform_filtering(query)
-      matcher = !query.empty? ? /^#{Regexp.escape(query.downcase)}/i : nil
+      Pincerna::Cache.instance.use("bookmarks:#{self.class.to_s}", Pincerna::Cache::EXPIRATIONS[:short]) do
+        matcher = !query.empty? ? /^#{Regexp.escape(query.downcase)}/i : nil
 
-      # Get bookmarks and then only keep valid ones
-      @bookmarks = []
-      read_bookmarks
-      @bookmarks.select! {|bookmark| bookmark[:name] =~ matcher } if matcher
+        # Get bookmarks and then only keep valid ones
+        @bookmarks = []
+        read_bookmarks
+        @bookmarks.select! {|bookmark| bookmark[:name] =~ matcher } if matcher
 
-      # Now sort them
-      @bookmarks.sort! {|first, second|
-        cmp = first[:name] <=> second[:name]
-        cmp = first[:path] <=> second[:path] if cmp == 0
-        cmp
-      }
+        # Now sort them
+        @bookmarks.sort! {|first, second|
+          cmp = first[:name] <=> second[:name]
+          cmp = first[:path] <=> second[:path] if cmp == 0
+          cmp
+        }
 
-      @bookmarks
+        @bookmarks
+      end
     end
 
     # Processes items to obtain feedback items.

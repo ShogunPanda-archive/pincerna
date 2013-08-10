@@ -11,6 +11,10 @@ describe Pincerna::Bookmark do
 
   describe "#perform_filtering" do
     before(:each) do
+      cache = Object.new
+      allow(cache).to receive(:use).and_yield
+      allow(Pincerna::Cache).to receive(:instance).and_return(cache)
+
       allow(subject).to receive(:read_bookmarks) {
         subject.instance_variable_set(:@bookmarks, [
           {name: "NAME 1", url: "URL 1", path: " \u2192 Barra dei Preferiti \u2192 FOLDER 1 \u2192 FOLDER 2"},

@@ -27,6 +27,12 @@ describe Pincerna::Translation do
   end
 
   describe "#perform_filtering", :vcr, :synchronous do
+    before(:each) do
+      cache = Object.new
+      allow(cache).to receive(:use).and_yield
+      allow(Pincerna::Cache).to receive(:instance).and_return(cache)
+    end
+
     it "should query Google Translate for single words" do
       expect(subject.perform_filtering("it", "en", "Ciao")).to eq({main: "Hello!", alternatives: ["Hi!", "Bye-Bye!", "Bye!", "So long!", "Cheerio!", "Hallo!", "Hullo!"]})
     end

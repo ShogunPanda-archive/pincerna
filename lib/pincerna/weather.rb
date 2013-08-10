@@ -55,9 +55,10 @@ module Pincerna
     # @return [Array] A list of matching places data.
     def lookup_places(query)
       if query !~ /^(\d+)$/ then
-        # TODO@SP: Cache for at least 5 minutes
-        response = fetch_remote_resource("http://where.yahooapis.com/v1/places.q(#{CGI.escape(query)});count=5", {appid: self.class::API_KEY, format: :json})
-        response["places"].fetch("place", []).collect { |place| parse_place(place) }
+        Pincerna::Cache.instance.use("woeid:#{query}", Pincerna::Cache::EXPIRATIONS[:long]) do
+          response = fetch_remote_resource("http://where.yahooapis.com/v1/places.q(#{CGI.escape(query)});count=5", {appid: self.class::API_KEY, format: :json})
+          response["places"].fetch("place", []).collect { |place| parse_place(place) }
+        end
       else
         # We already have the woeid. The name will be given by Yahoo!
         [{woeid: query}]
@@ -74,11 +75,14 @@ module Pincerna
       temperature_unit = "°#{scale.upcase}"
 
       places.collect do |place|
-        response = client.lookup_by_woeid(place[:woeid])
-        image, link = extract_forecast_media(response)
-        place[:name] ||= get_name(response.location)
+        Pincerna::Cache.instance.use("forecast:#{place[:woeid]}", Pincerna::Cache::EXPIRATIONS[:short]) {
+          response = client.lookup_by_woeid(place[:woeid])
 
-        format_forecast(place, download_image(image), link, response.condition, response.forecasts.first, response.wind, temperature_unit, response.units["speed"])
+          image, link = extract_forecast_media(response)
+          place[:name] ||= get_name(response.location)
+
+          format_forecast(place, download_image(image), link, response.condition, response.forecasts.first, response.wind, temperature_unit, response.units["speed"])
+        }
       end
     end
 
@@ -167,7 +171,7 @@ module Pincerna
       # @param response The response to analyze.
       # @return [Array] An array of media.
       def extract_forecast_media(response)
-        [response.description_image.attr("src"), response.document_root.at_xpath("link").content]
+        [response.description_image.attr("src"), response.document_root.at_xpath("link").content.to_s]
       end
   end
 end

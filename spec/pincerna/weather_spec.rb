@@ -48,6 +48,12 @@ describe Pincerna::Weather do
   end
 
   describe "#lookup_places", :vcr, :synchronous do
+    before(:each) do
+      cache = Object.new
+      allow(cache).to receive(:use).and_yield
+      allow(Pincerna::Cache).to receive(:instance).and_return(cache)
+    end
+
     it "should search for places" do
       expect(subject.lookup_places("Campobasso")).to eq([{woeid: 711892, name: "Campobasso, Molise, Italy"}])
       expect(subject.lookup_places("San Mateo")).to eq([{woeid: 2488142, name: "San Mateo, California, United States"}, {woeid: 2488139, name: "San Mateo, Putnam, Florida, United States"}, {woeid: 775977, name: "San Mateo, Sant Mateu, Castellon, Valencia, Spain"}, {woeid: 2488141, name: "San Mateo, Cibola, New Mexico, United States"}, {woeid: 2488150, name: "Jacksonville, Duval, Florida, United States"}])
@@ -61,6 +67,10 @@ describe Pincerna::Weather do
 
   describe "#get_forecast", vcr: true do
     before(:each) do
+      cache = Object.new
+      allow(cache).to receive(:use).and_yield
+      allow(Pincerna::Cache).to receive(:instance).and_return(cache)
+
       @cache_dir = "/tmp/pincerna-weather"
       subject.instance_variable_set("@cache_dir", @cache_dir)
       FileUtils.rm_rf(@cache_dir)
