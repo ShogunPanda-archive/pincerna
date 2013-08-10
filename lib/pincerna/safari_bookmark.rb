@@ -10,11 +10,11 @@ module Pincerna
     # The icon to show for each feedback item.
     ICON = Pincerna::Base::ROOT + "/images/safari.png"
 
-    # Gets the list of Safari Bookmarks.
-    def get_bookmarks
+    # Reads the list of Safari Bookmarks.
+    def read_bookmarks
       data = execute_command("/usr/bin/plutil", "-convert", "xml1", "-o", "-", File.expand_path("~/Library/Safari/Bookmarks.plist"))
 
-      if !data.empty? then
+      if data && !data.empty? then
         Plist.parse_xml(data)["Children"].each do |children|
           scan_folder(children, "")
         end

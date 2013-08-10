@@ -13,7 +13,7 @@ module Pincerna
     # The icon to show for each feedback item.
     ICON = Pincerna::Base::ROOT + "/images/safari.png"
 
-    # Gets the list of Chrome Bookmarks.
+    # Reads the list of Chrome Bookmarks.
     #
     # @param query [Array] A query to match against bookmarks names.
     # @return [Array] A list of boomarks.
@@ -23,7 +23,7 @@ module Pincerna
 
       # Get bookmarks and then only keep valid ones
       @bookmarks = []
-      get_bookmarks
+      read_bookmarks
       @bookmarks.select! {|bookmark| bookmark[:name] =~ matcher } if matcher
 
       # Now sort them
@@ -45,6 +45,11 @@ module Pincerna
         subtitle = result[:path] ? result[:path].gsub(/^\s\u2192 /, "") : "Action this item to open the URL in the browser ..."
         {title: result[:name], arg: result[:url], subtitle: subtitle, icon: self.class::ICON}
       end
+    end
+
+    # Reads the list of bookmarks.
+    def read_bookmarks
+      raise ArgumentError.new("Must be overriden by subclasses.")
     end
 
     protected

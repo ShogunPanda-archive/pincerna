@@ -10,12 +10,12 @@ module Pincerna
     # The icon to show for each feedback item.
     ICON = Pincerna::Base::ROOT + "/images/chrome.png"
 
-    # Gets the list of Chrome Bookmarks.
-    def get_bookmarks
-      path = File.read(File.expand_path("~/Library/Application Support/Google/Chrome/Default/Bookmarks")) rescue nil
+    # Reads the list of Chrome Bookmarks.
+    def read_bookmarks
+      data = File.read(File.expand_path("~/Library/Application Support/Google/Chrome/Default/Bookmarks")) rescue nil
 
-      if path then
-        Oj.load(path)["roots"].each do |_, root|
+      if data then
+        Oj.load(data)["roots"].each do |_, root|
           scan_folder(root, "") if root.is_a?(Hash)
         end
       end

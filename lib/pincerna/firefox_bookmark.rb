@@ -16,12 +16,12 @@ module Pincerna
     # The icon to show for each feedback item.
     ICON = Pincerna::Base::ROOT + "/images/firefox.png"
 
-    # Gets the list of Chrome Bookmarks.
-    def get_bookmarks
+    # Reads the list of Chrome Bookmarks.
+    def read_bookmarks
       path = Dir.glob(File.expand_path("~/Library/Application Support/Firefox/Profiles") + "/*.default").first
       data = execute_command("/usr/bin/sqlite3", "-echo", "#{path}/places.sqlite", QUERIES.join("; "))
 
-      if !data.empty? then
+      if data && !data.empty? then
         @folders = {}
         parse_bookmarks_data(data)
         build_paths
@@ -53,7 +53,7 @@ module Pincerna
       # Builds the paths of the bookmarks.
       def build_paths
         @bookmarks.collect! do |bookmark|
-          bookmark[:path] = build_path(bookmark[:path].to_i).reverse.join(" \u2192 ")
+          bookmark[:path] = " \u2192 #{build_path(bookmark[:path].to_i).reverse.join(" \u2192 ")}"
           bookmark
         end
       end
