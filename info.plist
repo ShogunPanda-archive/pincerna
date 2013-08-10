@@ -61,11 +61,33 @@
 				<string></string>
 			</dict>
 		</array>
+		<key>707CAF0F-4BD3-4313-8E10-B4022A81E1A9</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>CD325FA1-A62C-4913-8A47-A89E6F8CD93E</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>71E16FF8-8C71-4B62-A1E6-02077F90C0B6</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
 				<string>41F9370A-C1E9-45D3-8291-ACBE43220748</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>753DD6C1-121F-4CBE-8980-10056B1AF812</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>16A5B7E1-9759-4E53-A23C-68D5296F0C6B</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -99,6 +121,17 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>7AF0D3CC-3708-4958-9D37-E4563735FA89</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
+		<key>BA756DD6-930D-4BF3-AAE1-9E43D9A03351</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>DCB1455D-91B7-42B2-B61F-CD141CF204C0</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -594,6 +627,171 @@
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>keyword</key>
+				<string>bc</string>
+				<key>runningsubtext</key>
+				<string>Searching boomarks ...</string>
+				<key>script</key>
+				<string>$PWD/bin/pincerna.sh chrome-bookmark {query}</string>
+				<key>subtext</key>
+				<string>Open a bookmark in Google Chrome</string>
+				<key>title</key>
+				<string>Open Chrome Bookmark</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>753DD6C1-121F-4CBE-8980-10056B1AF812</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>browser</key>
+				<string>com.google.chrome</string>
+				<key>plusspaces</key>
+				<false/>
+				<key>url</key>
+				<string>{query}</string>
+				<key>utf8</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>16A5B7E1-9759-4E53-A23C-68D5296F0C6B</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>browser</key>
+				<string>org.mozilla.firefox</string>
+				<key>plusspaces</key>
+				<false/>
+				<key>url</key>
+				<string>{query}</string>
+				<key>utf8</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>CD325FA1-A62C-4913-8A47-A89E6F8CD93E</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>keyword</key>
+				<string>bf</string>
+				<key>runningsubtext</key>
+				<string>Searching boomarks ...</string>
+				<key>script</key>
+				<string>$PWD/bin/pincerna.sh firefox-bookmark {query}</string>
+				<key>subtext</key>
+				<string>Open a bookmark in Mozilla Firefox</string>
+				<key>title</key>
+				<string>Open Firefox Bookmark</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>707CAF0F-4BD3-4313-8E10-B4022A81E1A9</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>keyword</key>
+				<string>bs</string>
+				<key>runningsubtext</key>
+				<string>Searching boomarks ...</string>
+				<key>script</key>
+				<string>$PWD/bin/pincerna.sh safari-bookmark {query}</string>
+				<key>subtext</key>
+				<string>Open a bookmark in Apple Safari</string>
+				<key>title</key>
+				<string>Open Safari Bookmark</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>BA756DD6-930D-4BF3-AAE1-9E43D9A03351</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>browser</key>
+				<string>com.apple.Safari</string>
+				<key>plusspaces</key>
+				<false/>
+				<key>url</key>
+				<string>{query}</string>
+				<key>utf8</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openurl</string>
+			<key>uid</key>
+			<string>DCB1455D-91B7-42B2-B61F-CD141CF204C0</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>keyword</key>
+				<string>pincerna</string>
+				<key>subtext</key>
+				<string>Send a command to the pincernad server.</string>
+				<key>text</key>
+				<string>Call Pincerna</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>07821F09-3DFB-4D17-B3D0-1B2DE18D040E</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>escaping</key>
 				<integer>0</integer>
 				<key>script</key>
@@ -635,27 +833,6 @@ $PWD/bin/pincerna.sh $QUERY</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>argumenttype</key>
-				<integer>1</integer>
-				<key>keyword</key>
-				<string>pincerna</string>
-				<key>subtext</key>
-				<string>Send a command to the pincernad server.</string>
-				<key>text</key>
-				<string>Call Pincerna</string>
-				<key>withspace</key>
-				<true/>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.input.keyword</string>
-			<key>uid</key>
-			<string>07821F09-3DFB-4D17-B3D0-1B2DE18D040E</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
 	</array>
 	<key>readme</key>
 	<string>For more information, see: https://sw.cow.tc/pincerna.</string>
@@ -674,6 +851,11 @@ $PWD/bin/pincerna.sh $QUERY</string>
 		<key>07821F09-3DFB-4D17-B3D0-1B2DE18D040E</key>
 		<dict>
 			<key>ypos</key>
+			<real>1690</real>
+		</dict>
+		<key>16A5B7E1-9759-4E53-A23C-68D5296F0C6B</key>
+		<dict>
+			<key>ypos</key>
 			<real>1330</real>
 		</dict>
 		<key>2AF6DAE2-BD50-4E45-A1F9-24FD003468D2</key>
@@ -684,7 +866,7 @@ $PWD/bin/pincerna.sh $QUERY</string>
 		<key>37937AA8-DB0B-4482-B595-D88FA9116370</key>
 		<dict>
 			<key>ypos</key>
-			<real>1330</real>
+			<real>1690</real>
 		</dict>
 		<key>3D9EDB97-E47C-4144-B1EA-4D0293018412</key>
 		<dict>
@@ -701,10 +883,20 @@ $PWD/bin/pincerna.sh $QUERY</string>
 			<key>ypos</key>
 			<real>850</real>
 		</dict>
+		<key>707CAF0F-4BD3-4313-8E10-B4022A81E1A9</key>
+		<dict>
+			<key>ypos</key>
+			<real>1450</real>
+		</dict>
 		<key>71E16FF8-8C71-4B62-A1E6-02077F90C0B6</key>
 		<dict>
 			<key>ypos</key>
 			<real>730</real>
+		</dict>
+		<key>753DD6C1-121F-4CBE-8980-10056B1AF812</key>
+		<dict>
+			<key>ypos</key>
+			<real>1330</real>
 		</dict>
 		<key>7AF0D3CC-3708-4958-9D37-E4563735FA89</key>
 		<dict>
@@ -729,12 +921,17 @@ $PWD/bin/pincerna.sh $QUERY</string>
 		<key>A1CB5BBC-1B37-404A-AD35-09EBD651790D</key>
 		<dict>
 			<key>ypos</key>
-			<real>1330</real>
+			<real>1690</real>
 		</dict>
 		<key>AC358C4D-4A41-4D15-A1EA-3159E9318E7D</key>
 		<dict>
 			<key>ypos</key>
 			<real>250</real>
+		</dict>
+		<key>BA756DD6-930D-4BF3-AAE1-9E43D9A03351</key>
+		<dict>
+			<key>ypos</key>
+			<real>1570</real>
 		</dict>
 		<key>CB129197-F1F3-47B8-AE13-CAAA8195B1BA</key>
 		<dict>
@@ -746,6 +943,11 @@ $PWD/bin/pincerna.sh $QUERY</string>
 			<key>ypos</key>
 			<real>1090</real>
 		</dict>
+		<key>CD325FA1-A62C-4913-8A47-A89E6F8CD93E</key>
+		<dict>
+			<key>ypos</key>
+			<real>1450</real>
+		</dict>
 		<key>D19DC3B9-7080-4FED-81FE-2BAE6047F55D</key>
 		<dict>
 			<key>ypos</key>
@@ -755,6 +957,11 @@ $PWD/bin/pincerna.sh $QUERY</string>
 		<dict>
 			<key>ypos</key>
 			<real>1090</real>
+		</dict>
+		<key>DCB1455D-91B7-42B2-B61F-CD141CF204C0</key>
+		<dict>
+			<key>ypos</key>
+			<real>1570</real>
 		</dict>
 		<key>F7CA07DE-6AD4-412B-B40B-AA03B0A4DD82</key>
 		<dict>

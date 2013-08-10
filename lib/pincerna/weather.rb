@@ -55,7 +55,7 @@ module Pincerna
     # @return [Array] A list of matching places data.
     def lookup_places(query)
       if query !~ /^(\d+)$/ then
-        # TODO@SP: Cache and reuse results. Even with persistence.
+        # TODO@SP: Cache for at least 5 minutes
         response = fetch_remote_resource("http://where.yahooapis.com/v1/places.q(#{CGI.escape(query)});count=5", {appid: self.class::API_KEY, format: :json})
         response["places"].fetch("place", []).collect { |place| parse_place(place) }
       else

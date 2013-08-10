@@ -7,12 +7,31 @@
 module Pincerna
   # Show the list of Chrome bookmarks.
   class ChromeBookmark < Bookmark
-    # Gets the list of Chrome Bookmarks.
-    #
-    # @param query [Array] A query to match against bookmarks names.
-    # @return [Array] A list of boomarks.
-    def perform_filtering(query)
+    # The icon to show for each feedback item.
+    ICON = Pincerna::Base::ROOT + "/images/chrome.png"
 
+    # Gets the list of Chrome Bookmarks.
+    def get_bookmarks
+      path = File.read(File.expand_path("~/Library/Application Support/Google/Chrome/Default/Bookmarks")) rescue nil
+
+      if path then
+        Oj.load(path)["roots"].each do |_, root|
+          scan_folder(root, "") if root.is_a?(Hash)
+        end
+      end
     end
+
+    private
+      # Scans a folder of bookmarks.
+      #
+      # @param node [Hash] The directory to visit.
+      # @param path [String] The path of this node.
+      def scan_folder(node, path)
+        path += " \u2192 #{node["name"]}"
+
+        node["children"].each do |children|
+          children["type"] == "url" ? add_bookmark(children["name"], children["url"], path) : scan_folder(children, path)
+        end
+      end
   end
 end

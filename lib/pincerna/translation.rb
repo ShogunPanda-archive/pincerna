@@ -38,7 +38,7 @@ module Pincerna
         from = "en"
       end
 
-      # TODO@SP: Cache and reuse results. Even with persistence.
+      # TODO@SP: Cache for at least 5 minutes
       response = fetch_remote_resource("http://translate.google.com.br/translate_a/t", {client: "p", text: value, sl: from, tl: to, multires: 1, ssel: 0, tsel: 0, sc: 1, ie: "UTF-8", oe: "UTF-8"})
 
       # Parse results

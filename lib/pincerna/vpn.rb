@@ -11,7 +11,7 @@ module Pincerna
     MATCHER = /^(?<all>.*)$/i
 
     # The icon to show for each feedback item.
-    ICON = Pincerna::Base::ROOT + "/images/network.png"
+    ICON = Pincerna::Base::ROOT + "/images/vpn.png"
 
     # Connects to or disconnects from system VPN.
     #

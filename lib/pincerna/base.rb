@@ -23,7 +23,10 @@ module Pincerna
       "map" => /^(map|m)$/,
       "weather" => /^(forecast|weather)$/,
       "ip" => /^ip$/,
-      "vpn" => /^vpn$/
+      "vpn" => /^vpn$/,
+      "chrome_bookmark" => /^(chrome-bookmark|bc)$/,
+      "safari_bookmark" => /^(safari-bookmark|bs)$/,
+      "firefox_bookmark" => /^(firefox-bookmark|bf)$/
     }
 
     ROOT = File.expand_path(File.dirname(__FILE__) + "/../../")
