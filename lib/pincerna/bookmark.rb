@@ -10,6 +10,9 @@ module Pincerna
     # The expression to match.
     MATCHER = /^(?<all>.*)$/i
 
+    # The icon to show for each feedback item.
+    ICON = Pincerna::Base::ROOT + "/images/safari.png"
+
     # Gets the list of Chrome Bookmarks.
     #
     # @param query [Array] A query to match against bookmarks names.

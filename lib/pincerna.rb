@@ -13,6 +13,8 @@ require "oj"
 require "yahoo_weatherman"
 require "ruby-units"
 require "plist"
+require "em-synchrony"
+require "em-synchrony/em-http"
 
 require "pincerna/version" if !defined?(Pincerna::Version)
 require "pincerna/base"
