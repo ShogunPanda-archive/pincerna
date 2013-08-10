@@ -29,4 +29,5 @@ Gem::Specification.new do |gem|
   gem.add_dependency("yahoo_weatherman", "~> 2.0.0")
   gem.add_dependency("oj", "~> 2.1.4")
   gem.add_dependency("plist", "~> 3.1.0")
+  gem.add_dependency("daybreak", "~> 0.3.0")
 end

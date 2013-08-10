@@ -74,7 +74,7 @@ module Pincerna
     # @param debug [String] The debug mode.
     def initialize(query, requested_format = :xml, debug = nil)
       @query = query.strip.gsub("\\ ", " ")
-      @cache_dir = File.expand_path("~/Library/Caches/com.runningwithcrayons.Alfred-2/Workflow Data/pincerna")
+      @cache_dir = File.expand_path("~/Library/Caches/com.runningwithcrayons.Alfred-2/Workflow Data/it.cowtech.pincerna")
 
       if requested_format =~ /^y(a?)ml$/ then
         @format = :yml

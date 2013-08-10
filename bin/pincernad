@@ -54,7 +54,11 @@ module Pincerna
     # Stops the server.
     # @return [Array] A response complaint to Rack interface.
     def stop_server
-      EM.add_timer(0.1) { EM.stop }
+      EM.add_timer(0.1) {
+        Pincerna::Cache.instance.destroy
+        EM.stop
+      }
+
       [200, {}, ""]
     end
 
