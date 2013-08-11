@@ -15,7 +15,7 @@ curl -o /dev/null -s $HOST/status
 
 if [ "$?" != "0" -a "$QUERY" != "quit" ]; then
   [ -s "$HOME/.rvm/scripts/rvm" ] && source "$HOME/.rvm/scripts/rvm"
-  bundle exec pincernad -e production -p $PORT -d
+  pincernad -e production -p $PORT -d
 fi
 
 # Perform the request.
