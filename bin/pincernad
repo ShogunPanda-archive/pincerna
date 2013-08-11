@@ -26,6 +26,8 @@ case ARGV[0]
     end
 
     puts "Pincerna has been correctly removed from Alfred. :("
+  when "quit"
+    system("curl -s http://localhost:#{13000 + Process.uid}/quit")
   else
     require "goliath"
     require "pincerna/server"
