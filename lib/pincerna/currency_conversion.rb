@@ -11,10 +11,10 @@ module Pincerna
     MATCHER = /^
       (?<value>([+-]?)(\d+)([.,]\d+)?)
       \s
-      (?<from>[a-z]{3})
+      (?<from>\S{1,3})
       \s+
       (to\s+)?
-      (?<to>[a-z]{3})
+      (?<to>\S{1,3})
       (?<rate>\swith\srate)?
     $/mix
 
@@ -24,6 +24,71 @@ module Pincerna
       "from" => ->(_, value) { value.upcase },
       "to" => ->(_, value) { value.upcase },
       "rate" => ->(_, value) { !value.nil? } # If show conversion rate
+    }
+
+    # A list of symbols and their associated ISO codes
+    SYMBOLS = {
+      "Lek" => "ALL",
+      "؋" => "AFN",
+      "$" => "USD",
+      "ƒ" => "ANG",
+      "ман" => "AZN",
+      "p." => "BYR",
+      "BZ$" => "BZD",
+      "$b" => "BOB",
+      "KM" => "BAM",
+      "P" => "BWP",
+      "лв" => "UZS",
+      "R$" => "BRL",
+      "៛" => "KHR",
+      "¥" => "JPY",
+      "₡" => "CRC",
+      "kn" => "HRK",
+      "₱" => "PHP",
+      "Kč" => "CZK",
+      "kr" => "SEK",
+      "RD$" => "DOP",
+      "£" => "GBP",
+      "€" => "EUR",
+      "¢" => "GHC",
+      "Q" => "GTQ",
+      "L" => "HNL",
+      "Ft" => "HUF",
+      "" => "TRY",
+      "Rp" => "IDR",
+      "﷼" => "YER",
+      "₪" => "ILS",
+      "J$" => "JMD",
+      "₩" => "KRW",
+      "₭" => "LAK",
+      "Ls" => "LVL",
+      "Lt" => "LTL",
+      "ден" => "MKD",
+      "RM" => "MYR",
+      "₨" => "LKR",
+      "₮" => "MNT",
+      "MT" => "MZN",
+      "C$" => "NIO",
+      "₦" => "NGN",
+      "B/." => "PAB",
+      "Gs" => "PYG",
+      "S/." => "PEN",
+      "zł" => "PLN",
+      "lei" => "RON",
+      "руб" => "RUB",
+      "Дин." => "RSD",
+      "S" => "SOS",
+      "R" => "ZAR",
+      "CHF" => "CHF",
+      "NT$" => "TWD",
+      "฿" => "THB",
+      "TT$" => "TTD",
+      "₤" => "TRL",
+      "₴" => "UAH",
+      "$U" => "UYU",
+      "Bs" => "VEF",
+      "₫" => "VND",
+      "Z$" => "ZWD"
     }
 
     # The icon to show for each feedback item.
@@ -37,6 +102,8 @@ module Pincerna
     # @param with_rate [Boolean] If to return the conversion rate in the results.
     # @return [Hash|NilClass] The converted data or `nil` if the conversion failed.
     def perform_filtering(value, from, to, with_rate)
+      from = replace_symbol(from)
+      to = replace_symbol(to)
       response = fetch_remote_resource("http://rate-exchange.appspot.com/currency", {q: value, from: from, to: to})
       {value: value, from: from, to: to, result: round_float(response["v"]), rate: round_float(response["rate"]), with_rate: with_rate}
     end
@@ -51,5 +118,14 @@ module Pincerna
 
       [{title: title, arg: format_float(results[:value]), subtitle: "Action this item to copy the converted amount on the clipboard.", icon: self.class::ICON}]
     end
+
+    private
+      # Replaces a currency symbol with its corresponding ISO code.
+      #
+      # @param symbol [String] The symbol to replace.
+      # @return [String] The corresponding code. If none is found, the original symbol is returned.
+      def replace_symbol(symbol)
+        SYMBOLS.fetch(symbol, symbol)
+      end
   end
 end

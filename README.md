@@ -1,4 +1,4 @@
-# Introduction
+# pincerna
 
 [![Gem Version](https://badge.fury.io/rb/pincerna.png)](http://badge.fury.io/rb/pincerna)
 [![Dependency Status](https://gemnasium.com/ShogunPanda/pincerna.png?travis)](https://gemnasium.com/ShogunPanda/pincerna)

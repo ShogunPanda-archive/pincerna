@@ -33,7 +33,7 @@ module Pincerna
     def process_results(results)
       results.collect do |result|
         subtitle = result[:path] ? result[:path].gsub(/^\s\u2192 /, "") : "Action this item to open the URL in the browser ..."
-        {title: result[:name], arg: result[:url], subtitle: subtitle, icon: self.class::ICON}
+        {title: result[:name], arg: result[:url], subtitle: subtitle, icon: ICON}
       end
     end
 

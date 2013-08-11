@@ -24,7 +24,7 @@ module Pincerna
     # @return [Array] The feedback items.
     def process_results(results)
       type = results[:query] =~ /((-?)\d+(\.\d+)?)\s*,\s*((-?)\d+(\.\d+)?)/ ? "coordinates" : "location"
-      [{title: "View #{type} on Google Maps", arg: CGI.escape(results[:query]), subtitle: "Action this item to open Google Maps in the browser.", icon: self.class::ICON}]
+      [{title: "View #{type} on Google Maps", arg: CGI.escape(results[:query]), subtitle: "Action this item to open Google Maps in the browser.", icon: ICON}]
     end
   end
 end

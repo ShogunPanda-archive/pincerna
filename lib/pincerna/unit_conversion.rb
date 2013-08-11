@@ -67,7 +67,7 @@ module Pincerna
       title = "#{format_value(results[:value], multiple)} = #{format_value(results[:result], multiple)}"
       title << " (#{format_value(results[:unit], multiple)} = #{format_value(results[:rate], multiple)})" if results[:with_rate]
 
-      [{title: title, arg: format_value(results[:result], :raw), subtitle: "Action this item to copy the converted amount on the clipboard.", icon: self.class::ICON}]
+      [{title: title, arg: format_value(results[:result], :raw), subtitle: "Action this item to copy the converted amount on the clipboard.", icon: ICON}]
     end
 
     # Checks if a unit is a temperature and prepend "temp" if needed.

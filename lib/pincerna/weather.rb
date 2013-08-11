@@ -56,7 +56,7 @@ module Pincerna
     def lookup_places(query)
       if query !~ /^(\d+)$/ then
         Pincerna::Cache.instance.use("woeid:#{query}", Pincerna::Cache::EXPIRATIONS[:long]) do
-          response = fetch_remote_resource("http://where.yahooapis.com/v1/places.q(#{CGI.escape(query)});count=5", {appid: self.class::API_KEY, format: :json})
+          response = fetch_remote_resource("http://where.yahooapis.com/v1/places.q(#{CGI.escape(query)});count=5", {appid: API_KEY, format: :json})
           response["places"].fetch("place", []).collect { |place| parse_place(place) }
         end
       else

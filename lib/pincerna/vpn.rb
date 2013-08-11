@@ -50,7 +50,7 @@ module Pincerna
         subtitle = "Action this item to #{result[:connected] ? "disconnect from" : "connect to"} the VPN service."
         arg = "#{result[:connected] ? "disconnect" : "connect"} service \"#{result[:name]}\""
 
-        {title: title, arg: arg, subtitle: subtitle, icon: self.class::ICON}
+        {title: title, arg: arg, subtitle: subtitle, icon: ICON}
       end
     end
 

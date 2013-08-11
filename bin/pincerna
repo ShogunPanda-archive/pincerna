@@ -13,7 +13,7 @@ QUERY=$@
 # Check the status of the server and start it if needed.
 curl -o /dev/null -s $HOST/status
 
-if [ "$?" != "0" ]; then
+if [ "$?" != "0" -a "$QUERY" != "quit" ]; then
   [ -s "$HOME/.rvm/scripts/rvm" ] && source "$HOME/.rvm/scripts/rvm"
   bundle exec pincernad -e production -p $PORT -d
 fi

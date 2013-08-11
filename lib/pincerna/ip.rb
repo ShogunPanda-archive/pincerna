@@ -44,7 +44,7 @@ module Pincerna
     def process_results(results)
       results.collect do |result|
         title = "#{result[:interface] ? result[:interface] : "Public"} IP: #{result[:address]}"
-        {title: title, arg: result[:address], subtitle: "Action this item to copy the IP on the clipboard.", icon: self.class::ICON}
+        {title: title, arg: result[:address], subtitle: "Action this item to copy the IP on the clipboard.", icon: ICON}
       end
     end
 

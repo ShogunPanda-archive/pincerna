@@ -58,7 +58,7 @@ module Pincerna
     # @return [Array] The feedback items.
     def process_results(results)
       alternatives = results[:alternatives] ? "Alternatives: #{results[:alternatives].join(", ")}" : "Action this item to copy the translation on the clipboard."
-      [{title: results[:main], arg: results[:main], subtitle: alternatives, icon: self.class::ICON}]
+      [{title: results[:main], arg: results[:main], subtitle: alternatives, icon: ICON}]
     end
   end
 end
