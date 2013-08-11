@@ -56,7 +56,8 @@ module Pincerna
       root, workflow, cache = Pincerna::Base::ROOT, Pincerna::Base::WORKFLOW_ROOT, Pincerna::Base::CACHE_ROOT
       FileUtils.mkdir(workflow)
       FileUtils.mkdir(cache)
-      FileUtils.cp([root + "/info.plist", root + "/icon.png"], workflow)
+      FileUtils.cp([root + "/pincerna.sh", root + "/info.plist", root + "/icon.png"], workflow)
+      FileUtils.chmod(0755, workflow + "/pincerna.sh")
       [200, {"Content-Type" => "text/plain"}, "Installation of Pincerna into Alfred completed! Have fun! :)"]
     end
 

@@ -205,7 +205,7 @@
 				<key>runningsubtext</key>
 				<string>Performing conversion ...</string>
 				<key>script</key>
-				<string>pincerna convert {query}</string>
+				<string>$PWD/pincerna.sh convert {query}</string>
 				<key>subtext</key>
 				<string>Enter an amount to convert ...</string>
 				<key>title</key>
@@ -249,7 +249,7 @@
 				<key>runningsubtext</key>
 				<string>Performing conversion ...</string>
 				<key>script</key>
-				<string>pincerna convert {query}</string>
+				<string>$PWD/pincerna.sh convert {query}</string>
 				<key>subtext</key>
 				<string>Enter an amount to convert ...</string>
 				<key>title</key>
@@ -278,7 +278,7 @@
 				<key>runningsubtext</key>
 				<string>Performing conversion ...</string>
 				<key>script</key>
-				<string>pincerna currency {query}</string>
+				<string>$PWD/pincerna.sh currency {query}</string>
 				<key>subtext</key>
 				<string>Enter an expression to convert ...</string>
 				<key>title</key>
@@ -322,7 +322,7 @@
 				<key>runningsubtext</key>
 				<string>Performing conversion ...</string>
 				<key>script</key>
-				<string>pincerna currency {query}</string>
+				<string>$PWD/pincerna.sh currency {query}</string>
 				<key>subtext</key>
 				<string>Enter an expression to convert ...</string>
 				<key>title</key>
@@ -351,7 +351,7 @@
 				<key>runningsubtext</key>
 				<string>Performing translation ...</string>
 				<key>script</key>
-				<string>pincerna translate {query}</string>
+				<string>$PWD/pincerna.sh translate {query}</string>
 				<key>subtext</key>
 				<string>Enter a text to translate ...</string>
 				<key>title</key>
@@ -395,7 +395,7 @@
 				<key>runningsubtext</key>
 				<string>Performing translation ...</string>
 				<key>script</key>
-				<string>pincerna translate {query}</string>
+				<string>$PWD/pincerna.sh translate {query}</string>
 				<key>subtext</key>
 				<string>Enter text to translate ...</string>
 				<key>title</key>
@@ -424,7 +424,7 @@
 				<key>runningsubtext</key>
 				<string>Searching location ...</string>
 				<key>script</key>
-				<string>pincerna map {query}</string>
+				<string>$PWD/pincerna.sh map {query}</string>
 				<key>subtext</key>
 				<string>Enter a location or coordinates ...</string>
 				<key>title</key>
@@ -470,7 +470,7 @@
 				<key>runningsubtext</key>
 				<string>Searching location ...</string>
 				<key>script</key>
-				<string>pincerna map {query}</string>
+				<string>$PWD/pincerna.sh map {query}</string>
 				<key>subtext</key>
 				<string>Enter a location or coordinates ...</string>
 				<key>title</key>
@@ -499,7 +499,7 @@
 				<key>runningsubtext</key>
 				<string>Getting weather forecast ...</string>
 				<key>script</key>
-				<string>pincerna forecast {query}</string>
+				<string>$PWD/pincerna.sh forecast {query}</string>
 				<key>subtext</key>
 				<string>Enter a location or a location code ...</string>
 				<key>title</key>
@@ -545,7 +545,7 @@
 				<key>runningsubtext</key>
 				<string>Fetching IPs …</string>
 				<key>script</key>
-				<string>pincerna ip {query}</string>
+				<string>$PWD/pincerna.sh ip {query}</string>
 				<key>subtext</key>
 				<string>Show the list of local and remote IPs of this computer</string>
 				<key>title</key>
@@ -607,7 +607,7 @@
 				<key>runningsubtext</key>
 				<string>Fetching VPNs statuses ...</string>
 				<key>script</key>
-				<string>pincerna vpn {query}</string>
+				<string>$PWD/pincerna.sh vpn {query}</string>
 				<key>subtext</key>
 				<string>Connect or disconnect to your VPNs ...</string>
 				<key>title</key>
@@ -636,7 +636,7 @@
 				<key>runningsubtext</key>
 				<string>Searching boomarks ...</string>
 				<key>script</key>
-				<string>pincerna chrome-bookmark {query}</string>
+				<string>$PWD/pincerna.sh chrome-bookmark {query}</string>
 				<key>subtext</key>
 				<string>Open a bookmark in Google Chrome</string>
 				<key>title</key>
@@ -703,7 +703,7 @@
 				<key>runningsubtext</key>
 				<string>Searching boomarks ...</string>
 				<key>script</key>
-				<string>pincerna firefox-bookmark {query}</string>
+				<string>$PWD/pincerna.sh firefox-bookmark {query}</string>
 				<key>subtext</key>
 				<string>Open a bookmark in Mozilla Firefox</string>
 				<key>title</key>
@@ -732,7 +732,7 @@
 				<key>runningsubtext</key>
 				<string>Searching boomarks ...</string>
 				<key>script</key>
-				<string>pincerna safari-bookmark {query}</string>
+				<string>$PWD/pincerna.sh safari-bookmark {query}</string>
 				<key>subtext</key>
 				<string>Open a bookmark in Apple Safari</string>
 				<key>title</key>
@@ -774,7 +774,7 @@
 				<key>argumenttype</key>
 				<integer>1</integer>
 				<key>keyword</key>
-				<string>pincerna</string>
+				<string>$PWD/pincerna.sh</string>
 				<key>subtext</key>
 				<string>Send a command to the pincernad server.</string>
 				<key>text</key>

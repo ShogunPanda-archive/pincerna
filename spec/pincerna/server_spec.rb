@@ -82,6 +82,7 @@ describe Pincerna::Server do
       expect(subject.handle_install).to eq([200, {"Content-Type" => "text/plain"}, "Installation of Pincerna into Alfred completed! Have fun! :)"])
       expect(File.directory?(Pincerna::Base::WORKFLOW_ROOT)).to be_true
       expect(File.directory?(Pincerna::Base::CACHE_ROOT)).to be_true
+      expect(@hash.call("#{Pincerna::Base::WORKFLOW_ROOT}/pincerna.sh")).to eq(@hash.call("#{Pincerna::Base::ROOT}/pincerna.sh"))
       expect(@hash.call("#{Pincerna::Base::WORKFLOW_ROOT}/info.plist")).to eq(@hash.call("#{Pincerna::Base::ROOT}/info.plist"))
       expect(@hash.call("#{Pincerna::Base::WORKFLOW_ROOT}/icon.png")).to eq(@hash.call("#{Pincerna::Base::ROOT}/icon.png"))
     end
