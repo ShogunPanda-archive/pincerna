@@ -35,12 +35,12 @@ The scripts support using [rvm](https://rvm.io/) for loading a new Ruby version.
 ### Installation of the gem and the workflow
 
     gem i pincerna
-    pincerna install
+    pincernad install
 
 ## Uninstallation
 
-    pincerna uninstall
-    pincerna quit
+    pincernad uninstall
+    pincernad quit
     gem uni pincerna
 
 ## Usage

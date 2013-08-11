@@ -49,26 +49,6 @@ module Pincerna
       end
     end
 
-    # Install the workflow.
-    #
-    # @return [Array] A response complaint to Rack interface.
-    def handle_install
-      root, workflow, cache = Pincerna::Base::ROOT, Pincerna::Base::WORKFLOW_ROOT, Pincerna::Base::CACHE_ROOT
-      FileUtils.mkdir(workflow)
-      FileUtils.mkdir(cache)
-      FileUtils.cp([root + "/pincerna.sh", root + "/info.plist", root + "/icon.png"], workflow)
-      FileUtils.chmod(0755, workflow + "/pincerna.sh")
-      [200, {"Content-Type" => "text/plain"}, "Installation of Pincerna into Alfred completed! Have fun! :)"]
-    end
-
-    # Install the workflow.
-    #
-    # @return [Array] A response complaint to Rack interface.
-    def handle_uninstall
-      FileUtils.rm_rf([Pincerna::Base::WORKFLOW_ROOT, Pincerna::Base::CACHE_ROOT])
-      [200, {"Content-Type" => "text/plain"}, "Pincerna has been correctly removed from Alfred. :("]
-    end
-
     # Schedule the server's stop.
     # @return [Array] A response complaint to Rack interface.
     def handle_stop

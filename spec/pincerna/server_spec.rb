@@ -66,47 +66,6 @@ describe Pincerna::Server do
     end
   end
 
-  describe "#handle_install" do
-    before(:each) do
-      stub_const("Pincerna::Base::WORKFLOW_ROOT", "/tmp/pincerna-workflow")
-      stub_const("Pincerna::Base::CACHE_ROOT", "/tmp/pincerna-cache")
-      FileUtils.rm_rf([Pincerna::Base::WORKFLOW_ROOT, Pincerna::Base::CACHE_ROOT])
-      @hash = ->(path){ Digest::MD5.file(path).hexdigest }
-    end
-
-    after(:each) do
-      FileUtils.rm_rf([Pincerna::Base::WORKFLOW_ROOT, Pincerna::Base::CACHE_ROOT])
-    end
-
-    it "should copy needed files and return a good response" do
-      expect(subject.handle_install).to eq([200, {"Content-Type" => "text/plain"}, "Installation of Pincerna into Alfred completed! Have fun! :)"])
-      expect(File.directory?(Pincerna::Base::WORKFLOW_ROOT)).to be_true
-      expect(File.directory?(Pincerna::Base::CACHE_ROOT)).to be_true
-      expect(@hash.call("#{Pincerna::Base::WORKFLOW_ROOT}/pincerna.sh")).to eq(@hash.call("#{Pincerna::Base::ROOT}/pincerna.sh"))
-      expect(@hash.call("#{Pincerna::Base::WORKFLOW_ROOT}/info.plist")).to eq(@hash.call("#{Pincerna::Base::ROOT}/info.plist"))
-      expect(@hash.call("#{Pincerna::Base::WORKFLOW_ROOT}/icon.png")).to eq(@hash.call("#{Pincerna::Base::ROOT}/icon.png"))
-    end
-  end
-
-  describe "#handle_uninstall" do
-    before(:each) do
-      stub_const("Pincerna::Base::WORKFLOW_ROOT", "/tmp/pincerna-workflow")
-      stub_const("Pincerna::Base::CACHE_ROOT", "/tmp/pincerna-cache")
-      FileUtils.mkdir_p(Pincerna::Base::WORKFLOW_ROOT)
-      FileUtils.mkdir_p(Pincerna::Base::CACHE_ROOT)
-    end
-
-    after(:each) do
-      FileUtils.rm_rf([Pincerna::Base::WORKFLOW_ROOT, Pincerna::Base::CACHE_ROOT])
-    end
-
-    it "should remove all files and return a good response" do
-      expect(subject.handle_uninstall).to eq([200, {"Content-Type" => "text/plain"}, "Pincerna has been correctly removed from Alfred. :("])
-      expect(File.exists?(Pincerna::Base::WORKFLOW_ROOT)).to be_false
-      expect(File.exists?(Pincerna::Base::CACHE_ROOT)).to be_false
-    end
-  end
-
   describe "#handle_stop" do
     it "should setup a callback and return 200" do
       expect(EM).to receive(:add_timer).with(0.1)
