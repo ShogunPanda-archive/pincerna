@@ -68,8 +68,8 @@ describe Pincerna::Server do
 
   describe "#handle_install" do
     before(:each) do
-      stub_const("Pincerna::WORKFLOW_ROOT", "/tmp/pincerna-workflow")
-      stub_const("Pincerna::CACHE_ROOT", "/tmp/pincerna-cache")
+      stub_const("Pincerna::Base::WORKFLOW_ROOT", "/tmp/pincerna-workflow")
+      stub_const("Pincerna::Base::CACHE_ROOT", "/tmp/pincerna-cache")
       FileUtils.rm_rf([Pincerna::Base::WORKFLOW_ROOT, Pincerna::Base::CACHE_ROOT])
       @hash = ->(path){ Digest::MD5.file(path).hexdigest }
     end
@@ -89,8 +89,8 @@ describe Pincerna::Server do
 
   describe "#handle_uninstall" do
     before(:each) do
-      stub_const("Pincerna::WORKFLOW_ROOT", "/tmp/pincerna-workflow")
-      stub_const("Pincerna::CACHE_ROOT", "/tmp/pincerna-cache")
+      stub_const("Pincerna::Base::WORKFLOW_ROOT", "/tmp/pincerna-workflow")
+      stub_const("Pincerna::Base::CACHE_ROOT", "/tmp/pincerna-cache")
       FileUtils.mkdir_p(Pincerna::Base::WORKFLOW_ROOT)
       FileUtils.mkdir_p(Pincerna::Base::CACHE_ROOT)
     end
