@@ -10,13 +10,13 @@ TYPE=$1
 shift
 QUERY=$@
 
-# Check the status of the server
+# Check the status of the server and start it if needed.
 curl -o /dev/null -s $HOST/status
-ACTIVE=$?
 
-if [ "$ACTIVE" != "0" ]; then
-  source ~/.rvm/scripts/rvm
+if [ "$?" != "0" ]; then
+  [ -s "$HOME/.rvm/scripts/rvm" ] && source "$HOME/.rvm/scripts/rvm"
   bundle exec pincernad -e production -p $PORT -d
 fi
 
+# Perform the request.
 curl -X GET -s --data-urlencode "q=$QUERY" http://localhost:$PORT/$TYPE

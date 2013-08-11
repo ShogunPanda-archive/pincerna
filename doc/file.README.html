@@ -2,11 +2,11 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>
   File: README
   
-    &mdash; Documentation by YARD 0.8.6.2
+    &mdash; Documentation by YARD 0.8.7
   
 </title>
 
@@ -75,15 +75,229 @@
 
 <p>http://rdoc.info/gems/pincerna</p>
 
+<h2 id="installation">Installation</h2>
+
+<h3 id="preparation-of-the-environment">Preparation of the environment</h3>
+
+<h4 id="users-of-macosx-mavericks">Users of MacOSX Mavericks</h4>
+
+<p>On OSX Mountain Lion (10.9), the default Ruby version is 2.0.0, so no additional steps are required.</p>
+
+<h4 id="users-of-macosx-mountain-lion-and-older">Users of MacOSX Mountain Lion and older</h4>
+
+<p>On OSX Mountain Lion (10.8) and older, the default Ruby version is 1.8.7.</p>
+
+<p>This version is really older and no longer maintained. Pincerna requires at least Ruby 1.9 and works on 2.0 too.</p>
+
+<p>The scripts support using <a href="https://rvm.io/">rvm</a> for loading a new Ruby version. To install, check its documentation. In short, it should resolv to these steps:</p>
+
+<pre class="code ruby"><code class="ruby">\curl -L https://get.rvm.io | sudo bash -s stable
+rvm install [1.9.3|2.0.0]
+rvm use [1.9.3|2.0.0] --default
+</code></pre>
+
+<h3 id="installation-of-the-gem-and-the-workflow">Installation of the gem and the workflow</h3>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_gem'>gem</span> <span class='id identifier rubyid_i'>i</span> <span class='id identifier rubyid_pincerna'>pincerna</span>
+<span class='id identifier rubyid_pincerna'>pincerna</span> <span class='id identifier rubyid_install'>install</span>
+</code></pre>
+
+<h2 id="uninstallation">Uninstallation</h2>
+
+<pre class="code ruby"><code class="ruby"><span class='id identifier rubyid_pincerna'>pincerna</span> <span class='id identifier rubyid_uninstall'>uninstall</span>
+<span class='id identifier rubyid_pincerna'>pincerna</span> <span class='id identifier rubyid_quit'>quit</span>
+<span class='id identifier rubyid_gem'>gem</span> <span class='id identifier rubyid_uni'>uni</span> <span class='id identifier rubyid_pincerna'>pincerna</span>
+</code></pre>
+
+<h2 id="usage">Usage</h2>
+
+<p>Pincerna supports many shortcut which will save your work. Here’s the comprehensive list.</p>
+
+<h3 id="unit-conversion">Unit conversion</h3>
+
+<p>Thanks to the <a href="http://github.com/olbrich/ruby-units">ruby-units</a> gem, you can convert values between units.</p>
+
+<p>The recognized syntaxes are:</p>
+
+<ul>
+  <li><code>convert 123 $FROM_UNIT to $TO_UNIT</code></li>
+  <li><code>c 123.45 $FROM_UNIT to $TO_UNIT</code></li>
+</ul>
+
+<p><code>to</code> can be omitted. Actioning on the result will copy the result to the clipboard.</p>
+
+<p>If <code>with rate</code> is appended, also the conversion rate will be copied as well.</p>
+
+<p>If <code>split units</code> is appended, the value in pounds (lbs) or ounces (oz) will be shown in X lbs Y oz form.</p>
+
+<p>Examples:</p>
+
+<ul>
+  <li><code>convert 123.45 m to m</code></li>
+  <li><code>c 123 kg oz with rate split units</code></li>
+</ul>
+
+<h3 id="currency-conversion">Currency conversion</h3>
+
+<p>Thanks to the <a href="http://rate-exchange.appspot.com/">rate-exchange API</a>, you can convert values between currencies.</p>
+
+<p>The recognized syntaxes are:</p>
+
+<ul>
+  <li><code>currency 123 $FROM_CURRENCY to $TO_CURRENCY</code></li>
+  <li><code>cc 123.45 $FROM_CURRENCY to $TO_CURRENCY</code></li>
+</ul>
+
+<p><code>to</code> can be omitted. Actioning on the result will copy the result to the clipboard.</p>
+
+<p>If <code>with rate</code> is appended, also the conversion rate will be copied as well.</p>
+
+<p>Examples:</p>
+
+<ul>
+  <li><code>currency 123.45 EUR to USD</code></li>
+  <li><code>cc 123 EUR JPY with rate</code></li>
+  <li><code>cc 123 € $ with rate</code></li>
+</ul>
+
+<h3 id="translation-with-google-translate">Translation with Google Translate</h3>
+
+<p>You can translate words or sentences between languages using <a href="http://translate.google.com/">Google Translate</a>.</p>
+
+<p>The recognized syntax is:</p>
+
+<ul>
+  <li><code>translate $FROM_LANGUAGE to $TO_LANGUAGE $TEXT</code></li>
+  <li><code>t $FROM_LANGUAGE to $TO_LANGUAGE $TEXT</code></li>
+</ul>
+
+<p><code>to</code> can be omitted. Actioning on the result will copy the first result to the clipboard.</p>
+
+<p><code>$FROM_LANGUAGE</code> can also be omitted as well, will default to <code>en</code>.</p>
+
+<p>Examples:</p>
+
+<ul>
+  <li><code>translate it to en Ciao mondo</code></li>
+  <li><code>t it en Ciao mondo</code></li>
+  <li><code>t it Hello</code></li>
+</ul>
+
+<h3 id="view-location-in-google-maps">View location in Google Maps</h3>
+
+<p>You can view locations on <a href="http://maps.google.com">Google Maps</a>.</p>
+
+<p>The recognized syntax is:</p>
+
+<ul>
+  <li><code>map $LOCATION</code></li>
+  <li><code>m $LOCATION</code></li>
+</ul>
+
+<p>Actioning on the result will open the location in Google Maps on the default browser.</p>
+
+<p>Examples:</p>
+
+<ul>
+  <li><code>map Campobasso, Italy</code></li>
+  <li><code>m San Mateo, CA</code></li>
+  <li><code>m 12.34,56.78</code></li>
+</ul>
+
+<h3 id="yahoo-weather-forecast">Yahoo! Weather Forecast</h3>
+
+<p>You can view the current weather condition and tomorrow’s forecast on <a href="http://weather.yahoo.com">Yahoo! Weather</a>.</p>
+
+<p>The recognized syntax is:</p>
+
+<ul>
+  <li><code>forecast $LOCATION</code></li>
+</ul>
+
+<p>The location can be a name or a WOEID. Actioning on the result will open the forecast in Yahoo! Weather on the default browser.</p>
+
+<p>Examples:</p>
+
+<ul>
+  <li><code>forecast San Mateo</code></li>
+  <li><code>forecast 2406170</code></li>
+</ul>
+
+<h3 id="fetch-the-list-of-local-and-public-ip">Fetch the list of local and public IP</h3>
+
+<p>You can view the list of all IP address of the current machine, including the public IP (thanks to <a href="http://exip.org">exip.org</a>). Both IPv4 and IPv6 are supported.</p>
+
+<p>The recognized syntax is:</p>
+
+<ul>
+  <li><code>ip $INTERFACE</code></li>
+</ul>
+
+<p><code>$INTERFACE</code> is optional and it is only used to filter results (use <code>public</code> to get only the public IP).</p>
+
+<p>Actioning on the results will copy the IP on the clipboard.</p>
+
+<p>Examples:</p>
+
+<ul>
+  <li><code>ip</code></li>
+  <li><code>ip Ethernet</code></li>
+  <li><code>ip lo0</code></li>
+  <li><code>ip public</code></li>
+</ul>
+
+<h3 id="connect-or-disconnect-from-vpns">Connect or disconnect from VPNs</h3>
+
+<p>You can connect or disconnect from your VPNs.</p>
+
+<p>The recognized syntax is:</p>
+
+<ul>
+  <li><code>vpn $NAME</code></li>
+</ul>
+
+<p><code>$NAME</code> is optional and it is only used to filter results.</p>
+
+<p>Examples:</p>
+
+<ul>
+  <li><code>vpn</code></li>
+  <li><code>vpn Office</code></li>
+</ul>
+
+<h3 id="open-chrome-firefox-or-safari-bookmarks">Open Chrome, Firefox or Safari bookmarks</h3>
+
+<p>You can search and open your Chrome, Firefox or Safari bookmarks and open in the respective browsers.</p>
+
+<p>The recognized syntax is:</p>
+
+<ul>
+  <li><code>bc $NAME</code> for Chrome</li>
+  <li><code>bs $NAME</code> for Safari</li>
+  <li><code>bf $NAME</code> for Firefox</li>
+</ul>
+
+<p><code>$NAME</code> is optional and it is only used to filter results.</p>
+
+<p>Examples:</p>
+
+<ul>
+  <li><code>bc Google</code></li>
+  <li><code>bf Google</code></li>
+  <li><code>bs Google</code></li>
+</ul>
+
+<p>Actioning on the results will open the bookmark in the browser. Note that this won’t use the default browser but the one the bookmarks belongs to.</p>
+
 <h2 id="contributing-to-pincerna">Contributing to pincerna</h2>
 
 <ul>
-  <li>Check out the latest master to make sure the feature hasn&#8217;t been implemented or the bug hasn&#8217;t been fixed yet.</li>
-  <li>Check out the issue tracker to make sure someone already hasn&#8217;t requested it and/or contributed it.</li>
+  <li>Check out the latest master to make sure the feature hasn’t been implemented or the bug hasn’t been fixed yet.</li>
+  <li>Check out the issue tracker to make sure someone already hasn’t requested it and/or contributed it.</li>
   <li>Fork the project.</li>
   <li>Start a feature/bugfix branch.</li>
   <li>Commit and push until you are happy with your contribution.</li>
-  <li>Make sure to add tests for it. This is important so I don&#8217;t break it in a future version unintentionally.</li>
+  <li>Make sure to add tests for it. This is important so I don’t break it in a future version unintentionally.</li>
   <li>Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.</li>
 </ul>
 
@@ -92,12 +306,14 @@
 <p>Copyright (C) 2013 and above Shogun (shogun@cowtech.it).</p>
 
 <p>Licensed under the MIT license, which can be found at http://www.opensource.org/licenses/mit-license.php.</p>
+
+<p>The icons used are by the <a href="http://chrisbanks2.deviantart.com/art/Cold-Fusion-HD-Icon-Pack-277808597">Cold Fusion HD set</a> by <em>chrisbanks2</em>.</p>
 </div></div>
 
     <div id="footer">
-  Generated on Wed Jul 24 22:19:39 2013 by
+  Generated on Sun Aug 11 13:39:44 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.6.2 (ruby-1.9.3).
+  0.8.7 (ruby-2.0.0).
 </div>
 
   </body>

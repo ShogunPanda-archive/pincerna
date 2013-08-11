@@ -27,5 +27,3 @@ task :prerelease => ["spec:coverage", "docs"] do
     system(cmd) || raise("Failed Execution of: #{cmd}")
   end
 end
-
-# TODO@SP: Task to export and install the Workflow

@@ -5,7 +5,7 @@
 #
 
 module Pincerna
-  # Shows an address on Google Maps.
+  # Shows addresses or coordinates on Google Maps.
   class Map < Base
     # The icon to show for each feedback item.
     ICON = Pincerna::Base::ROOT + "/images/map.png"

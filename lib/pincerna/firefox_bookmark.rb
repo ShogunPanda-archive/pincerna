@@ -16,7 +16,7 @@ module Pincerna
     # The icon to show for each feedback item.
     ICON = Pincerna::Base::ROOT + "/images/firefox.png"
 
-    # Reads the list of Chrome Bookmarks.
+    # Reads the list of Firefox Bookmarks.
     def read_bookmarks
       path = Dir.glob(File.expand_path("~/Library/Application Support/Firefox/Profiles") + "/*.default").first
       data = execute_command("/usr/bin/sqlite3", "-echo", "#{path}/places.sqlite", QUERIES.join("; "))
@@ -79,7 +79,7 @@ module Pincerna
       # Restrict array making sure it does not exceed a length.
       #
       # @param array [Array] The array to restrict.
-      # @param length [Fixnum] The maximum allowed length.
+      # @param len [Fixnum] The maximum allowed length.
       # @return [Array] The restricted array.
       def restrict_array(array, len)
         array[0] = "#{array.shift}|#{array[0]}" while array.length > len

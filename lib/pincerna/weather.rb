@@ -68,7 +68,7 @@ module Pincerna
     # Gets weather forecast for one or more places.
     #
     # @param places [Array] The places to query.
-    # @param scale [String] The unit system to use: `f` for the US system (Farenheit) and `c` for the SI one (Celsius).
+    # @param scale [String] The unit system to use: `f` for the US system (Farenheit) and `c` for the International System one (Celsius).
     # @return [Array|NilClass] An array with forecasts data or `nil` if the query failed.
     def get_forecast(places, scale = "c")
       client = Weatherman::Client.new(unit: scale)

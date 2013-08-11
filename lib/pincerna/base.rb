@@ -13,7 +13,7 @@ module Pincerna
   # @attribute [r] format
   #   @return [Symbol] The format of output. Can be `:xml` (default) or `:yml`.
   # @attribute [r] format_content_type
-  #   @return [Symbol] The content type of the format. Can be `:xml` (default) or `:yml`.
+  #   @return [String] The content type of the format. Can be `text/xml` (default) or `text/x-yaml`.
   class Base
     # Recognized types of filtering
     TYPES = {
@@ -29,6 +29,7 @@ module Pincerna
       "firefox_bookmark" => /^(firefox-bookmark|bf)$/
     }
 
+    # The root of the pincerna gem
     ROOT = File.expand_path(File.dirname(__FILE__) + "/../../")
 
     # The expression to match.
@@ -70,9 +71,9 @@ module Pincerna
     # Creates a new query.
     #
     # @param query [String] The argument of the query.
-    # @param requested_format [String] The format to use. Valid values are `:xml` (default) and `:yml`.
+    # @param requested_format [String] The format to use. Valid values are `xml` (default), `yaml` or `yml`.
     # @param debug [String] The debug mode.
-    def initialize(query, requested_format = :xml, debug = nil)
+    def initialize(query, requested_format = "xml", debug = nil)
       @query = query.strip.gsub("\\ ", " ")
       @cache_dir = File.expand_path("~/Library/Caches/com.runningwithcrayons.Alfred-2/Workflow Data/it.cowtech.pincerna")
 
@@ -129,9 +130,7 @@ module Pincerna
       @feedback_items << item
     end
 
-    # Outputs the feedback.
-    #
-    # @return [String] A XML document.
+    # Prepares the feedback for output.
     def output_feedback
       if format == :xml then
         @output = Nokogiri::XML::Builder.new { |xml|

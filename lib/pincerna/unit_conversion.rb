@@ -70,7 +70,7 @@ module Pincerna
       [{title: title, arg: format_value(results[:result], :raw), subtitle: "Action this item to copy the converted amount on the clipboard.", icon: self.class::ICON}]
     end
 
-    # Checks if a unit is a temperature and adds "temp" if needed.
+    # Checks if a unit is a temperature and prepend "temp" if needed.
     #
     # @param unit [String] The unit to check.
     # @return [String] The adjusted unit.
