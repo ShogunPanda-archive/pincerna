@@ -485,7 +485,8 @@
 58
 59
 60
-61</pre>
+61
+62</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/pincerna/server.rb', line 55</span>
@@ -494,7 +495,8 @@
   <span class='id identifier rubyid_root'>root</span><span class='comma'>,</span> <span class='id identifier rubyid_workflow'>workflow</span><span class='comma'>,</span> <span class='id identifier rubyid_cache'>cache</span> <span class='op'>=</span> <span class='const'>Pincerna</span><span class='op'>::</span><span class='const'>Base</span><span class='op'>::</span><span class='const'>ROOT</span><span class='comma'>,</span> <span class='const'>Pincerna</span><span class='op'>::</span><span class='const'>Base</span><span class='op'>::</span><span class='const'>WORKFLOW_ROOT</span><span class='comma'>,</span> <span class='const'>Pincerna</span><span class='op'>::</span><span class='const'>Base</span><span class='op'>::</span><span class='const'>CACHE_ROOT</span>
   <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_mkdir'>mkdir</span><span class='lparen'>(</span><span class='id identifier rubyid_workflow'>workflow</span><span class='rparen'>)</span>
   <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_mkdir'>mkdir</span><span class='lparen'>(</span><span class='id identifier rubyid_cache'>cache</span><span class='rparen'>)</span>
-  <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_cp'>cp</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='id identifier rubyid_root'>root</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/info.plist</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_root'>root</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/icon.png</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_workflow'>workflow</span><span class='rparen'>)</span>
+  <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_cp'>cp</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='id identifier rubyid_root'>root</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/pincerna.sh</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_root'>root</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/info.plist</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_root'>root</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/icon.png</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_workflow'>workflow</span><span class='rparen'>)</span>
+  <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_chmod'>chmod</span><span class='lparen'>(</span><span class='int'>0755</span><span class='comma'>,</span> <span class='id identifier rubyid_workflow'>workflow</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/pincerna.sh</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
   <span class='lbracket'>[</span><span class='int'>200</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Content-Type</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>text/plain</span><span class='tstring_end'>&quot;</span></span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Installation of Pincerna into Alfred completed! Have fun! :)</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -655,13 +657,13 @@
       <pre class="lines">
 
 
-73
 74
 75
-76</pre>
+76
+77</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/pincerna/server.rb', line 73</span>
+      <pre class="code"><span class="info file"># File 'lib/pincerna/server.rb', line 74</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_handle_stop'>handle_stop</span>
   <span class='const'>EM</span><span class='period'>.</span><span class='id identifier rubyid_add_timer'>add_timer</span><span class='lparen'>(</span><span class='float'>0.1</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_stop_server'>stop_server</span> <span class='rbrace'>}</span>
@@ -714,13 +716,13 @@
       <pre class="lines">
 
 
-66
 67
 68
-69</pre>
+69
+70</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/pincerna/server.rb', line 66</span>
+      <pre class="code"><span class="info file"># File 'lib/pincerna/server.rb', line 67</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_handle_uninstall'>handle_uninstall</span>
   <span class='const'>FileUtils</span><span class='period'>.</span><span class='id identifier rubyid_rm_rf'>rm_rf</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='const'>Pincerna</span><span class='op'>::</span><span class='const'>Base</span><span class='op'>::</span><span class='const'>WORKFLOW_ROOT</span><span class='comma'>,</span> <span class='const'>Pincerna</span><span class='op'>::</span><span class='const'>Base</span><span class='op'>::</span><span class='const'>CACHE_ROOT</span><span class='rbracket'>]</span><span class='rparen'>)</span>
@@ -792,7 +794,6 @@
       <pre class="lines">
 
 
-82
 83
 84
 85
@@ -805,10 +806,11 @@
 92
 93
 94
-95</pre>
+95
+96</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/pincerna/server.rb', line 82</span>
+      <pre class="code"><span class="info file"># File 'lib/pincerna/server.rb', line 83</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_response'>response</span><span class='lparen'>(</span><span class='id identifier rubyid_env'>env</span><span class='rparen'>)</span>
   <span class='kw'>begin</span>
@@ -834,7 +836,7 @@
 </div>
 
     <div id="footer">
-  Generated on Sun Aug 11 15:53:02 2013 by
+  Generated on Sun Aug 11 16:03:24 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7 (ruby-2.0.0).
 </div>
