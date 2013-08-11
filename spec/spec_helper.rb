@@ -8,6 +8,7 @@ require "rubygems"
 require "vcr"
 require "bundler/setup"
 require "pincerna"
+require "digest/md5"
 
 VCR.configure do |config|
   config.cassette_library_dir = File.dirname(__FILE__) + "/cassettes"

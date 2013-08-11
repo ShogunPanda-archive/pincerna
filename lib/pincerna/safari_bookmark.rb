@@ -10,9 +10,12 @@ module Pincerna
     # The icon to show for each feedback item.
     ICON = Pincerna::Base::ROOT + "/images/safari.png"
 
+    # The file with bookmarks data.
+    BOOKMARKS_DATA = File.expand_path("~/Library/Safari/Bookmarks.plist")
+
     # Reads the list of Safari Bookmarks.
     def read_bookmarks
-      data = execute_command("/usr/bin/plutil", "-convert", "xml1", "-o", "-", File.expand_path("~/Library/Safari/Bookmarks.plist"))
+      data = execute_command("/usr/bin/plutil", "-convert", "xml1", "-o", "-", BOOKMARKS_DATA)
 
       if data && !data.empty? then
         Plist.parse_xml(data)["Children"].each do |children|
@@ -27,7 +30,7 @@ module Pincerna
       # @param node [Hash] The directory to visit.
       # @param path [String] The path of this node.
       def scan_folder(node, path)
-        path += " \u2192 #{node["Title"]}"
+        path += " #{SEPARATOR} #{node["Title"]}"
 
         (node["Children"] || []).each do |children|
           children["WebBookmarkType"] == "WebBookmarkTypeLeaf" ? add_bookmark(children["URIDictionary"]["title"], children["URLString"], path) : scan_folder(children, path)

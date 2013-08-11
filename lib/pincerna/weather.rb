@@ -7,9 +7,6 @@
 module Pincerna
   # Gets weather forecast from Yahoo! Weather.
   class Weather < Base
-    # Yahoo! API key.
-    API_KEY = "dj0yJmk9ZUpBZk1hQTJGRHM5JmQ9WVdrOVlUSnBjMGhUTjJVbWNHbzlOemsyTURNeU5EWXkmcz1jb25zdW1lcnNlY3JldCZ4PWRi"
-
     # The expression to match.
     MATCHER = /^
       (?<place>.+?)
@@ -24,6 +21,12 @@ module Pincerna
 
     # The icon to show for each feedback item.
     ICON = Pincerna::Base::ROOT + "/images/weather.png"
+
+    # The URL of the webservice.
+    URL = "http://where.yahooapis.com/v1/places.q(%s);count=5"
+
+    # Yahoo! API key.
+    API_KEY = "dj0yJmk9ZUpBZk1hQTJGRHM5JmQ9WVdrOVlUSnBjMGhUTjJVbWNHbzlOemsyTURNeU5EWXkmcz1jb25zdW1lcnNlY3JldCZ4PWRi"
 
     # Gets forecast for a place.
     #
@@ -56,7 +59,7 @@ module Pincerna
     def lookup_places(query)
       if query !~ /^(\d+)$/ then
         Pincerna::Cache.instance.use("woeid:#{query}", Pincerna::Cache::EXPIRATIONS[:long]) do
-          response = fetch_remote_resource("http://where.yahooapis.com/v1/places.q(#{CGI.escape(query)});count=5", {appid: API_KEY, format: :json})
+          response = fetch_remote_resource(URL % CGI.escape(query), {appid: API_KEY, format: :json})
           response["places"].fetch("place", []).collect { |place| parse_place(place) }
         end
       else

@@ -14,7 +14,7 @@ module Pincerna
     EXPIRATIONS = {short: 1800, long: 2592000} # 30 min, 1 month
 
     # Location of the cache file
-    LOCATION = "~/Library/Caches/com.runningwithcrayons.Alfred-2/Workflow Data/it.cowtech.pincerna/cache.db"
+    FILE = Pincerna::Base::CACHE_ROOT + "/cache.db"
 
     attr_reader :data
 
@@ -25,8 +25,8 @@ module Pincerna
 
     # Creates a new cache object.
     def initialize
-      FileUtils.mkdir_p(File.dirname(LOCATION))
-      @data = Daybreak::DB.new(File.expand_path(LOCATION))
+      FileUtils.mkdir_p(File.dirname(FILE))
+      @data = Daybreak::DB.new(FILE)
       @flusher = EM.add_periodic_timer(5) { Pincerna::Cache.instance.flush }
     end
 

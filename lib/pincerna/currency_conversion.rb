@@ -26,6 +26,12 @@ module Pincerna
       "rate" => ->(_, value) { !value.nil? } # If show conversion rate
     }
 
+    # The icon to show for each feedback item.
+    ICON = Pincerna::Base::ROOT + "/images/currency.png"
+
+    # The URL of the webservice.
+    URL = "http://rate-exchange.appspot.com/currency"
+
     # A list of symbols and their associated ISO codes
     SYMBOLS = {
       "Lek" => "ALL",
@@ -91,9 +97,6 @@ module Pincerna
       "Z$" => "ZWD"
     }
 
-    # The icon to show for each feedback item.
-    ICON = Pincerna::Base::ROOT + "/images/currency.png"
-
     # Converts a value from a currency to another.
     #
     # @param value [Float] The value to convert.
@@ -104,7 +107,7 @@ module Pincerna
     def perform_filtering(value, from, to, with_rate)
       from = replace_symbol(from)
       to = replace_symbol(to)
-      response = fetch_remote_resource("http://rate-exchange.appspot.com/currency", {q: value, from: from, to: to})
+      response = fetch_remote_resource(URL, {q: value, from: from, to: to})
       {value: value, from: from, to: to, result: round_float(response["v"]), rate: round_float(response["rate"]), with_rate: with_rate}
     end
 

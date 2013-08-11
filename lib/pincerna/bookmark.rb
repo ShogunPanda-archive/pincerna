@@ -13,6 +13,9 @@ module Pincerna
     # The icon to show for each feedback item.
     ICON = Pincerna::Base::ROOT + "/images/safari.png"
 
+    # The separator for paths.
+    SEPARATOR = "\u2192"
+
     # Reads the list of Chrome Bookmarks.
     #
     # @param query [Array] A query to match against bookmarks names.

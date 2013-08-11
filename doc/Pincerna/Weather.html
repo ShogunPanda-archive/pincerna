@@ -116,21 +116,6 @@
   
     <dl class="constants">
       
-        <dt id="API_KEY-constant" class="">API_KEY =
-          <div class="docstring">
-  <div class="discussion">
-    <p>Yahoo! API key.</p>
-
-
-  </div>
-</div>
-<div class="tags">
-  
-
-</div>
-        </dt>
-        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>dj0yJmk9ZUpBZk1hQTJGRHM5JmQ9WVdrOVlUSnBjMGhUTjJVbWNHbzlOemsyTURNeU5EWXkmcz1jb25zdW1lcnNlY3JldCZ4PWRi</span><span class='tstring_end'>&quot;</span></span></pre></dd>
-      
         <dt id="MATCHER-constant" class="">MATCHER =
           <div class="docstring">
   <div class="discussion">
@@ -182,6 +167,36 @@ $</span><span class='regexp_end'>/mix</span></span></pre></dd>
         </dt>
         <dd><pre class="code"><span class='const'>Pincerna</span><span class='op'>::</span><span class='const'>Base</span><span class='op'>::</span><span class='const'>ROOT</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/images/weather.png</span><span class='tstring_end'>&quot;</span></span></pre></dd>
       
+        <dt id="URL-constant" class="">URL =
+          <div class="docstring">
+  <div class="discussion">
+    <p>The URL of the webservice.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>http://where.yahooapis.com/v1/places.q(%s);count=5</span><span class='tstring_end'>&quot;</span></span></pre></dd>
+      
+        <dt id="API_KEY-constant" class="">API_KEY =
+          <div class="docstring">
+  <div class="discussion">
+    <p>Yahoo! API key.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>dj0yJmk9ZUpBZk1hQTJGRHM5JmQ9WVdrOVlUSnBjMGhUTjJVbWNHbzlOemsyTURNeU5EWXkmcz1jb25zdW1lcnNlY3JldCZ4PWRi</span><span class='tstring_end'>&quot;</span></span></pre></dd>
+      
     </dl>
   
 
@@ -191,7 +206,7 @@ $</span><span class='regexp_end'>/mix</span></span></pre></dd>
   
   <h3 class="inherited">Constants inherited
      from <span class='object_link'><a href="Base.html" title="Pincerna::Base (class)">Base</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="Base.html#ROOT-constant" title="Pincerna::Base::ROOT (constant)">Base::ROOT</a></span>, <span class='object_link'><a href="Base.html#TYPES-constant" title="Pincerna::Base::TYPES (constant)">Base::TYPES</a></span></p>
+  <p class="inherited"><span class='object_link'><a href="Base.html#CACHE_ROOT-constant" title="Pincerna::Base::CACHE_ROOT (constant)">Base::CACHE_ROOT</a></span>, <span class='object_link'><a href="Base.html#FULL_NAME-constant" title="Pincerna::Base::FULL_NAME (constant)">Base::FULL_NAME</a></span>, <span class='object_link'><a href="Base.html#ROOT-constant" title="Pincerna::Base::ROOT (constant)">Base::ROOT</a></span>, <span class='object_link'><a href="Base.html#TYPES-constant" title="Pincerna::Base::TYPES (constant)">Base::TYPES</a></span>, <span class='object_link'><a href="Base.html#WORKFLOW_ROOT-constant" title="Pincerna::Base::WORKFLOW_ROOT (constant)">Base::WORKFLOW_ROOT</a></span></p>
 
 
 
@@ -398,7 +413,7 @@ $</span><span class='regexp_end'>/mix</span></span></pre></dd>
       
       
         &mdash;
-        <div class='inline'><p>The unit system to use: <code>f</code> for the US system (Farenheit) and <code>c</code> for the SI one (Celsius).</p>
+        <div class='inline'><p>The unit system to use: <code>f</code> for the US system (Farenheit) and <code>c</code> for the International System one (Celsius).</p>
 </div>
       
     </li>
@@ -429,19 +444,19 @@ $</span><span class='regexp_end'>/mix</span></span></pre></dd>
       <pre class="lines">
 
 
-73
-74
-75
 76
 77
 78
 79
 80
 81
-82</pre>
+82
+83
+84
+85</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/pincerna/weather.rb', line 73</span>
+      <pre class="code"><span class="info file"># File 'lib/pincerna/weather.rb', line 76</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_forecast'>get_forecast</span><span class='lparen'>(</span><span class='id identifier rubyid_places'>places</span><span class='comma'>,</span> <span class='id identifier rubyid_scale'>scale</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>c</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_client'>client</span> <span class='op'>=</span> <span class='const'>Weatherman</span><span class='op'>::</span><span class='const'>Client</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='label'>unit:</span> <span class='id identifier rubyid_scale'>scale</span><span class='rparen'>)</span>
@@ -519,19 +534,19 @@ $</span><span class='regexp_end'>/mix</span></span></pre></dd>
       <pre class="lines">
 
 
-88
-89
-90
 91
 92
 93
 94
 95
 96
-97</pre>
+97
+98
+99
+100</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/pincerna/weather.rb', line 88</span>
+      <pre class="code"><span class="info file"># File 'lib/pincerna/weather.rb', line 91</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_wind_direction'>get_wind_direction</span><span class='lparen'>(</span><span class='id identifier rubyid_degrees'>degrees</span><span class='rparen'>)</span>
   <span class='comment'># Normalize value
@@ -609,9 +624,6 @@ $</span><span class='regexp_end'>/mix</span></span></pre></dd>
       <pre class="lines">
 
 
-56
-57
-58
 59
 60
 61
@@ -619,15 +631,18 @@ $</span><span class='regexp_end'>/mix</span></span></pre></dd>
 63
 64
 65
-66</pre>
+66
+67
+68
+69</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/pincerna/weather.rb', line 56</span>
+      <pre class="code"><span class="info file"># File 'lib/pincerna/weather.rb', line 59</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_lookup_places'>lookup_places</span><span class='lparen'>(</span><span class='id identifier rubyid_query'>query</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_query'>query</span> <span class='op'>!~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^(\d+)$</span><span class='regexp_end'>/</span></span> <span class='kw'>then</span>
     <span class='const'>Pincerna</span><span class='op'>::</span><span class='const'>Cache</span><span class='period'>.</span><span class='id identifier rubyid_instance'>instance</span><span class='period'>.</span><span class='id identifier rubyid_use'>use</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>woeid:</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_query'>query</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='const'>Pincerna</span><span class='op'>::</span><span class='const'>Cache</span><span class='op'>::</span><span class='const'>EXPIRATIONS</span><span class='lbracket'>[</span><span class='symbol'>:long</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='kw'>do</span>
-      <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='id identifier rubyid_fetch_remote_resource'>fetch_remote_resource</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>http://where.yahooapis.com/v1/places.q(</span><span class='embexpr_beg'>#{</span><span class='const'>CGI</span><span class='period'>.</span><span class='id identifier rubyid_escape'>escape</span><span class='lparen'>(</span><span class='id identifier rubyid_query'>query</span><span class='rparen'>)</span><span class='embexpr_end'>}</span><span class='tstring_content'>);count=5</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='label'>appid:</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='op'>::</span><span class='const'>API_KEY</span><span class='comma'>,</span> <span class='label'>format:</span> <span class='symbol'>:json</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='id identifier rubyid_fetch_remote_resource'>fetch_remote_resource</span><span class='lparen'>(</span><span class='const'>URL</span> <span class='op'>%</span> <span class='const'>CGI</span><span class='period'>.</span><span class='id identifier rubyid_escape'>escape</span><span class='lparen'>(</span><span class='id identifier rubyid_query'>query</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='label'>appid:</span> <span class='const'>API_KEY</span><span class='comma'>,</span> <span class='label'>format:</span> <span class='symbol'>:json</span><span class='rbrace'>}</span><span class='rparen'>)</span>
       <span class='id identifier rubyid_response'>response</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>places</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>place</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='lbrace'>{</span> <span class='op'>|</span><span class='id identifier rubyid_place'>place</span><span class='op'>|</span> <span class='id identifier rubyid_parse_place'>parse_place</span><span class='lparen'>(</span><span class='id identifier rubyid_place'>place</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
     <span class='kw'>end</span>
   <span class='kw'>else</span>
@@ -701,13 +716,13 @@ $</span><span class='regexp_end'>/mix</span></span></pre></dd>
       <pre class="lines">
 
 
-32
-33
-34
-35</pre>
+35
+36
+37
+38</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/pincerna/weather.rb', line 32</span>
+      <pre class="code"><span class="info file"># File 'lib/pincerna/weather.rb', line 35</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_perform_filtering'>perform_filtering</span><span class='lparen'>(</span><span class='id identifier rubyid_query'>query</span><span class='comma'>,</span> <span class='id identifier rubyid_scale'>scale</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_places'>places</span> <span class='op'>=</span> <span class='id identifier rubyid_lookup_places'>lookup_places</span><span class='lparen'>(</span><span class='id identifier rubyid_query'>query</span><span class='rparen'>)</span>
@@ -779,19 +794,19 @@ $</span><span class='regexp_end'>/mix</span></span></pre></dd>
       <pre class="lines">
 
 
-41
-42
-43
 44
 45
 46
 47
 48
 49
-50</pre>
+50
+51
+52
+53</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/pincerna/weather.rb', line 41</span>
+      <pre class="code"><span class="info file"># File 'lib/pincerna/weather.rb', line 44</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_process_results'>process_results</span><span class='lparen'>(</span><span class='id identifier rubyid_results'>results</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_results'>results</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_result'>result</span><span class='op'>|</span>
@@ -813,7 +828,7 @@ $</span><span class='regexp_end'>/mix</span></span></pre></dd>
 </div>
 
     <div id="footer">
-  Generated on Sun Aug 11 13:39:45 2013 by
+  Generated on Sun Aug 11 15:37:21 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7 (ruby-2.0.0).
 </div>

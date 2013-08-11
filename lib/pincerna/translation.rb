@@ -25,6 +25,9 @@ module Pincerna
     # The icon to show for each feedback item.
     ICON = Pincerna::Base::ROOT + "/images/translate.png"
 
+    # The URL of the webservice.
+    URL = "http://translate.google.com.br/translate_a/t"
+
     # Translates text using Google Translate.
     #
     # @param from [String] The code of the source language.
@@ -39,7 +42,7 @@ module Pincerna
       end
 
       response = Pincerna::Cache.instance.use("translation:#{from}:#{to}:#{value}", Pincerna::Cache::EXPIRATIONS[:short]) {
-        fetch_remote_resource("http://translate.google.com.br/translate_a/t", {client: "p", text: value, sl: from, tl: to, multires: 1, ssel: 0, tsel: 0, sc: 1, ie: "UTF-8", oe: "UTF-8"})
+        fetch_remote_resource(URL, {client: "p", text: value, sl: from, tl: to, multires: 1, ssel: 0, tsel: 0, sc: 1, ie: "UTF-8", oe: "UTF-8"})
       }
 
       # Parse results

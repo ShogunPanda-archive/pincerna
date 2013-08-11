@@ -103,7 +103,7 @@
 
 <h2>Overview</h2><div class="docstring">
   <div class="discussion">
-    <p>Shows an address on Google Maps.</p>
+    <p>Shows addresses or coordinates on Google Maps.</p>
 
 
   </div>
@@ -140,7 +140,7 @@
   
   <h3 class="inherited">Constants inherited
      from <span class='object_link'><a href="Base.html" title="Pincerna::Base (class)">Base</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="Base.html#MATCHER-constant" title="Pincerna::Base::MATCHER (constant)">Base::MATCHER</a></span>, <span class='object_link'><a href="Base.html#RELEVANT_MATCHES-constant" title="Pincerna::Base::RELEVANT_MATCHES (constant)">Base::RELEVANT_MATCHES</a></span>, <span class='object_link'><a href="Base.html#ROOT-constant" title="Pincerna::Base::ROOT (constant)">Base::ROOT</a></span>, <span class='object_link'><a href="Base.html#TYPES-constant" title="Pincerna::Base::TYPES (constant)">Base::TYPES</a></span></p>
+  <p class="inherited"><span class='object_link'><a href="Base.html#CACHE_ROOT-constant" title="Pincerna::Base::CACHE_ROOT (constant)">Base::CACHE_ROOT</a></span>, <span class='object_link'><a href="Base.html#FULL_NAME-constant" title="Pincerna::Base::FULL_NAME (constant)">Base::FULL_NAME</a></span>, <span class='object_link'><a href="Base.html#MATCHER-constant" title="Pincerna::Base::MATCHER (constant)">Base::MATCHER</a></span>, <span class='object_link'><a href="Base.html#RELEVANT_MATCHES-constant" title="Pincerna::Base::RELEVANT_MATCHES (constant)">Base::RELEVANT_MATCHES</a></span>, <span class='object_link'><a href="Base.html#ROOT-constant" title="Pincerna::Base::ROOT (constant)">Base::ROOT</a></span>, <span class='object_link'><a href="Base.html#TYPES-constant" title="Pincerna::Base::TYPES (constant)">Base::TYPES</a></span>, <span class='object_link'><a href="Base.html#WORKFLOW_ROOT-constant" title="Pincerna::Base::WORKFLOW_ROOT (constant)">Base::WORKFLOW_ROOT</a></span></p>
 
 
 
@@ -378,7 +378,7 @@
 
 <span class='kw'>def</span> <span class='id identifier rubyid_process_results'>process_results</span><span class='lparen'>(</span><span class='id identifier rubyid_results'>results</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_type'>type</span> <span class='op'>=</span> <span class='id identifier rubyid_results'>results</span><span class='lbracket'>[</span><span class='symbol'>:query</span><span class='rbracket'>]</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>((-?)\d+(\.\d+)?)\s*,\s*((-?)\d+(\.\d+)?)</span><span class='regexp_end'>/</span></span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>coordinates</span><span class='tstring_end'>&quot;</span></span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>location</span><span class='tstring_end'>&quot;</span></span>
-  <span class='lbracket'>[</span><span class='lbrace'>{</span><span class='label'>title:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>View </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_type'>type</span><span class='embexpr_end'>}</span><span class='tstring_content'> on Google Maps</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>arg:</span> <span class='const'>CGI</span><span class='period'>.</span><span class='id identifier rubyid_escape'>escape</span><span class='lparen'>(</span><span class='id identifier rubyid_results'>results</span><span class='lbracket'>[</span><span class='symbol'>:query</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='label'>subtitle:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Action this item to open Google Maps in the browser.</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>icon:</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='op'>::</span><span class='const'>ICON</span><span class='rbrace'>}</span><span class='rbracket'>]</span>
+  <span class='lbracket'>[</span><span class='lbrace'>{</span><span class='label'>title:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>View </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_type'>type</span><span class='embexpr_end'>}</span><span class='tstring_content'> on Google Maps</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>arg:</span> <span class='const'>CGI</span><span class='period'>.</span><span class='id identifier rubyid_escape'>escape</span><span class='lparen'>(</span><span class='id identifier rubyid_results'>results</span><span class='lbracket'>[</span><span class='symbol'>:query</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='label'>subtitle:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Action this item to open Google Maps in the browser.</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>icon:</span> <span class='const'>ICON</span><span class='rbrace'>}</span><span class='rbracket'>]</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -390,7 +390,7 @@
 </div>
 
     <div id="footer">
-  Generated on Sun Aug 11 13:39:45 2013 by
+  Generated on Sun Aug 11 15:37:20 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7 (ruby-2.0.0).
 </div>

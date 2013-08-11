@@ -7,18 +7,21 @@
 module Pincerna
   # Show the list of Firefox bookmarks.
   class FirefoxBookmark < Bookmark
+    # The icon to show for each feedback item.
+    ICON = Pincerna::Base::ROOT + "/images/firefox.png"
+
+    # A wildcard to searc the default profile
+    PROFILES_SEARCH = File.expand_path("~/Library/Application Support/Firefox/Profiles/*.default")
+
     # The queries to obtain the bookmarks
     QUERIES = [
       "SELECT b.title, p.url, b.parent FROM moz_bookmarks b, moz_places p WHERE b.type=1 AND b.fk=p.id",
       "SELECT b.title, b.id, b.parent FROM moz_bookmarks b WHERE b.type=2"
     ]
 
-    # The icon to show for each feedback item.
-    ICON = Pincerna::Base::ROOT + "/images/firefox.png"
-
     # Reads the list of Firefox Bookmarks.
     def read_bookmarks
-      path = Dir.glob(File.expand_path("~/Library/Application Support/Firefox/Profiles") + "/*.default").first
+      path = Dir.glob(PROFILES_SEARCH).first
       data = execute_command("/usr/bin/sqlite3", "-echo", "#{path}/places.sqlite", QUERIES.join("; "))
 
       if data && !data.empty? then
@@ -53,7 +56,7 @@ module Pincerna
       # Builds the paths of the bookmarks.
       def build_paths
         @bookmarks.collect! do |bookmark|
-          bookmark[:path] = " \u2192 #{build_path(bookmark[:path].to_i).reverse.join(" \u2192 ")}"
+          bookmark[:path] = " #{SEPARATOR} #{build_path(bookmark[:path].to_i).reverse.join(" #{SEPARATOR} ")}"
           bookmark
         end
       end

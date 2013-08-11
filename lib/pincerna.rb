@@ -18,8 +18,8 @@ require "em-synchrony"
 require "em-synchrony/em-http"
 
 require "pincerna/version" if !defined?(Pincerna::Version)
-require "pincerna/cache"
 require "pincerna/base"
+require "pincerna/cache"
 require "pincerna/currency_conversion"
 require "pincerna/ip"
 require "pincerna/map"

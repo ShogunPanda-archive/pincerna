@@ -15,6 +15,14 @@ module Pincerna
   # @attribute [r] format_content_type
   #   @return [String] The content type of the format. Can be `text/xml` (default) or `text/x-yaml`.
   class Base
+    # The expression to match.
+    MATCHER = /^(?<all>.*)$/i
+
+    # Relevant groups in the match.
+    RELEVANT_MATCHES = {
+      "all" => ->(_, value) { value }
+    }
+
     # Recognized types of filtering
     TYPES = {
       "unit_conversion" => /^(convert|unit|c)$/,
@@ -29,16 +37,17 @@ module Pincerna
       "firefox_bookmark" => /^(firefox-bookmark|bf)$/
     }
 
+    # The full name of the gem
+    FULL_NAME = "it.cowtech.pincerna"
+
     # The root of the pincerna gem
     ROOT = File.expand_path(File.dirname(__FILE__) + "/../../")
 
-    # The expression to match.
-    MATCHER = /^(?<all>.*)$/i
+    # The root of the cache
+    CACHE_ROOT = File.expand_path("~/Library/Caches/com.runningwithcrayons.Alfred-2/Workflow Data/#{FULL_NAME}")
 
-    # Relevant groups in the match.
-    RELEVANT_MATCHES = {
-      "all" => ->(_, value) { value }
-    }
+    # The root of alfred workflows
+    WORKFLOW_ROOT = File.expand_path("~/Library/Application Support/Alfred 2/Alfred.alfredpreferences/workflows/#{FULL_NAME}")
 
     attr_reader :output, :format, :format_content_type
 
@@ -75,7 +84,7 @@ module Pincerna
     # @param debug [String] The debug mode.
     def initialize(query, requested_format = "xml", debug = nil)
       @query = query.strip.gsub("\\ ", " ")
-      @cache_dir = File.expand_path("~/Library/Caches/com.runningwithcrayons.Alfred-2/Workflow Data/it.cowtech.pincerna")
+      @cache_dir = CACHE_ROOT
 
       if requested_format =~ /^y(a?)ml$/i then
         @format = :yml

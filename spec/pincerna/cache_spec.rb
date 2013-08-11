@@ -9,13 +9,13 @@ require "spec_helper"
 describe Pincerna::Cache do
   before(:each) do
     Pincerna::Cache.instance_variable_set(:@instance, nil)
-    stub_const("Pincerna::Cache::LOCATION", "/tmp/pincerna-cache.db")
+    stub_const("Pincerna::Cache::FILE", "/tmp/pincerna-cache.db")
     allow_any_instance_of(EventMachine::PeriodicTimer).to receive(:schedule)
   end
 
   after(:each) do
     Pincerna::Cache.instance.destroy
-    FileUtils.rm_f(Pincerna::Cache::LOCATION)
+    FileUtils.rm_f(Pincerna::Cache::FILE)
   end
 
   describe ".instance" do
@@ -47,6 +47,7 @@ describe Pincerna::Cache do
     end
 
     it "should fetch new data if nothing is in cache, then save it back" do
+      Pincerna::Cache.instance.data["KEY"] = nil
       expect(Pincerna::Cache.instance.use("KEY", 1800) { @control = "2" }).to eq("2")
       expect(Pincerna::Cache.instance.data["KEY"]).to eq({data: "2", expiration: 2800})
       expect(@control).to eq("2")

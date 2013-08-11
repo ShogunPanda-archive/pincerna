@@ -49,10 +49,29 @@ module Pincerna
       end
     end
 
+    # Install the workflow.
+    #
+    # @return [Array] A response complaint to Rack interface.
+    def handle_install
+      root, workflow, cache = Pincerna::Base::ROOT, Pincerna::Base::WORKFLOW_ROOT, Pincerna::Base::CACHE_ROOT
+      FileUtils.mkdir(workflow)
+      FileUtils.mkdir(cache)
+      FileUtils.cp([root + "/info.plist", root + "/icon.png"], workflow)
+      [200, {"Content-Type" => "text/plain"}, "Installation of Pincerna into Alfred completed! Have fun! :)"]
+    end
+
+    # Install the workflow.
+    #
+    # @return [Array] A response complaint to Rack interface.
+    def handle_uninstall
+      FileUtils.rm_rf([Pincerna::Base::WORKFLOW_ROOT, Pincerna::Base::CACHE_ROOT])
+      [200, {"Content-Type" => "text/plain"}, "Pincerna has been correctly removed from Alfred. :("]
+    end
+
     # Schedule the server's stop.
     # @return [Array] A response complaint to Rack interface.
-    def stop_server
-      EM.add_timer(0.1) { perform_stop_server }
+    def handle_stop
+      EM.add_timer(0.1) { stop_server }
       [200, {}, ""]
     end
 
@@ -63,7 +82,13 @@ module Pincerna
     def response(env)
       begin
         type = env["REQUEST_PATH"].gsub(/\//, "")
-        type != "quit" ? handle_request(type, params) : stop_server
+
+        case type
+          when "quit" then handle_stop
+          when "install" then handle_install
+          when "uninstall" then handle_uninstall
+          else handle_request(type, params)
+        end
       rescue => e
         [500, {"X-Error" => e.class.to_s, "X-Error-Message" => e.message, "Content-Type" => "text/plain"}, e.backtrace.join("\n")]
       end
@@ -71,7 +96,7 @@ module Pincerna
 
     private
       # Stops the server.
-      def perform_stop_server
+      def stop_server
         Pincerna::Cache.instance.destroy
         EM.stop
       end

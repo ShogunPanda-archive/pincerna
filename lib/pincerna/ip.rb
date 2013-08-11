@@ -13,6 +13,9 @@ module Pincerna
     # The icon to show for each feedback item.
     ICON = Pincerna::Base::ROOT + "/images/network.png"
 
+    # The URL of the webservice.
+    URL = "http://api.externalip.net/ip"
+
     # Shows the IP addresses of all network interfaces.
     #
     # @param query [Array] A query to match against interfaces names.
@@ -80,7 +83,7 @@ module Pincerna
     #
     # @return [Hash] The public IP address data.
     def get_public_address
-      {interface: nil, address: fetch_remote_resource("http://api.externalip.net/ip", {}, false)}
+      {interface: nil, address: fetch_remote_resource(URL, {}, false)}
     end
 
     # Compares two IP classes, giving higher priority to IPv4.

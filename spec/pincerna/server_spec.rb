@@ -66,34 +66,76 @@ describe Pincerna::Server do
     end
   end
 
+  describe "#handle_install" do
+    before(:each) do
+      stub_const("Pincerna::WORKFLOW_ROOT", "/tmp/pincerna-workflow")
+      stub_const("Pincerna::CACHE_ROOT", "/tmp/pincerna-cache")
+      FileUtils.rm_rf([Pincerna::Base::WORKFLOW_ROOT, Pincerna::Base::CACHE_ROOT])
+      @hash = ->(path){ Digest::MD5.file(path).hexdigest }
+    end
 
+    after(:each) do
+      FileUtils.rm_rf([Pincerna::Base::WORKFLOW_ROOT, Pincerna::Base::CACHE_ROOT])
+    end
 
-  describe "#stop_server" do
-    it "should setup a callback and return 200" do
-      expect(EM).to receive(:add_timer).with(0.1)
-      expect(subject.stop_server).to eq([200, {}, ""])
+    it "should copy needed files and return a good response" do
+      expect(subject.handle_install).to eq([200, {"Content-Type" => "text/plain"}, "Installation of Pincerna into Alfred completed! Have fun! :)"])
+      expect(File.directory?(Pincerna::Base::WORKFLOW_ROOT)).to be_true
+      expect(File.directory?(Pincerna::Base::CACHE_ROOT)).to be_true
+      expect(@hash.call("#{Pincerna::Base::WORKFLOW_ROOT}/info.plist")).to eq(@hash.call("#{Pincerna::Base::ROOT}/info.plist"))
+      expect(@hash.call("#{Pincerna::Base::WORKFLOW_ROOT}/icon.png")).to eq(@hash.call("#{Pincerna::Base::ROOT}/icon.png"))
     end
   end
 
-  describe "#perform_stop_server" do
+  describe "#handle_uninstall" do
+    before(:each) do
+      stub_const("Pincerna::WORKFLOW_ROOT", "/tmp/pincerna-workflow")
+      stub_const("Pincerna::CACHE_ROOT", "/tmp/pincerna-cache")
+      FileUtils.mkdir_p(Pincerna::Base::WORKFLOW_ROOT)
+      FileUtils.mkdir_p(Pincerna::Base::CACHE_ROOT)
+    end
+
+    after(:each) do
+      FileUtils.rm_rf([Pincerna::Base::WORKFLOW_ROOT, Pincerna::Base::CACHE_ROOT])
+    end
+
+    it "should remove all files and return a good response" do
+      expect(subject.handle_uninstall).to eq([200, {"Content-Type" => "text/plain"}, "Pincerna has been correctly removed from Alfred. :("])
+      expect(File.exists?(Pincerna::Base::WORKFLOW_ROOT)).to be_false
+      expect(File.exists?(Pincerna::Base::CACHE_ROOT)).to be_false
+    end
+  end
+
+  describe "#handle_stop" do
+    it "should setup a callback and return 200" do
+      expect(EM).to receive(:add_timer).with(0.1)
+      expect(subject.handle_stop).to eq([200, {}, ""])
+    end
+  end
+
+  describe "#stop_server" do
     it "should destroy the cache and stop EM in the callback" do
       allow_any_instance_of(EventMachine::PeriodicTimer).to receive(:schedule)
       expect(Pincerna::Cache.instance).to receive(:destroy).and_call_original
       expect(EM).to receive(:stop)
-      subject.send(:perform_stop_server)
+      subject.send(:stop_server)
     end
   end
 
   describe "#response" do
     before(:each) do
       allow(subject).to receive(:handle_request).and_return([1, {}, ""])
-      allow(subject).to receive(:stop_server).and_return([2, {}, ""])
+      allow(subject).to receive(:handle_stop).and_return([2, {}, ""])
+      allow(subject).to receive(:handle_install).and_return([3, {}, ""])
+      allow(subject).to receive(:handle_uninstall).and_return([4, {}, ""])
     end
 
     it "should return the response" do
       expect(subject.response({"REQUEST_PATH" => "/"})).to eq([1, {}, ""])
       expect(subject.response({"REQUEST_PATH" => "foo/quit"})).to eq([1, {}, ""])
       expect(subject.response({"REQUEST_PATH" => "/quit"})).to eq([2, {}, ""])
+      expect(subject.response({"REQUEST_PATH" => "/install"})).to eq([3, {}, ""])
+      expect(subject.response({"REQUEST_PATH" => "/uninstall"})).to eq([4, {}, ""])
     end
 
     it "should handle exceptions" do

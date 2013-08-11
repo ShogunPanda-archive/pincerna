@@ -146,6 +146,21 @@
         </dt>
         <dd><pre class="code"><span class='const'>Pincerna</span><span class='op'>::</span><span class='const'>Base</span><span class='op'>::</span><span class='const'>ROOT</span> <span class='op'>+</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/images/network.png</span><span class='tstring_end'>&quot;</span></span></pre></dd>
       
+        <dt id="URL-constant" class="">URL =
+          <div class="docstring">
+  <div class="discussion">
+    <p>The URL of the webservice.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>http://api.externalip.net/ip</span><span class='tstring_end'>&quot;</span></span></pre></dd>
+      
     </dl>
   
 
@@ -155,7 +170,7 @@
   
   <h3 class="inherited">Constants inherited
      from <span class='object_link'><a href="Base.html" title="Pincerna::Base (class)">Base</a></span></h3>
-  <p class="inherited"><span class='object_link'><a href="Base.html#RELEVANT_MATCHES-constant" title="Pincerna::Base::RELEVANT_MATCHES (constant)">Base::RELEVANT_MATCHES</a></span>, <span class='object_link'><a href="Base.html#ROOT-constant" title="Pincerna::Base::ROOT (constant)">Base::ROOT</a></span>, <span class='object_link'><a href="Base.html#TYPES-constant" title="Pincerna::Base::TYPES (constant)">Base::TYPES</a></span></p>
+  <p class="inherited"><span class='object_link'><a href="Base.html#CACHE_ROOT-constant" title="Pincerna::Base::CACHE_ROOT (constant)">Base::CACHE_ROOT</a></span>, <span class='object_link'><a href="Base.html#FULL_NAME-constant" title="Pincerna::Base::FULL_NAME (constant)">Base::FULL_NAME</a></span>, <span class='object_link'><a href="Base.html#RELEVANT_MATCHES-constant" title="Pincerna::Base::RELEVANT_MATCHES (constant)">Base::RELEVANT_MATCHES</a></span>, <span class='object_link'><a href="Base.html#ROOT-constant" title="Pincerna::Base::ROOT (constant)">Base::ROOT</a></span>, <span class='object_link'><a href="Base.html#TYPES-constant" title="Pincerna::Base::TYPES (constant)">Base::TYPES</a></span>, <span class='object_link'><a href="Base.html#WORKFLOW_ROOT-constant" title="Pincerna::Base::WORKFLOW_ROOT (constant)">Base::WORKFLOW_ROOT</a></span></p>
 
 
 
@@ -437,15 +452,15 @@
       <pre class="lines">
 
 
-100
-101
-102
 103
 104
-105</pre>
+105
+106
+107
+108</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/pincerna/ip.rb', line 100</span>
+      <pre class="code"><span class="info file"># File 'lib/pincerna/ip.rb', line 103</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_compare_ip_addresses'>compare_ip_addresses</span><span class='lparen'>(</span><span class='id identifier rubyid_left'>left</span><span class='comma'>,</span> <span class='id identifier rubyid_right'>right</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_higher_priority'>higher_priority</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>::1</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>127.0.0.1</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>10.0.0.1</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
@@ -534,12 +549,12 @@
       <pre class="lines">
 
 
-91
-92
-93</pre>
+94
+95
+96</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/pincerna/ip.rb', line 91</span>
+      <pre class="code"><span class="info file"># File 'lib/pincerna/ip.rb', line 94</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_compare_ip_classes'>compare_ip_classes</span><span class='lparen'>(</span><span class='id identifier rubyid_left'>left</span><span class='comma'>,</span> <span class='id identifier rubyid_right'>right</span><span class='rparen'>)</span>
   <span class='lparen'>(</span><span class='id identifier rubyid_left'>left</span><span class='period'>.</span><span class='id identifier rubyid_index'>index</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>:</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>?</span> <span class='int'>1</span> <span class='op'>:</span> <span class='int'>0</span><span class='rparen'>)</span> <span class='op'>&lt;=&gt;</span> <span class='lparen'>(</span><span class='id identifier rubyid_right'>right</span><span class='period'>.</span><span class='id identifier rubyid_index'>index</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>:</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='op'>?</span> <span class='int'>1</span> <span class='op'>:</span> <span class='int'>0</span><span class='rparen'>)</span>
@@ -591,9 +606,6 @@
       <pre class="lines">
 
 
-110
-111
-112
 113
 114
 115
@@ -611,10 +623,13 @@
 127
 128
 129
-130</pre>
+130
+131
+132
+133</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/pincerna/ip.rb', line 110</span>
+      <pre class="code"><span class="info file"># File 'lib/pincerna/ip.rb', line 113</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_interfaces_names'>get_interfaces_names</span>
   <span class='id identifier rubyid_rv'>rv</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>lo0</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Loopback</span><span class='tstring_end'>&quot;</span></span><span class='rbrace'>}</span>
@@ -684,9 +699,6 @@
       <pre class="lines">
 
 
-54
-55
-56
 57
 58
 59
@@ -707,10 +719,13 @@
 74
 75
 76
-77</pre>
+77
+78
+79
+80</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/pincerna/ip.rb', line 54</span>
+      <pre class="code"><span class="info file"># File 'lib/pincerna/ip.rb', line 57</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_local_addresses'>get_local_addresses</span>
   <span class='id identifier rubyid_rv'>rv</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
@@ -783,15 +798,15 @@
       <pre class="lines">
 
 
-82
-83
-84</pre>
+85
+86
+87</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/pincerna/ip.rb', line 82</span>
+      <pre class="code"><span class="info file"># File 'lib/pincerna/ip.rb', line 85</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_public_address'>get_public_address</span>
-  <span class='lbrace'>{</span><span class='label'>interface:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>address:</span> <span class='id identifier rubyid_fetch_remote_resource'>fetch_remote_resource</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>http://api.externalip.net/ip</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='kw'>false</span><span class='rparen'>)</span><span class='rbrace'>}</span>
+  <span class='lbrace'>{</span><span class='label'>interface:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>address:</span> <span class='id identifier rubyid_fetch_remote_resource'>fetch_remote_resource</span><span class='lparen'>(</span><span class='const'>URL</span><span class='comma'>,</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='kw'>false</span><span class='rparen'>)</span><span class='rbrace'>}</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -859,9 +874,6 @@
       <pre class="lines">
 
 
-20
-21
-22
 23
 24
 25
@@ -877,10 +889,13 @@
 35
 36
 37
-38</pre>
+38
+39
+40
+41</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/pincerna/ip.rb', line 20</span>
+      <pre class="code"><span class="info file"># File 'lib/pincerna/ip.rb', line 23</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_perform_filtering'>perform_filtering</span><span class='lparen'>(</span><span class='id identifier rubyid_query'>query</span><span class='rparen'>)</span>    
   <span class='ivar'>@interface_filter</span> <span class='op'>||=</span> <span class='id identifier rubyid_query'>query</span><span class='period'>.</span><span class='id identifier rubyid_empty?'>empty?</span> <span class='op'>?</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>.*</span><span class='regexp_end'>/</span></span> <span class='op'>:</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_query'>query</span><span class='embexpr_end'>}</span><span class='regexp_end'>/i</span></span>
@@ -967,20 +982,20 @@
       <pre class="lines">
 
 
-44
-45
-46
 47
 48
-49</pre>
+49
+50
+51
+52</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/pincerna/ip.rb', line 44</span>
+      <pre class="code"><span class="info file"># File 'lib/pincerna/ip.rb', line 47</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_process_results'>process_results</span><span class='lparen'>(</span><span class='id identifier rubyid_results'>results</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_results'>results</span><span class='period'>.</span><span class='id identifier rubyid_collect'>collect</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_result'>result</span><span class='op'>|</span>
     <span class='id identifier rubyid_title'>title</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_result'>result</span><span class='lbracket'>[</span><span class='symbol'>:interface</span><span class='rbracket'>]</span> <span class='op'>?</span> <span class='id identifier rubyid_result'>result</span><span class='lbracket'>[</span><span class='symbol'>:interface</span><span class='rbracket'>]</span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Public</span><span class='tstring_end'>&quot;</span></span><span class='embexpr_end'>}</span><span class='tstring_content'> IP: </span><span class='embexpr_beg'>#{</span><span class='id identifier rubyid_result'>result</span><span class='lbracket'>[</span><span class='symbol'>:address</span><span class='rbracket'>]</span><span class='embexpr_end'>}</span><span class='tstring_end'>&quot;</span></span>
-    <span class='lbrace'>{</span><span class='label'>title:</span> <span class='id identifier rubyid_title'>title</span><span class='comma'>,</span> <span class='label'>arg:</span> <span class='id identifier rubyid_result'>result</span><span class='lbracket'>[</span><span class='symbol'>:address</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>subtitle:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Action this item to copy the IP on the clipboard.</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>icon:</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='op'>::</span><span class='const'>ICON</span><span class='rbrace'>}</span>
+    <span class='lbrace'>{</span><span class='label'>title:</span> <span class='id identifier rubyid_title'>title</span><span class='comma'>,</span> <span class='label'>arg:</span> <span class='id identifier rubyid_result'>result</span><span class='lbracket'>[</span><span class='symbol'>:address</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='label'>subtitle:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Action this item to copy the IP on the clipboard.</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>icon:</span> <span class='const'>ICON</span><span class='rbrace'>}</span>
   <span class='kw'>end</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -993,7 +1008,7 @@
 </div>
 
     <div id="footer">
-  Generated on Sun Aug 11 13:39:45 2013 by
+  Generated on Sun Aug 11 15:37:20 2013 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7 (ruby-2.0.0).
 </div>
