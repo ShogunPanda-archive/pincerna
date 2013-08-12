@@ -34,14 +34,19 @@ The scripts support using [rvm](https://rvm.io/) for loading a new Ruby version.
 
 ### Installation of the gem and the workflow
 
+From the terminal:
+
     gem i pincerna
     pincernad install
 
 ## Uninstallation
 
-    pincernad uninstall
+From the terminal:
+
     pincernad quit
     gem uni pincerna
+
+Then remove the workflow from Alfred settings.
 
 ## Usage
 

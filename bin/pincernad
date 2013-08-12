@@ -11,13 +11,6 @@ case ARGV[0]
   when "install" then
     system("open #{Pincerna::Base::ROOT}/pincerna.alfredworkflow")
     puts "Installation of Pincerna into Alfred completed! Have fun! :)"
-  when "uninstall" then
-    begin
-      FileUtils.rm_rf([Pincerna::Base::WORKFLOW_ROOT, Pincerna::Base::CACHE_ROOT])
-    rescue
-    end
-
-    puts "Pincerna has been correctly removed from Alfred. :("
   when "quit"
     system("curl -s http://localhost:#{13000 + Process.uid}/quit")
   else
