@@ -47,7 +47,7 @@ module Pincerna
 
       # Parse results
       if response["dict"] then
-        translations = response["dict"][0]["entry"].collect {|t| t["word"] }
+        translations = response["dict"][0]["entry"].map {|t| t["word"] }
         {main: translations.shift, alternatives: translations}
       else
         translation = response["sentences"][0]["trans"]

@@ -25,7 +25,7 @@ end
 class SimpleCov::FileList < Array
   def covered_strength
     return 0 if empty? or lines_of_code == 0
-    map {|f| f.covered_strength }.inject(&:+).to_f / size
+    map {|f| f.covered_strength }.reduce(&:+).to_f / size
   end
 end
 

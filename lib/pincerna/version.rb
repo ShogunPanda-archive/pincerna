@@ -16,7 +16,7 @@ module Pincerna
     MINOR = 1
 
     # The patch version.
-    PATCH = 1
+    PATCH = 2
 
     # The current version of pincerna.
     STRING = [MAJOR, MINOR, PATCH].compact.join(".")

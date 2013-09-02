@@ -194,7 +194,7 @@ module Pincerna
       def execute_filtering(matches)
         # Get relevant matches and arguments.
         relevant = self.class::RELEVANT_MATCHES
-        args = relevant.collect {|key, value| value.call(self, matches[key]) }
+        args = relevant.map {|key, value| value.call(self, matches[key]) }
 
         # Now perform the operation
         begin
@@ -210,7 +210,7 @@ module Pincerna
       # @param array [Array] The array to convert.
       # @return [Hash] The converted hash.
       def array_to_hash(array)
-        array.inject({}){ |rv, entry|
+        array.reduce({}){ |rv, entry|
           rv[entry[0]] = entry[1]
           rv
         }
@@ -221,7 +221,7 @@ module Pincerna
       # @param item [Hash] The output item.
       # @return [Array] An array with children and attributes.
       def split_output_item(item)
-        item.partition {|k, _| [:title, :subtitle, :icon].include?(k) }.collect {|a| array_to_hash(a) }
+        item.partition {|k, _| [:title, :subtitle, :icon].include?(k) }.map {|a| array_to_hash(a) }
       end
 
       # Fetches remote JSON resource.

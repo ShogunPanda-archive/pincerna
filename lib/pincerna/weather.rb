@@ -42,7 +42,7 @@ module Pincerna
     # @param results [Array] The items to process.
     # @return [Array] The feedback items.
     def process_results(results)
-      results.collect do |result|
+      results.map do |result|
         # Format results
         current = result[:current]
         forecast = result[:forecast]
@@ -60,7 +60,7 @@ module Pincerna
       if query !~ /^(\d+)$/ then
         Pincerna::Cache.instance.use("woeid:#{query}", Pincerna::Cache::EXPIRATIONS[:long]) do
           response = fetch_remote_resource(URL % CGI.escape(query), {appid: API_KEY, format: :json})
-          response["places"].fetch("place", []).collect { |place| parse_place(place) }
+          response["places"].fetch("place", []).map { |place| parse_place(place) }
         end
       else
         # We already have the woeid. The name will be given by Yahoo!
@@ -77,7 +77,7 @@ module Pincerna
       client = Weatherman::Client.new(unit: scale)
       temperature_unit = "°#{scale.upcase}"
 
-      places.collect do |place|
+      places.map do |place|
         Pincerna::Cache.instance.use("forecast:#{place[:woeid]}", Pincerna::Cache::EXPIRATIONS[:short]) {
           parse_forecast_response(place, client.lookup_by_woeid(place[:woeid]), temperature_unit)
         }
@@ -122,7 +122,7 @@ module Pincerna
       # @param location [Hash] The location data.
       # @return [String] The location name.
       def get_name(location)
-        ["city", "region", "country"].collect { |field| location[field].strip }.reject(&:empty?).join(", ")
+        ["city", "region", "country"].map { |field| location[field].strip }.reject(&:empty?).join(", ")
       end
 
       # Parses a WOEID lookup.
@@ -132,7 +132,7 @@ module Pincerna
       def parse_place(place)
         {
           woeid: place["woeid"],
-          name: ["locality1", "admin3", "admin2", "admin1", "country"].collect { |field| place[field] }.reject(&:empty?).uniq.join(", ")
+          name: ["locality1", "admin3", "admin2", "admin1", "country"].map { |field| place[field] }.reject(&:empty?).uniq.join(", ")
         }
       end
 

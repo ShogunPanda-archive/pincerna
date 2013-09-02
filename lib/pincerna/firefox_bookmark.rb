@@ -55,7 +55,7 @@ module Pincerna
 
       # Builds the paths of the bookmarks.
       def build_paths
-        @bookmarks.collect! do |bookmark|
+        @bookmarks.map! do |bookmark|
           bookmark[:path] = " #{SEPARATOR} #{build_path(bookmark[:path].to_i).reverse.join(" #{SEPARATOR} ")}"
           bookmark
         end

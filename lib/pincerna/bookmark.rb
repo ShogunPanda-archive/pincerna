@@ -34,7 +34,7 @@ module Pincerna
     # @param results [Array] The items to process.
     # @return [Array] The feedback items.
     def process_results(results)
-      results.collect do |result|
+      results.map do |result|
         subtitle = result[:path] ? result[:path].gsub(/^\s\u2192 /, "") : "Action this item to open the URL in the browser ..."
         {title: result[:name], arg: result[:url], subtitle: subtitle, icon: ICON}
       end

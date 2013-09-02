@@ -45,7 +45,7 @@ module Pincerna
     # @param results [Array] The items to process.
     # @return [Array] The feedback items.
     def process_results(results)
-      results.collect do |result|
+      results.map do |result|
         title = "#{result[:connected] ? "Disconnect from" : "Connect to"} #{result[:name]}"
         subtitle = "Action this item to #{result[:connected] ? "disconnect from" : "connect to"} the VPN service."
         arg = "#{result[:connected] ? "disconnect" : "connect"} service \"#{result[:name]}\""
