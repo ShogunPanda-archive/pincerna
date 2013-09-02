@@ -7,13 +7,49 @@
 
 require "pincerna"
 
+helper = "#{ENV["HOME"]}/.rvm/bin/pincernad"
+agent = "#{ENV["HOME"]}/Library/LaunchAgents/it.cowtech.pincernad.plist"
+local_agent = Pincerna::Base::ROOT + "/it.cowtech.pincernad.plist"
+workflow = Pincerna::Base::ROOT + "/pincerna.alfredworkflow"
+
+def perform_commands(commands)
+  commands.each do |cmd|
+    puts("Running: #{cmd}")
+    system(cmd)
+  end
+
+  puts "\n"
+end
+
 case ARGV[0]
   when "install" then
-    system("open #{Pincerna::Base::ROOT}/pincerna.alfredworkflow")
+    perform_commands([
+      "rvm wrapper $(rvm-prompt i v g) --no-prefix pincernad",
+      "cp \"#{local_agent}\" \"#{agent}\"",
+      "launchctl load \"#{agent}\"",
+      "open \"#{workflow}\""
+    ])
+
     puts "Installation of Pincerna into Alfred completed! Have fun! :)"
+  when "uninstall" then
+    perform_commands([
+      "launchctl unload \"#{agent}\"",
+      "rm -rf \"#{agent}\" \"helper\"",
+    ])
+
+    puts "Installation of Pincerna from the system completed! :("
+    puts "Remember to remove the workflow from Alfred's settings."
+    puts "Hope you enjoyed it!"
   when "quit"
     system("curl -s http://localhost:#{13000 + Process.uid}/quit")
   else
     require "goliath"
     require "pincerna/server"
+
+    runner = Goliath::Runner.new(ARGV, nil)
+    runner.api = Pincerna::Server.new
+    runner.port = 13000 + Process.uid
+    runner.log_file = "/var/log/pincerna-#{Process.uid}.log"
+    runner.app = Goliath::Rack::Builder.build(Pincerna::Server, runner.api)
+    runner.run
 end

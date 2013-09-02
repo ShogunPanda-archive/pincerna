@@ -13,10 +13,10 @@ module Pincerna
     MAJOR = 1
 
     # The minor version.
-    MINOR = 0
+    MINOR = 1
 
     # The patch version.
-    PATCH = 5
+    PATCH = 0
 
     # The current version of pincerna.
     STRING = [MAJOR, MINOR, PATCH].compact.join(".")

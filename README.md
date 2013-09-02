@@ -43,7 +43,7 @@ From the terminal:
 
 From the terminal:
 
-    pincernad quit
+    pincernad uninstall
     gem uni pincerna
 
 Then remove the workflow from Alfred settings.
