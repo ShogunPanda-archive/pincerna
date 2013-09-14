@@ -213,3 +213,6 @@ Copyright (C) 2013 and above Shogun (shogun@cowtech.it).
 Licensed under the MIT license, which can be found at http://www.opensource.org/licenses/mit-license.php.
 
 The icons used are by the [Cold Fusion HD set](http://chrisbanks2.deviantart.com/art/Cold-Fusion-HD-Icon-Pack-277808597) by *chrisbanks2*.
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/ShogunPanda/pincerna/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
