@@ -5,6 +5,7 @@
 [![Build Status](https://secure.travis-ci.org/ShogunPanda/pincerna.png?branch=master)](https://travis-ci.org/ShogunPanda/pincerna)
 [![Code Climate](https://codeclimate.com/github/ShogunPanda/pincerna.png)](https://codeclimate.com/github/ShogunPanda/pincerna)
 [![Coverage Status](https://coveralls.io/repos/ShogunPanda/pincerna/badge.png)](https://coveralls.io/r/ShogunPanda/pincerna)
+[![Bitdeli Trend](https://d2weczhvl823v0.cloudfront.net/ShogunPanda/pincerna/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 A bunch of useful Alfred 2 workflows.
 
