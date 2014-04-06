@@ -16,6 +16,7 @@ Gem::Specification.new do |gem|
 
   gem.authors = ["Shogun"]
   gem.email = ["shogun@cowtech.it"]
+  gem.license = "MIT"
 
   gem.files = `git ls-files`.split($\)
   gem.executables = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
