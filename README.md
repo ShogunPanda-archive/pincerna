@@ -9,7 +9,7 @@
 
 A bunch of useful Alfred 2 workflows.
 
-http://sw.cow.tc/pincerna
+http://sw.cowtech.it/pincerna
 
 http://rdoc.info/gems/pincerna
 

@@ -816,7 +816,7 @@
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>For more information, see: https://sw.cow.tc/pincerna.</string>
+	<string>For more information, see: https://sw.cowtech.it/pincerna.</string>
 	<key>uidata</key>
 	<dict>
 		<key>03017D41-A81A-4BC6-843F-C1423A7E0CBE</key>
@@ -956,6 +956,6 @@
 		</dict>
 	</dict>
 	<key>webaddress</key>
-	<string>http://sw.cow.tc/pincerna</string>
+	<string>http://sw.cowtech.it/pincerna</string>
 </dict>
 </plist>

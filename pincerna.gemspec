@@ -9,7 +9,7 @@ require File.expand_path('../lib/pincerna/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.name = "pincerna"
   gem.version = Pincerna::Version::STRING
-  gem.homepage = "http://sw.cow.tc/pincerna"
+  gem.homepage = "http://sw.cowtech.it/pincerna"
   gem.summary = "A bunch of useful Alfred 2 workflows."
   gem.description = "A bunch of useful Alfred 2 workflows."
   gem.rubyforge_project = "pincerna"
