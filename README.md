@@ -4,14 +4,11 @@
 [![Dependency Status](https://gemnasium.com/ShogunPanda/pincerna.png?travis)](https://gemnasium.com/ShogunPanda/pincerna)
 [![Build Status](https://secure.travis-ci.org/ShogunPanda/pincerna.png?branch=master)](https://travis-ci.org/ShogunPanda/pincerna)
 [![Code Climate](https://codeclimate.com/github/ShogunPanda/pincerna.png)](https://codeclimate.com/github/ShogunPanda/pincerna)
-[![Coverage Status](https://coveralls.io/repos/ShogunPanda/pincerna/badge.png)](https://coveralls.io/r/ShogunPanda/pincerna)
-[![Bitdeli Trend](https://d2weczhvl823v0.cloudfront.net/ShogunPanda/pincerna/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+[![Coverage Status](https://coveralls.io/repos/github/ShogunPanda/pincerna/badge.svg?branch=master)](https://coveralls.io/github/ShogunPanda/pincerna?branch=master)
 
 A bunch of useful Alfred 2 workflows.
 
-http://sw.cowtech.it/pincerna
-
-http://rdoc.info/gems/pincerna
+https://sw.cowtech.it/pincerna
 
 ## Installation
 
@@ -197,8 +194,12 @@ Examples:
 
 Actioning on the results will open the bookmark in the browser. Note that this won't use the default browser but the one the bookmarks belongs to.
 
+## API Documentation
+
+The API documentation can be found [here](https://sw.cowtech.it/pincerna/docs).
+
 ## Contributing to pincerna
- 
+
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
 * Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it.
 * Fork the project.

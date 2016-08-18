@@ -1,0 +1,2227 @@
+---
+:cane:
+  :total_violations: 11
+  :violations:
+    :abc_complexity:
+    - :file: lib//pincerna/firefox_bookmark.rb
+      :method: Pincerna::FirefoxBookmark#parse_bookmarks_data
+      :complexity: '17'
+    - :file: lib//pincerna/vpn.rb
+      :method: Pincerna::Vpn#perform_filtering
+      :complexity: '16'
+    :line_style:
+    - :line: lib//pincerna/ip.rb:23
+      :description: Line contains trailing whitespace
+    - :line: lib//pincerna/ip.rb:118
+      :description: Line contains trailing whitespace
+    - :line: lib//pincerna/ip.rb:123
+      :description: Line contains trailing whitespace
+    - :line: lib//pincerna/safari_bookmark.rb:36
+      :description: Line is >160 characters (172)
+    - :line: lib//pincerna/translation.rb:63
+      :description: Line is >160 characters (161)
+    - :line: lib//pincerna/unit_conversion.rb:58
+      :description: Line is >160 characters (216)
+    - :line: lib//pincerna/weather.rb:49
+      :description: Line is >160 characters (227)
+    - :line: lib//pincerna/weather.rb:98
+      :description: Line is >160 characters (175)
+    - :line: lib//pincerna/weather.rb:149
+      :description: Line is >160 characters (163)
+:flay:
+  :total_score: '0'
+  :matches: []
+:flog:
+  :total: 827.5399602328158
+  :average: 8.994999567747998
+  :method_containers:
+  - :name: main
+    :path: ''
+    :total_score: 32.0189006681991
+    :highest_score: 32.0189006681991
+    :average_score: 32.0189006681991
+    :methods:
+      main#none:
+        :operators:
+          :require: 28.700000000000014
+          :branch: 1.1
+          :!: 1.1
+          :define_unit: 2.2
+        :score: 32.0189006681991
+        :path: 
+  - :name: Pincerna::FirefoxBookmark
+    :path: lib/pincerna/firefox_bookmark.rb
+    :total_score: 64.3042195644311
+    :highest_score: 24.253659517689286
+    :average_score: 9.186317080633014
+    :methods:
+      Pincerna::FirefoxBookmark#parse_bookmarks_data:
+        :operators:
+          :assignment: 3.4000000000000004
+          :new: 1.0
+          :skip_until: 1.0
+          :branch: 3.2
+          :last: 2.7
+          :exist?: 1.1
+          :scan_until: 2.8000000000000003
+          :strip: 2.4000000000000004
+          :==: 1.2000000000000002
+          :split: 3.2
+          :lit_fixnum: 0.8
+          :restrict_array: 2.8000000000000003
+          :add_bookmark: 1.2000000000000002
+          :eos?: 1.3
+          :!: 1.1
+          :add_folder: 1.2000000000000002
+        :score: 24.253659517689286
+        :path: lib/pincerna/firefox_bookmark.rb:38
+      Pincerna::FirefoxBookmark#read_bookmarks:
+        :operators:
+          :assignment: 3.2
+          :glob: 1.2
+          :first: 1.0
+          :join: 1.2
+          :execute_command: 1.0
+          :branch: 2.0
+          :empty?: 1.3
+          :!: 1.1
+          :parse_bookmarks_data: 1.2000000000000002
+          :build_paths: 1.2000000000000002
+        :score: 9.943842315724842
+        :path: lib/pincerna/firefox_bookmark.rb:23
+      Pincerna::FirefoxBookmark#build_paths:
+        :operators:
+          :branch: 1.0
+          :map!: 1.0
+          :assignment: 1.2000000000000002
+          :[]: 2.0
+          :to_i: 1.8
+          :build_path: 1.6
+          :reverse: 1.4000000000000001
+          :join: 1.2000000000000002
+        :score: 9.134549797335389
+        :path: lib/pincerna/firefox_bookmark.rb:57
+      Pincerna::FirefoxBookmark#build_path:
+        :operators:
+          :assignment: 1.0
+          :[]: 4.0
+          :branch: 1.0
+          :lit_fixnum: 0.475
+          :build_path: 1.5
+          :compact: 1.3
+          :+: 1.1
+        :score: 8.493563739679594
+        :path: lib/pincerna/firefox_bookmark.rb:68
+      Pincerna::FirefoxBookmark#restrict_array:
+        :operators:
+          :branch: 1.0
+          :length: 1.3
+          :>: 1.1
+          :assignment: 1.1
+          :shift: 1.1
+          :[]: 1.1
+        :score: 4.8342527861087286
+        :path: lib/pincerna/firefox_bookmark.rb:87
+      Pincerna::FirefoxBookmark#add_folder:
+        :operators:
+          :branch: 1.0
+          :empty?: 1.2
+          :!: 1.0
+          :assignment: 1.1
+          :to_i: 2.2
+        :score: 4.644351407893249
+        :path: lib/pincerna/firefox_bookmark.rb:78
+      Pincerna::FirefoxBookmark#none:
+        :operators:
+          :+: 1.0
+          :expand_path: 1.0
+          :private: 1.0
+        :score: 3.0
+        :path: 
+  - :name: Pincerna::Ip
+    :path: lib/pincerna/ip.rb
+    :total_score: 81.08753534641748
+    :highest_score: 23.124229716900846
+    :average_score: 10.135941918302185
+    :methods:
+      Pincerna::Ip#perform_filtering:
+        :operators:
+          :assignment: 6.9
+          :branch: 5.4
+          :empty?: 1.0
+          :get_local_addresses: 1.0
+          :sort!: 1.0
+          :[]: 8.8
+          :<=>: 1.2000000000000002
+          :==: 2.4000000000000004
+          :compare_ip_classes: 1.3000000000000003
+          :compare_ip_addresses: 1.3000000000000003
+          :match: 1.0
+          :get_public_address: 1.3
+          :insert: 1.1
+        :score: 23.124229716900846
+        :path: lib/pincerna/ip.rb:23
+      Pincerna::Ip#get_local_addresses:
+        :operators:
+          :assignment: 6.6000000000000005
+          :get_interfaces_names: 1.0
+          :execute_command: 1.2
+          :split: 1.0
+          :shift: 1.0
+          :branch: 4.6000000000000005
+          :lit_fixnum: 0.3
+          :each_slice: 1.0
+          :gsub: 1.2000000000000002
+          :[]: 2.5000000000000004
+          :match: 1.4000000000000001
+          :!: 1.2000000000000002
+          :new: 1.2000000000000002
+          :scan_until: 1.3000000000000003
+          :scan: 1.5000000000000002
+          :<<: 1.3000000000000003
+        :score: 18.897883479374087
+        :path: lib/pincerna/ip.rb:57
+      Pincerna::Ip#get_interfaces_names:
+        :operators:
+          :assignment: 9.800000000000002
+          :execute_command: 1.2
+          :split: 1.0
+          :shift: 1.0
+          :branch: 6.000000000000001
+          :each: 1.0
+          :new: 1.2000000000000002
+          :scan_until: 5.900000000000001
+          :strip: 2.900000000000001
+        :score: 18.26690997404871
+        :path: lib/pincerna/ip.rb:113
+      Pincerna::Ip#compare_ip_addresses:
+        :operators:
+          :assignment: 3.1
+          :branch: 3.4
+          :include?: 2.4
+          :lit_fixnum: 0.65
+          :<=>: 2.1
+          :==: 1.0
+        :score: 7.680657523936346
+        :path: lib/pincerna/ip.rb:103
+      Pincerna::Ip#process_results:
+        :operators:
+          :branch: 2.2
+          :map: 1.0
+          :assignment: 1.2000000000000002
+          :[]: 4.9
+        :score: 6.410148204214939
+        :path: lib/pincerna/ip.rb:47
+      Pincerna::Ip#compare_ip_classes:
+        :operators:
+          :branch: 2.4
+          :index: 2.4
+          :lit_fixnum: 0.65
+          :<=>: 1.0
+        :score: 4.707706447942565
+        :path: lib/pincerna/ip.rb:94
+      Pincerna::Ip#get_public_address:
+        :operators:
+          :fetch_remote_resource: 1.0
+        :score: 1.0
+        :path: lib/pincerna/ip.rb:85
+      Pincerna::Ip#none:
+        :operators:
+          :+: 1.0
+        :score: 1.0
+        :path: 
+  - :name: Pincerna::Base
+    :path: lib/pincerna/base.rb
+    :total_score: 105.26686959112062
+    :highest_score: 22.566125055046566
+    :average_score: 7.017791306074709
+    :methods:
+      Pincerna::Base#output_feedback:
+        :operators:
+          :branch: 8.700000000000001
+          :format: 1.2
+          :==: 1.0
+          :assignment: 7.300000000000001
+          :new: 1.3
+          :items: 1.4000000000000001
+          :each: 3.3000000000000007
+          :split_output_item: 1.7000000000000004
+          :item: 1.7000000000000004
+          :send: 5.700000000000002
+          :to_xml: 1.1
+          :to_yaml: 1.1
+        :score: 22.566125055046566
+        :path: lib/pincerna/base.rb:143
+      Pincerna::Base#filter:
+        :operators:
+          :assignment: 2.2
+          :class: 1.2
+          :match: 1.0
+          :branch: 3.5000000000000004
+          :execute_filtering: 1.2000000000000002
+          :empty?: 1.4000000000000001
+          :!: 1.2000000000000002
+          :process_results: 1.5000000000000002
+          :each: 1.3000000000000003
+          :add_feedback_item: 1.4000000000000004
+          :output_feedback: 1.0
+        :score: 11.938592881910331
+        :path: lib/pincerna/base.rb:104
+      Pincerna::Base#initialize:
+        :operators:
+          :assignment: 10.8
+          :strip: 1.2
+          :gsub: 1.0
+          :branch: 1.0
+        :score: 11.067068265805538
+        :path: lib/pincerna/base.rb:85
+      Pincerna::Base#execute_filtering:
+        :operators:
+          :assignment: 3.1
+          :class: 1.0
+          :branch: 3.1
+          :map: 1.0
+          :[]: 1.3
+          :call: 1.1
+          :perform_filtering: 1.1
+          :debug_mode: 1.3
+          :==: 1.1
+          :raise: 1.2000000000000002
+        :score: 10.100990050485152
+        :path: lib/pincerna/base.rb:194
+      Pincerna::Base#none:
+        :operators:
+          :branch: 1.0
+          :lambda: 1.0
+          :dirname: 1.4
+          :+: 1.2
+          :expand_path: 3.0
+          :attr_reader: 1.0
+          :protected: 1.0
+        :score: 8.657944328765344
+        :path: 
+      Pincerna::Base#round_float:
+        :operators:
+          :assignment: 2.0
+          :lit_fixnum: 0.55
+          :**: 1.0
+          :*: 1.5999999999999999
+          :round: 1.4
+          :to_f: 1.2
+          :/: 1.0
+        :score: 7.0400639201643616
+        :path: lib/pincerna/base.rb:166
+      Pincerna::Base#fetch_remote_resource:
+        :operators:
+          :assignment: 4.1
+          :branch: 2.0
+          :lit_fixnum: 0.39999999999999997
+          :new: 1.4
+          :get: 1.2
+          :response: 1.0
+          :load: 1.1
+        :score: 6.8425141578224
+        :path: lib/pincerna/base.rb:233
+      Pincerna::Base#split_output_item:
+        :operators:
+          :branch: 2.2
+          :partition: 1.2
+          :include?: 1.3
+          :map: 1.0
+          :array_to_hash: 1.1
+        :score: 5.0990195135927845
+        :path: lib/pincerna/base.rb:223
+      Pincerna::Base#debug_mode:
+        :operators:
+          :assignment: 1.0
+          :branch: 2.0
+          :[]: 1.1
+          :nil?: 1.2
+          :!: 1.0
+          :to_sym: 1.1
+        :score: 4.935585071701227
+        :path: lib/pincerna/base.rb:253
+      Pincerna::Base#format_float:
+        :operators:
+          :assignment: 3.0
+          :lit_fixnum: 0.25
+          :round_float: 1.0
+          :%: 1.0
+          :gsub: 1.0
+        :score: 4.422951503238533
+        :path: lib/pincerna/base.rb:176
+      Pincerna::Base#array_to_hash:
+        :operators:
+          :branch: 1.0
+          :reduce: 1.0
+          :assignment: 1.2000000000000002
+          :[]: 2.4000000000000004
+          :lit_fixnum: 0.35000000000000003
+        :score: 4.062326919389921
+        :path: lib/pincerna/base.rb:212
+      Pincerna::Base#execute_command:
+        :operators:
+          :assignment: 2.1
+          :branch: 1.0
+          :popen: 1.0
+          :read: 1.1
+        :score: 3.1336879231984796
+        :path: lib/pincerna/base.rb:244
+      Pincerna::Base#perform_filtering:
+        :operators:
+          :new: 1.2
+          :raise: 1.0
+        :score: 2.2
+        :path: lib/pincerna/base.rb:123
+      Pincerna::Base#process_results:
+        :operators:
+          :new: 1.2
+          :raise: 1.0
+        :score: 2.2
+        :path: lib/pincerna/base.rb:131
+      Pincerna::Base#add_feedback_item:
+        :operators:
+          :<<: 1.0
+        :score: 1.0
+        :path: lib/pincerna/base.rb:138
+  - :name: Pincerna::Translation
+    :path: lib/pincerna/translation.rb
+    :total_score: 36.53429618375619
+    :highest_score: 22.4922764521513
+    :average_score: 12.17809872791873
+    :methods:
+      Pincerna::Translation#perform_filtering:
+        :operators:
+          :branch: 5.4
+          :!: 1.0
+          :assignment: 5.800000000000001
+          :instance: 1.2
+          :[]: 12.5
+          :use: 1.0
+          :lit_fixnum: 0.65
+          :fetch_remote_resource: 1.1
+          :map: 1.2000000000000002
+          :shift: 1.2000000000000002
+          :!=: 1.2000000000000002
+        :score: 22.4922764521513
+        :path: lib/pincerna/translation.rb:32
+      Pincerna::Translation#none:
+        :operators:
+          :branch: 4.1
+          :lambda: 3.0
+          :downcase: 2.3000000000000003
+          :strip: 1.1
+          :+: 1.0
+        :score: 8.459905436823748
+        :path: 
+      Pincerna::Translation#process_results:
+        :operators:
+          :assignment: 1.0
+          :branch: 1.0
+          :[]: 4.3
+          :join: 1.1
+        :score: 5.582114294781145
+        :path: lib/pincerna/translation.rb:57
+  - :name: Pincerna::Vpn
+    :path: lib/pincerna/vpn.rb
+    :total_score: 38.860581032743994
+    :highest_score: 21.943563976710802
+    :average_score: 7.772116206548799
+    :methods:
+      Pincerna::Vpn#perform_filtering:
+        :operators:
+          :assignment: 4.6000000000000005
+          :branch: 6.000000000000001
+          :empty?: 1.0
+          :execute_command: 1.4
+          :split: 1.2
+          :each: 1.0
+          :new: 1.2000000000000002
+          :scan_until: 5.800000000000002
+          :strip: 1.4000000000000004
+          :match: 1.6000000000000003
+          :!: 1.4000000000000004
+          :is_vpn_service?: 1.4000000000000004
+          :vpn_connected?: 1.7000000000000004
+          :<<: 1.5000000000000004
+        :score: 21.943563976710802
+        :path: lib/pincerna/vpn.rb:20
+      Pincerna::Vpn#process_results:
+        :operators:
+          :branch: 4.6000000000000005
+          :map: 1.0
+          :assignment: 3.6000000000000005
+          :[]: 6.000000000000001
+        :score: 9.117017056033186
+        :path: lib/pincerna/vpn.rb:47
+      Pincerna::Vpn#vpn_connected?:
+        :operators:
+          :execute_command: 1.4
+          :strip: 1.2
+          :==: 1.0
+        :score: 3.5999999999999996
+        :path: lib/pincerna/vpn.rb:61
+      Pincerna::Vpn#is_vpn_service?:
+        :operators:
+          :gsub: 1.2
+          :include?: 1.0
+        :score: 2.2
+        :path: lib/pincerna/vpn.rb:70
+      Pincerna::Vpn#none:
+        :operators:
+          :+: 1.0
+          :private: 1.0
+        :score: 2.0
+        :path: 
+  - :name: Pincerna::Bookmark
+    :path: lib/pincerna/bookmark.rb
+    :total_score: 54.5437235289187
+    :highest_score: 21.69631305083885
+    :average_score: 9.090620588153117
+    :methods:
+      Pincerna::Bookmark#filter_and_sort:
+        :operators:
+          :assignment: 5.000000000000001
+          :branch: 5.800000000000001
+          :empty?: 1.3
+          :!: 1.1
+          :downcase: 1.4000000000000001
+          :escape: 1.2000000000000002
+          :select: 1.2000000000000002
+          :[]: 7.700000000000002
+          :=~: 1.3000000000000003
+          :sort: 1.1
+          :<=>: 2.7000000000000006
+          :==: 1.3000000000000003
+        :score: 21.69631305083885
+        :path: lib/pincerna/bookmark.rb:53
+      Pincerna::Bookmark#add_bookmark:
+        :operators:
+          :branch: 6.100000000000001
+          :empty?: 3.2000000000000006
+          :!: 2.8000000000000007
+          :<<: 1.2000000000000002
+        :score: 9.436630754670865
+        :path: lib/pincerna/bookmark.rb:72
+      Pincerna::Bookmark#perform_filtering:
+        :operators:
+          :branch: 1.1
+          :instance: 1.3
+          :class: 1.5
+          :to_s: 1.3
+          :[]: 1.3
+          :use: 1.1
+          :assignment: 1.3000000000000003
+          :read_bookmarks: 1.3000000000000003
+          :filter_and_sort: 1.3000000000000003
+        :score: 9.257969539807313
+        :path: lib/pincerna/bookmark.rb:23
+      Pincerna::Bookmark#process_results:
+        :operators:
+          :branch: 2.4000000000000004
+          :map: 1.1
+          :assignment: 1.3000000000000003
+          :[]: 5.500000000000002
+          :gsub: 1.4000000000000004
+        :score: 8.452810183601667
+        :path: lib/pincerna/bookmark.rb:36
+      Pincerna::Bookmark#none:
+        :operators:
+          :+: 1.1
+          :private: 1.1
+          :protected: 1.1
+        :score: 3.3000000000000003
+        :path: 
+      Pincerna::Bookmark#read_bookmarks:
+        :operators:
+          :new: 1.3
+          :raise: 1.1
+        :score: 2.4000000000000004
+        :path: lib/pincerna/bookmark.rb:44
+  - :name: Pincerna::Weather
+    :path: lib/pincerna/weather.rb
+    :total_score: 145.67275153821086
+    :highest_score: 21.52672757294986
+    :average_score: 12.139395961517572
+    :methods:
+      Pincerna::Weather#process_results:
+        :operators:
+          :branch: 1.0
+          :map: 1.0
+          :assignment: 3.6000000000000005
+          :[]: 17.599999999999998
+          :downcase: 1.4000000000000001
+          :capitalize: 1.2000000000000002
+        :score: 21.52672757294986
+        :path: lib/pincerna/weather.rb:41
+      Pincerna::Weather#download_image:
+        :operators:
+          :assignment: 1.0
+          :parse: 1.5999999999999999
+          :path: 1.4
+          :basename: 1.2
+          :+: 2.4000000000000004
+          :branch: 2.2
+          :exists?: 1.2
+          :!: 1.0
+          :mkdir_p: 1.2000000000000002
+          :open: 2.9000000000000004
+          :read: 1.5000000000000002
+          :write: 1.3000000000000003
+        :score: 15.884898488816352
+        :path: lib/pincerna/weather.rb:104
+      Pincerna::Weather#get_wind_direction:
+        :operators:
+          :branch: 1.0
+          :<: 1.0
+          :assignment: 4.1
+          :lit_fixnum: 0.625
+          :+: 1.1
+          :%: 2.0
+          :to_f: 1.9999999999999998
+          :/: 1.7999999999999998
+          :-: 1.5999999999999999
+          :ceil: 1.4
+          :to_i: 1.2
+          :count: 1.2
+          :[]: 1.0
+        :score: 15.510178109873527
+        :path: lib/pincerna/weather.rb:88
+      Pincerna::Weather#lookup_places:
+        :operators:
+          :branch: 3.4000000000000004
+          :instance: 1.3
+          :[]: 3.0
+          :use: 1.1
+          :assignment: 1.3000000000000003
+          :escape: 1.7000000000000002
+          :%: 1.5000000000000002
+          :fetch_remote_resource: 1.3000000000000003
+          :fetch: 1.5000000000000002
+          :map: 1.3000000000000003
+          :parse_place: 1.4000000000000004
+        :score: 14.562280041257278
+        :path: lib/pincerna/weather.rb:56
+      Pincerna::Weather#parse_forecast_response:
+        :operators:
+          :assignment: 3.0
+          :extract_forecast_media: 1.0
+          :location: 1.2
+          :get_name: 1.0
+          :download_image: 1.2
+          :condition: 1.2
+          :forecasts: 1.4
+          :first: 1.2
+          :wind: 1.2
+          :units: 1.4
+          :[]: 1.2
+          :format_forecast: 1.0
+        :score: 13.341664064126332
+        :path: lib/pincerna/weather.rb:142
+      Pincerna::Weather#get_forecast:
+        :operators:
+          :assignment: 3.0
+          :new: 1.0
+          :upcase: 1.0
+          :branch: 2.1
+          :map: 1.0
+          :instance: 1.3
+          :[]: 4.2
+          :use: 1.1
+          :lookup_by_woeid: 1.4000000000000001
+          :parse_forecast_response: 1.2000000000000002
+        :score: 12.737739202856996
+        :path: lib/pincerna/weather.rb:73
+      Pincerna::Weather#parse_place:
+        :operators:
+          :[]: 2.7
+          :branch: 1.5999999999999999
+          :map: 1.5999999999999999
+          :block_pass: 1.5999999999999999
+          :to_proc_normal: 1.5999999999999999
+          :reject: 1.4
+          :uniq: 1.2
+          :join: 1.0
+        :score: 11.214722466472363
+        :path: lib/pincerna/weather.rb:129
+      Pincerna::Weather#format_forecast:
+        :operators:
+          :[]: 8.6
+          :get_wind_direction: 1.2
+          :merge: 1.0
+        :score: 10.799999999999999
+        :path: lib/pincerna/weather.rb:160
+      Pincerna::Weather#get_name:
+        :operators:
+          :branch: 1.4
+          :map: 1.4
+          :[]: 1.7
+          :strip: 1.5
+          :block_pass: 1.4
+          :to_proc_normal: 1.4
+          :reject: 1.2
+          :join: 1.0
+        :score: 9.701546268507922
+        :path: lib/pincerna/weather.rb:121
+      Pincerna::Weather#extract_forecast_media:
+        :operators:
+          :description_image: 1.2
+          :attr: 1.0
+          :document_root: 1.5999999999999999
+          :at_xpath: 1.4
+          :content: 1.2
+          :to_s: 1.0
+        :score: 7.3999999999999995
+        :path: lib/pincerna/weather.rb:181
+      Pincerna::Weather#none:
+        :operators:
+          :branch: 3.1
+          :lambda: 2.0
+          :nil?: 1.1
+          :downcase: 1.2000000000000002
+          :+: 1.0
+          :private: 1.0
+        :score: 7.021395872616784
+        :path: 
+      Pincerna::Weather#perform_filtering:
+        :operators:
+          :assignment: 1.0
+          :lookup_places: 1.0
+          :branch: 2.1
+          :empty?: 2.3
+          :!: 1.0
+          :get_forecast: 1.2000000000000002
+        :score: 5.9715994507334464
+        :path: lib/pincerna/weather.rb:32
+  - :name: Pincerna::CurrencyConversion
+    :path: lib/pincerna/currency_conversion.rb
+    :total_score: 45.47327293200843
+    :highest_score: 21.446678064446253
+    :average_score: 11.368318233002107
+    :methods:
+      Pincerna::CurrencyConversion#process_results:
+        :operators:
+          :assignment: 1.0
+          :[]: 12.099999999999998
+          :format_float: 4.9
+          :%: 2.3
+          :branch: 1.0
+          :<<: 1.1
+          :class: 1.0
+        :score: 21.446678064446253
+        :path: lib/pincerna/currency_conversion.rb:110
+      Pincerna::CurrencyConversion#none:
+        :operators:
+          :branch: 4.0
+          :lambda: 4.0
+          :gsub: 1.5
+          :to_f: 1.3
+          :round_float: 1.1
+          :upcase: 2.2
+          :nil?: 1.3
+          :!: 1.1
+          :+: 1.0
+          :private: 1.0
+        :score: 15.041608956491325
+        :path: 
+      Pincerna::CurrencyConversion#perform_filtering:
+        :operators:
+          :assignment: 3.0
+          :replace_symbol: 2.0
+          :fetch_remote_resource: 1.0
+          :[]: 2.4
+          :round_float: 2.0
+        :score: 7.984985911070852
+        :path: lib/pincerna/currency_conversion.rb:99
+      Pincerna::CurrencyConversion#replace_symbol:
+        :operators:
+          :fetch: 1.0
+        :score: 1.0
+        :path: lib/pincerna/currency_conversion.rb:122
+  - :name: Pincerna::UnitConversion
+    :path: lib/pincerna/unit_conversion.rb
+    :total_score: 68.36081633029954
+    :highest_score: 18.951665494093128
+    :average_score: 11.393469388383258
+    :methods:
+      Pincerna::UnitConversion#format_value:
+        :operators:
+          :assignment: 8.8
+          :lit_fixnum: 0.275
+          :scalar: 1.5
+          :to_f: 1.3
+          :round_float: 1.1
+          :branch: 6.500000000000002
+          :!=: 1.1
+          :units: 1.3000000000000003
+          :==: 2.8000000000000007
+          :to_i: 1.6000000000000003
+          :to_s: 1.7000000000000002
+          :gsub: 2.8000000000000007
+        :score: 18.951665494093128
+        :path: lib/pincerna/unit_conversion.rb:89
+      Pincerna::UnitConversion#none:
+        :operators:
+          :branch: 5.5
+          :lambda: 5.5
+          :gsub: 1.6
+          :to_f: 1.4000000000000001
+          :round_float: 1.2000000000000002
+          :nil?: 2.8000000000000003
+          :!: 2.4000000000000004
+          :+: 1.1
+        :score: 16.91892431568863
+        :path: 
+      Pincerna::UnitConversion#process_results:
+        :operators:
+          :assignment: 2.2
+          :[]: 9.3
+          :format_value: 6.100000000000001
+          :branch: 1.1
+          :<<: 1.2000000000000002
+        :score: 16.781239525136396
+        :path: lib/pincerna/unit_conversion.rb:56
+      Pincerna::UnitConversion#perform_filtering:
+        :operators:
+          :assignment: 3.3000000000000003
+          :check_temperature: 2.2
+          :convert_value: 4.700000000000001
+          :branch: 1.1
+          :lit_fixnum: 0.7000000000000001
+        :score: 8.358229477586747
+        :path: lib/pincerna/unit_conversion.rb:45
+      Pincerna::UnitConversion#check_temperature:
+        :operators:
+          :assignment: 1.1
+          :gsub: 1.1
+          :branch: 1.1
+          :upcase: 2.5
+          :match: 1.1
+        :score: 4.950757517794626
+        :path: lib/pincerna/unit_conversion.rb:68
+      Pincerna::UnitConversion#convert_value:
+        :operators:
+          :new: 1.3
+          :convert_to: 1.1
+        :score: 2.4000000000000004
+        :path: lib/pincerna/unit_conversion.rb:79
+  - :name: Pincerna::Server
+    :path: lib/pincerna/server.rb
+    :total_score: 40.4376354672033
+    :highest_score: 17.068996016169205
+    :average_score: 8.08752709344066
+    :methods:
+      Pincerna::Server#response:
+        :operators:
+          :branch: 6.100000000000001
+          :assignment: 2.3000000000000003
+          :[]: 1.4000000000000001
+          :gsub: 1.2000000000000002
+          :handle_stop: 1.4000000000000004
+          :handle_install: 1.4000000000000004
+          :handle_uninstall: 1.4000000000000004
+          :params: 1.5000000000000002
+          :handle_request: 1.3000000000000003
+          :lit_fixnum: 0.275
+          :class: 1.3
+          :to_s: 1.1
+          :message: 1.1
+          :backtrace: 1.3
+          :join: 1.1
+        :score: 17.068996016169205
+        :path: lib/pincerna/server.rb:63
+      Pincerna::Server#handle_request:
+        :operators:
+          :enqueue_request: 1.0
+          :assignment: 1.0
+          :branch: 4.6
+          :perform_request?: 1.0
+          :[]: 4.2
+          :strip: 1.3
+          :execute!: 1.1
+          :lit_fixnum: 0.8750000000000001
+          :format_content_type: 1.1
+          :output: 1.1
+          :nil?: 1.1
+        :score: 13.614720893209672
+        :path: lib/pincerna/server.rb:38
+      Pincerna::Server#none:
+        :operators:
+          :use: 3.0
+          :private: 1.0
+        :score: 4.0
+        :path: 
+      Pincerna::Server#stop_server:
+        :operators:
+          :instance: 1.2
+          :destroy: 1.0
+          :stop: 1.0
+        :score: 3.2
+        :path: lib/pincerna/server.rb:80
+      Pincerna::Server#handle_stop:
+        :operators:
+          :branch: 1.0
+          :add_timer: 1.0
+          :stop_server: 1.1
+          :lit_fixnum: 0.25
+        :score: 2.553918557824427
+        :path: lib/pincerna/server.rb:54
+  - :name: Pincerna::Cache
+    :path: lib/pincerna/cache.rb
+    :total_score: 28.431915886645363
+    :highest_score: 14.352700094407325
+    :average_score: 5.6863831773290725
+    :methods:
+      Pincerna::Cache#use:
+        :operators:
+          :assignment: 3.4000000000000004
+          :[]: 3.4
+          :branch: 2.0
+          :!: 1.1
+          :now: 3.1
+          :to_f: 2.7
+          :>: 1.1
+          :yield: 1.2000000000000002
+          :+: 1.2000000000000002
+        :score: 14.352700094407325
+        :path: lib/pincerna/cache.rb:49
+      Pincerna::Cache#initialize:
+        :operators:
+          :dirname: 1.2
+          :mkdir_p: 1.0
+          :assignment: 2.0
+          :new: 1.0
+          :branch: 1.0
+          :lit_fixnum: 0.3
+          :add_periodic_timer: 1.0
+          :instance: 1.3
+          :flush: 1.1
+        :score: 7.253275122315436
+        :path: lib/pincerna/cache.rb:27
+      Pincerna::Cache#none:
+        :operators:
+          :lit_fixnum: 0.5
+          :+: 1.0
+          :attr_reader: 1.0
+        :score: 2.5
+        :path: 
+      Pincerna::Cache#destroy:
+        :operators:
+          :cancel: 1.0
+          :branch: 1.0
+          :close: 1.1
+        :score: 2.3259406699226015
+        :path: lib/pincerna/cache.rb:34
+      Pincerna::Cache#flush:
+        :operators:
+          :flush: 1.0
+          :compact: 1.0
+        :score: 2.0
+        :path: lib/pincerna/cache.rb:40
+  - :name: Pincerna::SafariBookmark
+    :path: lib/pincerna/safari_bookmark.rb
+    :total_score: 26.230025415457586
+    :highest_score: 14.127278577277366
+    :average_score: 8.743341805152529
+    :methods:
+      Pincerna::SafariBookmark#scan_folder:
+        :operators:
+          :assignment: 1.0
+          :[]: 8.200000000000001
+          :+: 1.0
+          :branch: 3.3000000000000003
+          :each: 1.0
+          :==: 1.1
+          :add_bookmark: 1.2000000000000002
+          :scan_folder: 1.2000000000000002
+        :score: 14.127278577277366
+        :path: lib/pincerna/safari_bookmark.rb:32
+      Pincerna::SafariBookmark#read_bookmarks:
+        :operators:
+          :assignment: 1.0
+          :execute_command: 1.0
+          :branch: 3.1
+          :empty?: 1.3
+          :!: 1.1
+          :parse_xml: 1.5
+          :[]: 1.3
+          :each: 1.1
+          :scan_folder: 1.2000000000000002
+        :score: 9.10274683818022
+        :path: lib/pincerna/safari_bookmark.rb:17
+      Pincerna::SafariBookmark#none:
+        :operators:
+          :+: 1.0
+          :expand_path: 1.0
+          :private: 1.0
+        :score: 3.0
+        :path: 
+  - :name: Pincerna::ChromeBookmark
+    :path: lib/pincerna/chrome_bookmark.rb
+    :total_score: 23.92621142169164
+    :highest_score: 12.223338332877807
+    :average_score: 7.975403807230546
+    :methods:
+      Pincerna::ChromeBookmark#scan_folder:
+        :operators:
+          :assignment: 1.0
+          :[]: 6.500000000000001
+          :+: 1.0
+          :branch: 2.1
+          :each: 1.0
+          :==: 1.1
+          :add_bookmark: 1.2000000000000002
+          :scan_folder: 1.2000000000000002
+        :score: 12.223338332877807
+        :path: lib/pincerna/chrome_bookmark.rb:32
+      Pincerna::ChromeBookmark#read_bookmarks:
+        :operators:
+          :assignment: 1.0
+          :branch: 4.300000000000001
+          :read: 1.1
+          :load: 1.5
+          :[]: 1.3
+          :each: 1.1
+          :is_a?: 1.2000000000000002
+          :scan_folder: 1.3000000000000003
+        :score: 8.702873088813831
+        :path: lib/pincerna/chrome_bookmark.rb:17
+      Pincerna::ChromeBookmark#none:
+        :operators:
+          :+: 1.0
+          :expand_path: 1.0
+          :private: 1.0
+        :score: 3.0
+        :path: 
+  - :name: Pincerna::Base::execute!
+    :path: lib/pincerna/base.rb
+    :total_score: 11.089634800118533
+    :highest_score: 11.089634800118533
+    :average_score: 11.089634800118533
+    :methods:
+      Pincerna::Base::execute!:
+        :operators:
+          :assignment: 5.2
+          :branch: 4.5
+          :catch: 1.0
+          :each: 1.2000000000000002
+          :=~: 1.3000000000000003
+          :throw: 1.4000000000000004
+          :find_class: 1.4000000000000001
+          :new: 1.2000000000000002
+          :filter: 1.2000000000000002
+        :score: 11.089634800118533
+        :path: lib/pincerna/base.rb:61
+  - :name: Pincerna::Server::enqueue_request
+    :path: lib/pincerna/server.rb
+    :total_score: 5.688585061331157
+    :highest_score: 5.688585061331157
+    :average_score: 5.688585061331157
+    :methods:
+      Pincerna::Server::enqueue_request:
+        :operators:
+          :assignment: 1.0
+          :new: 1.0
+          :now: 1.4
+          :to_f: 1.2
+          :<<: 1.0
+          :sleep: 1.0
+        :score: 5.688585061331157
+        :path: lib/pincerna/server.rb:19
+  - :name: Pincerna::Base::find_class
+    :path: lib/pincerna/base.rb
+    :total_score: 5.044799302251775
+    :highest_score: 5.044799302251775
+    :average_score: 5.044799302251775
+    :methods:
+      Pincerna::Base::find_class:
+        :operators:
+          :branch: 1.2
+          :capitalize: 1.4
+          :gsub: 1.2
+          :upcase: 1.3
+          :const_get: 1.0
+        :score: 5.044799302251775
+        :path: lib/pincerna/base.rb:186
+  - :name: Pincerna::UnitConversion::define_unit
+    :path: lib/pincerna/unit_conversion.rb
+    :total_score: 3.7054014627297813
+    :highest_score: 3.7054014627297813
+    :average_score: 3.7054014627297813
+    :methods:
+      Pincerna::UnitConversion::define_unit:
+        :operators:
+          :branch: 1.1
+          :define: 1.1
+          :assignment: 2.6000000000000005
+          :new: 1.3000000000000003
+        :score: 3.7054014627297813
+        :path: lib/pincerna/unit_conversion.rb:30
+  - :name: Pincerna::Map
+    :path: lib/pincerna/map.rb
+    :total_score: 4.498571136907181
+    :highest_score: 3.4985711369071804
+    :average_score: 2.2492855684535904
+    :methods:
+      Pincerna::Map#process_results:
+        :operators:
+          :assignment: 1.0
+          :branch: 1.0
+          :[]: 2.2
+          :escape: 1.0
+        :score: 3.4985711369071804
+        :path: lib/pincerna/map.rb:25
+      Pincerna::Map#none:
+        :operators:
+          :+: 1.0
+        :score: 1.0
+        :path: 
+  - :name: Pincerna::Version
+    :path: ''
+    :total_score: 2.95
+    :highest_score: 2.95
+    :average_score: 2.95
+    :methods:
+      Pincerna::Version#none:
+        :operators:
+          :lit_fixnum: 0.75
+          :compact: 1.2
+          :join: 1.0
+        :score: 2.95
+        :path: 
+  - :name: Pincerna::Server::perform_request?
+    :path: lib/pincerna/server.rb
+    :total_score: 2.0
+    :highest_score: 2.0
+    :average_score: 2.0
+    :methods:
+      Pincerna::Server::perform_request?:
+        :operators:
+          :pop: 1.0
+          :empty?: 1.0
+        :score: 2.0
+        :path: lib/pincerna/server.rb:28
+  - :name: Pincerna::Cache::instance
+    :path: lib/pincerna/cache.rb
+    :total_score: 1.4142135623730951
+    :highest_score: 1.4142135623730951
+    :average_score: 1.4142135623730951
+    :methods:
+      Pincerna::Cache::instance:
+        :operators:
+          :assignment: 1.0
+          :new: 1.0
+        :score: 1.4142135623730951
+        :path: lib/pincerna/cache.rb:22
+:reek:
+  :matches:
+  - :file_path: lib/pincerna/base.rb
+    :code_smells:
+    - :method: Pincerna::Base#debug_mode
+      :message: performs a nil-check.
+      :type: NilCheck
+    - :method: Pincerna::Base#output_feedback
+      :message: contains iterators nested 5 deep
+      :type: NestedIterators
+    - :method: Pincerna::Base#perform_filtering
+      :message: has unused parameter '*args'
+      :type: UnusedParameters
+    - :method: Pincerna::Base#process_results
+      :message: has unused parameter 'results'
+      :type: UnusedParameters
+  - :file_path: lib/pincerna/ip.rb
+    :code_smells:
+    - :method: Pincerna::Ip
+      :message: tests (cmp == 0) at least 3 times
+      :type: RepeatedConditional
+  - :file_path: lib/pincerna/server.rb
+    :code_smells:
+    - :method: Pincerna::Server#handle_request
+      :message: performs a nil-check.
+      :type: NilCheck
+  - :file_path: lib/pincerna/vpn.rb
+    :code_smells:
+    - :method: Pincerna::Vpn
+      :message: tests result[:connected] at least 3 times
+      :type: RepeatedConditional
+    - :method: Pincerna::Vpn#process_results
+      :message: calls result[:connected] 3 times
+      :type: DuplicateMethodCall
+  - :file_path: lib/pincerna/weather.rb
+    :code_smells:
+    - :method: Pincerna::Weather#format_forecast
+      :message: has 8 parameters
+      :type: LongParameterList
+:roodi:
+  :total:
+  - Checked 16 files
+  :problems:
+  - :file: lib/pincerna/weather.rb
+    :line: '160'
+    :problem: Method name "format_forecast" has 8 parameters.  It should have 5 or
+      less.
+:saikuro:
+  :files:
+  - :classes:
+    - :class_name: ''
+      :complexity: 0
+      :lines: 1
+      :methods: []
+    - :class_name: Pincerna
+      :complexity: 0
+      :lines: 10
+      :methods: []
+    - :class_name: Pincerna::Base
+      :complexity: 42
+      :lines: 240
+      :methods:
+      - :name: Pincerna::Base#output_feedback
+        :complexity: 7
+        :lines: 16
+      - :name: Pincerna::Base#self.execute!
+        :complexity: 5
+        :lines: 17
+      - :name: Pincerna::Base#filter
+        :complexity: 4
+        :lines: 13
+      - :name: Pincerna::Base#execute_filtering
+        :complexity: 4
+        :lines: 12
+      - :name: Pincerna::Base#split_output_item
+        :complexity: 3
+        :lines: 2
+      - :name: Pincerna::Base#fetch_remote_resource
+        :complexity: 3
+        :lines: 5
+      - :name: Pincerna::Base#debug_mode
+        :complexity: 2
+        :lines: 3
+      - :name: Pincerna::Base#self.find_class
+        :complexity: 2
+        :lines: 2
+      - :name: Pincerna::Base#initialize
+        :complexity: 2
+        :lines: 14
+      - :name: Pincerna::Base#array_to_hash
+        :complexity: 2
+        :lines: 5
+      - :name: Pincerna::Base#execute_command
+        :complexity: 2
+        :lines: 4
+      - :name: Pincerna::Base#process_results
+        :complexity: 1
+        :lines: 2
+      - :name: Pincerna::Base#perform_filtering
+        :complexity: 1
+        :lines: 2
+      - :name: Pincerna::Base#add_feedback_item
+        :complexity: 1
+        :lines: 2
+      - :name: Pincerna::Base#round_float
+        :complexity: 1
+        :lines: 3
+      - :name: Pincerna::Base#format_float
+        :complexity: 1
+        :lines: 4
+    :filename: lib/pincerna/base.rb
+  - :classes:
+    - :class_name: ''
+      :complexity: 0
+      :lines: 1
+      :methods: []
+    - :class_name: Pincerna
+      :complexity: 0
+      :lines: 3
+      :methods: []
+    - :class_name: Pincerna::Weather
+      :complexity: 27
+      :lines: 175
+      :methods:
+      - :name: Pincerna::Weather#lookup_places
+        :complexity: 4
+        :lines: 10
+      - :name: Pincerna::Weather#perform_filtering
+        :complexity: 3
+        :lines: 3
+      - :name: Pincerna::Weather#get_forecast
+        :complexity: 3
+        :lines: 9
+      - :name: Pincerna::Weather#download_image
+        :complexity: 3
+        :lines: 11
+      - :name: Pincerna::Weather#get_name
+        :complexity: 2
+        :lines: 2
+      - :name: Pincerna::Weather#parse_place
+        :complexity: 2
+        :lines: 5
+      - :name: Pincerna::Weather#get_wind_direction
+        :complexity: 2
+        :lines: 9
+      - :name: Pincerna::Weather#process_results
+        :complexity: 2
+        :lines: 9
+      - :name: Pincerna::Weather#parse_forecast_response
+        :complexity: 1
+        :lines: 5
+      - :name: Pincerna::Weather#format_forecast
+        :complexity: 1
+        :lines: 15
+      - :name: Pincerna::Weather#extract_forecast_media
+        :complexity: 1
+        :lines: 2
+    :filename: lib/pincerna/weather.rb
+  - :classes:
+    - :class_name: ''
+      :complexity: 0
+      :lines: 1
+      :methods: []
+    - :class_name: Pincerna
+      :complexity: 0
+      :lines: 3
+      :methods: []
+    - :class_name: Pincerna::Ip
+      :complexity: 26
+      :lines: 125
+      :methods:
+      - :name: Pincerna::Ip#perform_filtering
+        :complexity: 6
+        :lines: 18
+      - :name: Pincerna::Ip#get_interfaces_names
+        :complexity: 5
+        :lines: 20
+      - :name: Pincerna::Ip#get_local_addresses
+        :complexity: 5
+        :lines: 23
+      - :name: Pincerna::Ip#compare_ip_addresses
+        :complexity: 4
+        :lines: 5
+      - :name: Pincerna::Ip#compare_ip_classes
+        :complexity: 3
+        :lines: 2
+      - :name: Pincerna::Ip#process_results
+        :complexity: 2
+        :lines: 5
+      - :name: Pincerna::Ip#get_public_address
+        :complexity: 1
+        :lines: 2
+    :filename: lib/pincerna/ip.rb
+  - :classes:
+    - :class_name: ''
+      :complexity: 0
+      :lines: 1
+      :methods: []
+    - :class_name: Pincerna
+      :complexity: 0
+      :lines: 3
+      :methods: []
+    - :class_name: Pincerna::UnitConversion
+      :complexity: 19
+      :lines: 98
+      :methods:
+      - :name: Pincerna::UnitConversion#format_value
+        :complexity: 5
+        :lines: 17
+      - :name: Pincerna::UnitConversion#check_temperature
+        :complexity: 2
+        :lines: 3
+      - :name: Pincerna::UnitConversion#self.define_unit
+        :complexity: 2
+        :lines: 5
+      - :name: Pincerna::UnitConversion#perform_filtering
+        :complexity: 2
+        :lines: 5
+      - :name: Pincerna::UnitConversion#process_results
+        :complexity: 2
+        :lines: 6
+      - :name: Pincerna::UnitConversion#convert_value
+        :complexity: 1
+        :lines: 2
+    :filename: lib/pincerna/unit_conversion.rb
+  - :classes:
+    - :class_name: ''
+      :complexity: 0
+      :lines: 1
+      :methods: []
+    - :class_name: Pincerna
+      :complexity: 0
+      :lines: 3
+      :methods: []
+    - :class_name: Pincerna::Bookmark
+      :complexity: 14
+      :lines: 66
+      :methods:
+      - :name: Pincerna::Bookmark#filter_and_sort
+        :complexity: 6
+        :lines: 11
+      - :name: Pincerna::Bookmark#process_results
+        :complexity: 3
+        :lines: 5
+      - :name: Pincerna::Bookmark#add_bookmark
+        :complexity: 2
+        :lines: 2
+      - :name: Pincerna::Bookmark#perform_filtering
+        :complexity: 2
+        :lines: 7
+      - :name: Pincerna::Bookmark#read_bookmarks
+        :complexity: 1
+        :lines: 2
+    :filename: lib/pincerna/bookmark.rb
+  - :classes:
+    - :class_name: ''
+      :complexity: 0
+      :lines: 1
+      :methods: []
+    - :class_name: Pincerna
+      :complexity: 0
+      :lines: 3
+      :methods: []
+    - :class_name: Pincerna::FirefoxBookmark
+      :complexity: 14
+      :lines: 82
+      :methods:
+      - :name: Pincerna::FirefoxBookmark#parse_bookmarks_data
+        :complexity: 4
+        :lines: 16
+      - :name: Pincerna::FirefoxBookmark#build_path
+        :complexity: 2
+        :lines: 3
+      - :name: Pincerna::FirefoxBookmark#add_folder
+        :complexity: 2
+        :lines: 2
+      - :name: Pincerna::FirefoxBookmark#build_paths
+        :complexity: 2
+        :lines: 5
+      - :name: Pincerna::FirefoxBookmark#restrict_array
+        :complexity: 2
+        :lines: 3
+      - :name: Pincerna::FirefoxBookmark#read_bookmarks
+        :complexity: 2
+        :lines: 9
+    :filename: lib/pincerna/firefox_bookmark.rb
+  - :classes:
+    - :class_name: ''
+      :complexity: 0
+      :lines: 1
+      :methods: []
+    - :class_name: Pincerna
+      :complexity: 0
+      :lines: 3
+      :methods: []
+    - :class_name: Pincerna::Server
+      :complexity: 14
+      :lines: 74
+      :methods:
+      - :name: Pincerna::Server#response
+        :complexity: 5
+        :lines: 13
+      - :name: Pincerna::Server#handle_request
+        :complexity: 4
+        :lines: 12
+      - :name: Pincerna::Server#handle_stop
+        :complexity: 2
+        :lines: 3
+      - :name: Pincerna::Server#stop_server
+        :complexity: 1
+        :lines: 3
+      - :name: Pincerna::Server#self.perform_request?
+        :complexity: 1
+        :lines: 3
+      - :name: Pincerna::Server#self.enqueue_request
+        :complexity: 1
+        :lines: 4
+    :filename: lib/pincerna/server.rb
+  - :classes:
+    - :class_name: ''
+      :complexity: 0
+      :lines: 1
+      :methods: []
+    - :class_name: Pincerna
+      :complexity: 0
+      :lines: 3
+      :methods: []
+    - :class_name: Pincerna::Translation
+      :complexity: 11
+      :lines: 52
+      :methods:
+      - :name: Pincerna::Translation#perform_filtering
+        :complexity: 6
+        :lines: 19
+      - :name: Pincerna::Translation#process_results
+        :complexity: 2
+        :lines: 3
+    :filename: lib/pincerna/translation.rb
+  - :classes:
+    - :class_name: ''
+      :complexity: 0
+      :lines: 1
+      :methods: []
+    - :class_name: Pincerna
+      :complexity: 0
+      :lines: 3
+      :methods: []
+    - :class_name: Pincerna::Vpn
+      :complexity: 10
+      :lines: 64
+      :methods:
+      - :name: Pincerna::Vpn#perform_filtering
+        :complexity: 6
+        :lines: 21
+      - :name: Pincerna::Vpn#process_results
+        :complexity: 2
+        :lines: 8
+      - :name: Pincerna::Vpn#vpn_connected?
+        :complexity: 1
+        :lines: 2
+      - :name: Pincerna::Vpn#is_vpn_service?
+        :complexity: 1
+        :lines: 2
+    :filename: lib/pincerna/vpn.rb
+  - :classes:
+    - :class_name: ''
+      :complexity: 0
+      :lines: 1
+      :methods: []
+    - :class_name: Pincerna
+      :complexity: 0
+      :lines: 6
+      :methods: []
+    - :class_name: Pincerna::Cache
+      :complexity: 8
+      :lines: 48
+      :methods:
+      - :name: Pincerna::Cache#use
+        :complexity: 2
+        :lines: 10
+      - :name: Pincerna::Cache#initialize
+        :complexity: 2
+        :lines: 4
+      - :name: Pincerna::Cache#destroy
+        :complexity: 2
+        :lines: 3
+      - :name: Pincerna::Cache#flush
+        :complexity: 1
+        :lines: 3
+      - :name: Pincerna::Cache#self.instance
+        :complexity: 1
+        :lines: 2
+    :filename: lib/pincerna/cache.rb
+  - :classes:
+    - :class_name: ''
+      :complexity: 0
+      :lines: 1
+      :methods: []
+    - :class_name: Pincerna
+      :complexity: 0
+      :lines: 3
+      :methods: []
+    - :class_name: Pincerna::ChromeBookmark
+      :complexity: 8
+      :lines: 30
+      :methods:
+      - :name: Pincerna::ChromeBookmark#read_bookmarks
+        :complexity: 5
+        :lines: 8
+      - :name: Pincerna::ChromeBookmark#scan_folder
+        :complexity: 3
+        :lines: 6
+    :filename: lib/pincerna/chrome_bookmark.rb
+  - :classes:
+    - :class_name: ''
+      :complexity: 0
+      :lines: 1
+      :methods: []
+    - :class_name: Pincerna
+      :complexity: 0
+      :lines: 3
+      :methods: []
+    - :class_name: Pincerna::CurrencyConversion
+      :complexity: 8
+      :lines: 116
+      :methods:
+      - :name: Pincerna::CurrencyConversion#process_results
+        :complexity: 2
+        :lines: 5
+      - :name: Pincerna::CurrencyConversion#replace_symbol
+        :complexity: 1
+        :lines: 2
+      - :name: Pincerna::CurrencyConversion#perform_filtering
+        :complexity: 1
+        :lines: 5
+    :filename: lib/pincerna/currency_conversion.rb
+  - :classes:
+    - :class_name: ''
+      :complexity: 0
+      :lines: 1
+      :methods: []
+    - :class_name: Pincerna
+      :complexity: 0
+      :lines: 3
+      :methods: []
+    - :class_name: Pincerna::SafariBookmark
+      :complexity: 6
+      :lines: 30
+      :methods:
+      - :name: Pincerna::SafariBookmark#scan_folder
+        :complexity: 3
+        :lines: 6
+      - :name: Pincerna::SafariBookmark#read_bookmarks
+        :complexity: 3
+        :lines: 8
+    :filename: lib/pincerna/safari_bookmark.rb
+  - :classes:
+    - :class_name: ''
+      :complexity: 0
+      :lines: 1
+      :methods: []
+    - :class_name: Pincerna
+      :complexity: 0
+      :lines: 3
+      :methods: []
+    - :class_name: Pincerna::Map
+      :complexity: 3
+      :lines: 20
+      :methods:
+      - :name: Pincerna::Map#process_results
+        :complexity: 2
+        :lines: 3
+      - :name: Pincerna::Map#perform_filtering
+        :complexity: 1
+        :lines: 2
+    :filename: lib/pincerna/map.rb
+  - :classes:
+    - :class_name: ''
+      :complexity: 0
+      :lines: 1
+      :methods: []
+    - :class_name: Pincerna
+      :complexity: 0
+      :lines: 5
+      :methods: []
+    - :class_name: Pincerna::Version
+      :complexity: 0
+      :lines: 12
+      :methods: []
+    :filename: lib/pincerna/version.rb
+  - :classes:
+    - :class_name: ''
+      :complexity: 0
+      :lines: 1
+      :methods: []
+    :filename: lib/pincerna.rb
+  :classes:
+  - :name: Pincerna::Base
+    :complexity: 42
+    :lines: 240
+    :defs:
+    - :name: Pincerna::Base#self.execute!
+      :complexity: 5
+      :lines: 17
+    - :name: Pincerna::Base#initialize
+      :complexity: 2
+      :lines: 14
+    - :name: Pincerna::Base#filter
+      :complexity: 4
+      :lines: 13
+    - :name: Pincerna::Base#perform_filtering
+      :complexity: 1
+      :lines: 2
+    - :name: Pincerna::Base#process_results
+      :complexity: 1
+      :lines: 2
+    - :name: Pincerna::Base#add_feedback_item
+      :complexity: 1
+      :lines: 2
+    - :name: Pincerna::Base#output_feedback
+      :complexity: 7
+      :lines: 16
+    - :name: Pincerna::Base#round_float
+      :complexity: 1
+      :lines: 3
+    - :name: Pincerna::Base#format_float
+      :complexity: 1
+      :lines: 4
+    - :name: Pincerna::Base#self.find_class
+      :complexity: 2
+      :lines: 2
+    - :name: Pincerna::Base#execute_filtering
+      :complexity: 4
+      :lines: 12
+    - :name: Pincerna::Base#array_to_hash
+      :complexity: 2
+      :lines: 5
+    - :name: Pincerna::Base#split_output_item
+      :complexity: 3
+      :lines: 2
+    - :name: Pincerna::Base#fetch_remote_resource
+      :complexity: 3
+      :lines: 5
+    - :name: Pincerna::Base#execute_command
+      :complexity: 2
+      :lines: 4
+    - :name: Pincerna::Base#debug_mode
+      :complexity: 2
+      :lines: 3
+  - :name: Pincerna::Weather
+    :complexity: 27
+    :lines: 175
+    :defs:
+    - :name: Pincerna::Weather#perform_filtering
+      :complexity: 3
+      :lines: 3
+    - :name: Pincerna::Weather#process_results
+      :complexity: 2
+      :lines: 9
+    - :name: Pincerna::Weather#lookup_places
+      :complexity: 4
+      :lines: 10
+    - :name: Pincerna::Weather#get_forecast
+      :complexity: 3
+      :lines: 9
+    - :name: Pincerna::Weather#get_wind_direction
+      :complexity: 2
+      :lines: 9
+    - :name: Pincerna::Weather#download_image
+      :complexity: 3
+      :lines: 11
+    - :name: Pincerna::Weather#get_name
+      :complexity: 2
+      :lines: 2
+    - :name: Pincerna::Weather#parse_place
+      :complexity: 2
+      :lines: 5
+    - :name: Pincerna::Weather#parse_forecast_response
+      :complexity: 1
+      :lines: 5
+    - :name: Pincerna::Weather#format_forecast
+      :complexity: 1
+      :lines: 15
+    - :name: Pincerna::Weather#extract_forecast_media
+      :complexity: 1
+      :lines: 2
+  - :name: Pincerna::Ip
+    :complexity: 26
+    :lines: 125
+    :defs:
+    - :name: Pincerna::Ip#perform_filtering
+      :complexity: 6
+      :lines: 18
+    - :name: Pincerna::Ip#process_results
+      :complexity: 2
+      :lines: 5
+    - :name: Pincerna::Ip#get_local_addresses
+      :complexity: 5
+      :lines: 23
+    - :name: Pincerna::Ip#get_public_address
+      :complexity: 1
+      :lines: 2
+    - :name: Pincerna::Ip#compare_ip_classes
+      :complexity: 3
+      :lines: 2
+    - :name: Pincerna::Ip#compare_ip_addresses
+      :complexity: 4
+      :lines: 5
+    - :name: Pincerna::Ip#get_interfaces_names
+      :complexity: 5
+      :lines: 20
+  - :name: Pincerna::UnitConversion
+    :complexity: 19
+    :lines: 98
+    :defs:
+    - :name: Pincerna::UnitConversion#self.define_unit
+      :complexity: 2
+      :lines: 5
+    - :name: Pincerna::UnitConversion#perform_filtering
+      :complexity: 2
+      :lines: 5
+    - :name: Pincerna::UnitConversion#process_results
+      :complexity: 2
+      :lines: 6
+    - :name: Pincerna::UnitConversion#check_temperature
+      :complexity: 2
+      :lines: 3
+    - :name: Pincerna::UnitConversion#convert_value
+      :complexity: 1
+      :lines: 2
+    - :name: Pincerna::UnitConversion#format_value
+      :complexity: 5
+      :lines: 17
+  - :name: Pincerna::Bookmark
+    :complexity: 14
+    :lines: 66
+    :defs:
+    - :name: Pincerna::Bookmark#perform_filtering
+      :complexity: 2
+      :lines: 7
+    - :name: Pincerna::Bookmark#process_results
+      :complexity: 3
+      :lines: 5
+    - :name: Pincerna::Bookmark#read_bookmarks
+      :complexity: 1
+      :lines: 2
+    - :name: Pincerna::Bookmark#filter_and_sort
+      :complexity: 6
+      :lines: 11
+    - :name: Pincerna::Bookmark#add_bookmark
+      :complexity: 2
+      :lines: 2
+  - :name: Pincerna::Server
+    :complexity: 14
+    :lines: 74
+    :defs:
+    - :name: Pincerna::Server#self.enqueue_request
+      :complexity: 1
+      :lines: 4
+    - :name: Pincerna::Server#self.perform_request?
+      :complexity: 1
+      :lines: 3
+    - :name: Pincerna::Server#handle_request
+      :complexity: 4
+      :lines: 12
+    - :name: Pincerna::Server#handle_stop
+      :complexity: 2
+      :lines: 3
+    - :name: Pincerna::Server#response
+      :complexity: 5
+      :lines: 13
+    - :name: Pincerna::Server#stop_server
+      :complexity: 1
+      :lines: 3
+  - :name: Pincerna::FirefoxBookmark
+    :complexity: 14
+    :lines: 82
+    :defs:
+    - :name: Pincerna::FirefoxBookmark#read_bookmarks
+      :complexity: 2
+      :lines: 9
+    - :name: Pincerna::FirefoxBookmark#parse_bookmarks_data
+      :complexity: 4
+      :lines: 16
+    - :name: Pincerna::FirefoxBookmark#build_paths
+      :complexity: 2
+      :lines: 5
+    - :name: Pincerna::FirefoxBookmark#build_path
+      :complexity: 2
+      :lines: 3
+    - :name: Pincerna::FirefoxBookmark#add_folder
+      :complexity: 2
+      :lines: 2
+    - :name: Pincerna::FirefoxBookmark#restrict_array
+      :complexity: 2
+      :lines: 3
+  - :name: Pincerna::Translation
+    :complexity: 11
+    :lines: 52
+    :defs:
+    - :name: Pincerna::Translation#perform_filtering
+      :complexity: 6
+      :lines: 19
+    - :name: Pincerna::Translation#process_results
+      :complexity: 2
+      :lines: 3
+  - :name: Pincerna::Vpn
+    :complexity: 10
+    :lines: 64
+    :defs:
+    - :name: Pincerna::Vpn#perform_filtering
+      :complexity: 6
+      :lines: 21
+    - :name: Pincerna::Vpn#process_results
+      :complexity: 2
+      :lines: 8
+    - :name: Pincerna::Vpn#vpn_connected?
+      :complexity: 1
+      :lines: 2
+    - :name: Pincerna::Vpn#is_vpn_service?
+      :complexity: 1
+      :lines: 2
+  - :name: Pincerna::Cache
+    :complexity: 8
+    :lines: 48
+    :defs:
+    - :name: Pincerna::Cache#self.instance
+      :complexity: 1
+      :lines: 2
+    - :name: Pincerna::Cache#initialize
+      :complexity: 2
+      :lines: 4
+    - :name: Pincerna::Cache#destroy
+      :complexity: 2
+      :lines: 3
+    - :name: Pincerna::Cache#flush
+      :complexity: 1
+      :lines: 3
+    - :name: Pincerna::Cache#use
+      :complexity: 2
+      :lines: 10
+  - :name: Pincerna::ChromeBookmark
+    :complexity: 8
+    :lines: 30
+    :defs:
+    - :name: Pincerna::ChromeBookmark#read_bookmarks
+      :complexity: 5
+      :lines: 8
+    - :name: Pincerna::ChromeBookmark#scan_folder
+      :complexity: 3
+      :lines: 6
+  - :name: Pincerna::CurrencyConversion
+    :complexity: 8
+    :lines: 116
+    :defs:
+    - :name: Pincerna::CurrencyConversion#perform_filtering
+      :complexity: 1
+      :lines: 5
+    - :name: Pincerna::CurrencyConversion#process_results
+      :complexity: 2
+      :lines: 5
+    - :name: Pincerna::CurrencyConversion#replace_symbol
+      :complexity: 1
+      :lines: 2
+  - :name: Pincerna::SafariBookmark
+    :complexity: 6
+    :lines: 30
+    :defs:
+    - :name: Pincerna::SafariBookmark#read_bookmarks
+      :complexity: 3
+      :lines: 8
+    - :name: Pincerna::SafariBookmark#scan_folder
+      :complexity: 3
+      :lines: 6
+  - :name: Pincerna::Map
+    :complexity: 3
+    :lines: 20
+    :defs:
+    - :name: Pincerna::Map#perform_filtering
+      :complexity: 1
+      :lines: 2
+    - :name: Pincerna::Map#process_results
+      :complexity: 2
+      :lines: 3
+  - :name: ''
+    :complexity: 0
+    :lines: 1
+  - :name: ''
+    :complexity: 0
+    :lines: 1
+  - :name: ''
+    :complexity: 0
+    :lines: 1
+  - :name: Pincerna
+    :complexity: 0
+    :lines: 6
+  - :name: ''
+    :complexity: 0
+    :lines: 1
+  - :name: Pincerna
+    :complexity: 0
+    :lines: 3
+  - :name: Pincerna
+    :complexity: 0
+    :lines: 3
+  - :name: ''
+    :complexity: 0
+    :lines: 1
+  - :name: Pincerna
+    :complexity: 0
+    :lines: 3
+  - :name: Pincerna
+    :complexity: 0
+    :lines: 3
+  - :name: ''
+    :complexity: 0
+    :lines: 1
+  - :name: ''
+    :complexity: 0
+    :lines: 1
+  - :name: Pincerna
+    :complexity: 0
+    :lines: 3
+  - :name: ''
+    :complexity: 0
+    :lines: 1
+  - :name: Pincerna
+    :complexity: 0
+    :lines: 3
+  - :name: Pincerna
+    :complexity: 0
+    :lines: 3
+  - :name: ''
+    :complexity: 0
+    :lines: 1
+  - :name: ''
+    :complexity: 0
+    :lines: 1
+  - :name: Pincerna
+    :complexity: 0
+    :lines: 3
+  - :name: ''
+    :complexity: 0
+    :lines: 1
+  - :name: Pincerna
+    :complexity: 0
+    :lines: 3
+  - :name: Pincerna
+    :complexity: 0
+    :lines: 3
+  - :name: ''
+    :complexity: 0
+    :lines: 1
+  - :name: ''
+    :complexity: 0
+    :lines: 1
+  - :name: Pincerna
+    :complexity: 0
+    :lines: 3
+  - :name: ''
+    :complexity: 0
+    :lines: 1
+  - :name: Pincerna
+    :complexity: 0
+    :lines: 5
+  - :name: Pincerna
+    :complexity: 0
+    :lines: 3
+  - :name: ''
+    :complexity: 0
+    :lines: 1
+  - :name: Pincerna::Version
+    :complexity: 0
+    :lines: 12
+  - :name: Pincerna
+    :complexity: 0
+    :lines: 10
+  - :name: ''
+    :complexity: 0
+    :lines: 1
+  :methods:
+  - :name: Pincerna::Base#output_feedback
+    :complexity: 7
+    :lines: 16
+  - :name: Pincerna::Vpn#perform_filtering
+    :complexity: 6
+    :lines: 21
+  - :name: Pincerna::Translation#perform_filtering
+    :complexity: 6
+    :lines: 19
+  - :name: Pincerna::Bookmark#filter_and_sort
+    :complexity: 6
+    :lines: 11
+  - :name: Pincerna::Ip#perform_filtering
+    :complexity: 6
+    :lines: 18
+  - :name: Pincerna::ChromeBookmark#read_bookmarks
+    :complexity: 5
+    :lines: 8
+  - :name: Pincerna::Ip#get_local_addresses
+    :complexity: 5
+    :lines: 23
+  - :name: Pincerna::Server#response
+    :complexity: 5
+    :lines: 13
+  - :name: Pincerna::UnitConversion#format_value
+    :complexity: 5
+    :lines: 17
+  - :name: Pincerna::Ip#get_interfaces_names
+    :complexity: 5
+    :lines: 20
+  - :name: Pincerna::Base#self.execute!
+    :complexity: 5
+    :lines: 17
+  - :name: Pincerna::Weather#lookup_places
+    :complexity: 4
+    :lines: 10
+  - :name: Pincerna::FirefoxBookmark#parse_bookmarks_data
+    :complexity: 4
+    :lines: 16
+  - :name: Pincerna::Server#handle_request
+    :complexity: 4
+    :lines: 12
+  - :name: Pincerna::Ip#compare_ip_addresses
+    :complexity: 4
+    :lines: 5
+  - :name: Pincerna::Base#filter
+    :complexity: 4
+    :lines: 13
+  - :name: Pincerna::Base#execute_filtering
+    :complexity: 4
+    :lines: 12
+  - :name: Pincerna::Weather#get_forecast
+    :complexity: 3
+    :lines: 9
+  - :name: Pincerna::Weather#download_image
+    :complexity: 3
+    :lines: 11
+  - :name: Pincerna::Weather#perform_filtering
+    :complexity: 3
+    :lines: 3
+  - :name: Pincerna::SafariBookmark#scan_folder
+    :complexity: 3
+    :lines: 6
+  - :name: Pincerna::Ip#compare_ip_classes
+    :complexity: 3
+    :lines: 2
+  - :name: Pincerna::ChromeBookmark#scan_folder
+    :complexity: 3
+    :lines: 6
+  - :name: Pincerna::SafariBookmark#read_bookmarks
+    :complexity: 3
+    :lines: 8
+  - :name: Pincerna::Bookmark#process_results
+    :complexity: 3
+    :lines: 5
+  - :name: Pincerna::Base#split_output_item
+    :complexity: 3
+    :lines: 2
+  - :name: Pincerna::Base#fetch_remote_resource
+    :complexity: 3
+    :lines: 5
+  - :name: Pincerna::Bookmark#perform_filtering
+    :complexity: 2
+    :lines: 7
+  - :name: Pincerna::FirefoxBookmark#build_path
+    :complexity: 2
+    :lines: 3
+  - :name: Pincerna::FirefoxBookmark#build_paths
+    :complexity: 2
+    :lines: 5
+  - :name: Pincerna::Cache#initialize
+    :complexity: 2
+    :lines: 4
+  - :name: Pincerna::FirefoxBookmark#read_bookmarks
+    :complexity: 2
+    :lines: 9
+  - :name: Pincerna::Bookmark#add_bookmark
+    :complexity: 2
+    :lines: 2
+  - :name: Pincerna::Cache#destroy
+    :complexity: 2
+    :lines: 3
+  - :name: Pincerna::FirefoxBookmark#restrict_array
+    :complexity: 2
+    :lines: 3
+  - :name: Pincerna::Base#array_to_hash
+    :complexity: 2
+    :lines: 5
+  - :name: Pincerna::FirefoxBookmark#add_folder
+    :complexity: 2
+    :lines: 2
+  - :name: Pincerna::Base#execute_command
+    :complexity: 2
+    :lines: 4
+  - :name: Pincerna::Base#debug_mode
+    :complexity: 2
+    :lines: 3
+  - :name: Pincerna::UnitConversion#check_temperature
+    :complexity: 2
+    :lines: 3
+  - :name: Pincerna::UnitConversion#process_results
+    :complexity: 2
+    :lines: 6
+  - :name: Pincerna::UnitConversion#perform_filtering
+    :complexity: 2
+    :lines: 5
+  - :name: Pincerna::UnitConversion#self.define_unit
+    :complexity: 2
+    :lines: 5
+  - :name: Pincerna::Cache#use
+    :complexity: 2
+    :lines: 10
+  - :name: Pincerna::Server#handle_stop
+    :complexity: 2
+    :lines: 3
+  - :name: Pincerna::Base#self.find_class
+    :complexity: 2
+    :lines: 2
+  - :name: Pincerna::Base#initialize
+    :complexity: 2
+    :lines: 14
+  - :name: Pincerna::Translation#process_results
+    :complexity: 2
+    :lines: 3
+  - :name: Pincerna::Ip#process_results
+    :complexity: 2
+    :lines: 5
+  - :name: Pincerna::CurrencyConversion#process_results
+    :complexity: 2
+    :lines: 5
+  - :name: Pincerna::Weather#process_results
+    :complexity: 2
+    :lines: 9
+  - :name: Pincerna::Vpn#process_results
+    :complexity: 2
+    :lines: 8
+  - :name: Pincerna::Weather#get_wind_direction
+    :complexity: 2
+    :lines: 9
+  - :name: Pincerna::Weather#parse_place
+    :complexity: 2
+    :lines: 5
+  - :name: Pincerna::Weather#get_name
+    :complexity: 2
+    :lines: 2
+  - :name: Pincerna::Map#process_results
+    :complexity: 2
+    :lines: 3
+  - :name: Pincerna::Weather#parse_forecast_response
+    :complexity: 1
+    :lines: 5
+  - :name: Pincerna::Weather#format_forecast
+    :complexity: 1
+    :lines: 15
+  - :name: Pincerna::CurrencyConversion#replace_symbol
+    :complexity: 1
+    :lines: 2
+  - :name: Pincerna::Weather#extract_forecast_media
+    :complexity: 1
+    :lines: 2
+  - :name: Pincerna::Ip#get_public_address
+    :complexity: 1
+    :lines: 2
+  - :name: Pincerna::UnitConversion#convert_value
+    :complexity: 1
+    :lines: 2
+  - :name: Pincerna::Cache#flush
+    :complexity: 1
+    :lines: 3
+  - :name: Pincerna::Bookmark#read_bookmarks
+    :complexity: 1
+    :lines: 2
+  - :name: Pincerna::Server#self.enqueue_request
+    :complexity: 1
+    :lines: 4
+  - :name: Pincerna::Server#self.perform_request?
+    :complexity: 1
+    :lines: 3
+  - :name: Pincerna::Cache#self.instance
+    :complexity: 1
+    :lines: 2
+  - :name: Pincerna::Vpn#is_vpn_service?
+    :complexity: 1
+    :lines: 2
+  - :name: Pincerna::Base#format_float
+    :complexity: 1
+    :lines: 4
+  - :name: Pincerna::Base#round_float
+    :complexity: 1
+    :lines: 3
+  - :name: Pincerna::Server#stop_server
+    :complexity: 1
+    :lines: 3
+  - :name: Pincerna::Base#add_feedback_item
+    :complexity: 1
+    :lines: 2
+  - :name: Pincerna::Base#process_results
+    :complexity: 1
+    :lines: 2
+  - :name: Pincerna::Base#perform_filtering
+    :complexity: 1
+    :lines: 2
+  - :name: Pincerna::Map#perform_filtering
+    :complexity: 1
+    :lines: 2
+  - :name: Pincerna::Vpn#vpn_connected?
+    :complexity: 1
+    :lines: 2
+  - :name: Pincerna::CurrencyConversion#perform_filtering
+    :complexity: 1
+    :lines: 5

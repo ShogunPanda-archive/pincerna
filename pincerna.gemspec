@@ -23,12 +23,14 @@ Gem::Specification.new do |gem|
   gem.test_files = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
 
-  gem.add_dependency("goliath", "~> 1.0.3")
-  gem.add_dependency("em-http-request", "~> 1.1.0")
-  gem.add_dependency("nokogiri", "~> 1.6.0")
-  gem.add_dependency("ruby-units", "~> 1.4.4")
-  gem.add_dependency("yahoo_weatherman", "~> 2.0.0")
-  gem.add_dependency("oj", "~> 2.1.4")
-  gem.add_dependency("plist", "~> 3.1.0")
-  gem.add_dependency("daybreak", "~> 0.3.0")
+  gem.required_ruby_version = ">= 2.3.0"
+
+  gem.add_dependency("goliath", "~> 1.0")
+  gem.add_dependency("em-http-request", "~> 1.1")
+  gem.add_dependency("nokogiri", "~> 1.6")
+  gem.add_dependency("ruby-units", "~> 2.0")
+  gem.add_dependency("yahoo_weatherman", "~> 2.0")
+  gem.add_dependency("oj", "~> 2.15")
+  gem.add_dependency("plist", "~> 3.2")
+  gem.add_dependency("daybreak", "~> 0.3")
 end
