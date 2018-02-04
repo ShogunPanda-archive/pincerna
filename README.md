@@ -1,10 +1,9 @@
 # pincerna
 
-[![Gem Version](https://badge.fury.io/rb/pincerna.png)](http://badge.fury.io/rb/pincerna)
-[![Dependency Status](https://gemnasium.com/ShogunPanda/pincerna.png?travis)](https://gemnasium.com/ShogunPanda/pincerna)
-[![Build Status](https://secure.travis-ci.org/ShogunPanda/pincerna.png?branch=master)](https://travis-ci.org/ShogunPanda/pincerna)
-[![Code Climate](https://codeclimate.com/github/ShogunPanda/pincerna.png)](https://codeclimate.com/github/ShogunPanda/pincerna)
-[![Coverage Status](https://coveralls.io/repos/github/ShogunPanda/pincerna/badge.svg?branch=master)](https://coveralls.io/github/ShogunPanda/pincerna?branch=master)
+[![Gem Version](https://img.shields.io/gem/v/pincerna.svg)](https://rubygems.org/gems/pincerna)
+[![Dependency Status](https://img.shields.io/gemnasium/ShogunPanda/pincerna.svg)](https://gemnasium.com/ShogunPanda/pincerna)
+[![Build Status](https://img.shields.io/travis/ShogunPanda/pincerna.svg)](https://travis-ci.org/ShogunPanda/pincerna)
+[![Coverage Status](https://img.shields.io/coveralls/github/ShogunPanda/pincerna.svg)](https://coveralls.io/github/ShogunPanda/pincerna)
 
 A bunch of useful Alfred 2 workflows.
 
@@ -212,6 +211,6 @@ The API documentation can be found [here](https://sw.cowtech.it/pincerna/docs).
 
 Copyright (C) 2013 and above Shogun (shogun@cowtech.it).
 
-Licensed under the MIT license, which can be found at http://www.opensource.org/licenses/mit-license.php.
+Licensed under the MIT license, which can be found at https://choosealicense.com/licenses/mit.
 
 The icons used are by the [Cold Fusion HD set](http://chrisbanks2.deviantart.com/art/Cold-Fusion-HD-Icon-Pack-277808597) by *chrisbanks2*.
