@@ -1,13 +1,8 @@
 # pincerna
 
-[![Gem Version](https://img.shields.io/gem/v/pincerna.svg)](https://rubygems.org/gems/pincerna)
-[![Dependency Status](https://img.shields.io/gemnasium/ShogunPanda/pincerna.svg)](https://gemnasium.com/ShogunPanda/pincerna)
-[![Build Status](https://img.shields.io/travis/ShogunPanda/pincerna.svg)](https://travis-ci.org/ShogunPanda/pincerna)
-[![Coverage Status](https://img.shields.io/coveralls/github/ShogunPanda/pincerna.svg)](https://coveralls.io/github/ShogunPanda/pincerna)
+## END OF DEVELOPMENT NOTICE - This gem has been discontinued
 
 A bunch of useful Alfred 2 workflows.
-
-https://sw.cowtech.it/pincerna
 
 ## Installation
 
@@ -55,8 +50,8 @@ Thanks to the [ruby-units](http://github.com/olbrich/ruby-units) gem, you can co
 
 The recognized syntaxes are:
 
-* `convert 123 $FROM_UNIT to $TO_UNIT`
-* `c 123.45 $FROM_UNIT to $TO_UNIT`
+- `convert 123 $FROM_UNIT to $TO_UNIT`
+- `c 123.45 $FROM_UNIT to $TO_UNIT`
 
 `to` can be omitted. Actioning on the result will copy the result to the clipboard.
 
@@ -66,8 +61,8 @@ If `split units` is appended, the value in feet will be shown in `X ft Y in` for
 
 Examples:
 
-  * `convert 123.45 m to m`
-  * `c 123 kg oz with rate split units`
+- `convert 123.45 m to m`
+- `c 123 kg oz with rate split units`
 
 ### Currency conversion
 
@@ -75,8 +70,8 @@ Thanks to the [rate-exchange API](http://rate-exchange.appspot.com/), you can co
 
 The recognized syntaxes are:
 
-* `currency 123 $FROM_CURRENCY to $TO_CURRENCY`
-* `cc 123.45 $FROM_CURRENCY to $TO_CURRENCY`
+- `currency 123 $FROM_CURRENCY to $TO_CURRENCY`
+- `cc 123.45 $FROM_CURRENCY to $TO_CURRENCY`
 
 `to` can be omitted. Actioning on the result will copy the result to the clipboard.
 
@@ -84,9 +79,9 @@ If `with rate` is appended, also the conversion rate will be copied as well.
 
 Examples:
 
-  * `currency 123.45 EUR to USD`
-  * `cc 123 EUR JPY with rate`
-  * `cc 123 € $ with rate`
+- `currency 123.45 EUR to USD`
+- `cc 123 EUR JPY with rate`
+- `cc 123 € $ with rate`
 
 ### Translation with Google Translate
 
@@ -94,8 +89,8 @@ You can translate words or sentences between languages using [Google Translate](
 
 The recognized syntax is:
 
-* `translate $FROM_LANGUAGE to $TO_LANGUAGE $TEXT`
-* `t $FROM_LANGUAGE to $TO_LANGUAGE $TEXT`
+- `translate $FROM_LANGUAGE to $TO_LANGUAGE $TEXT`
+- `t $FROM_LANGUAGE to $TO_LANGUAGE $TEXT`
 
 `to` can be omitted. Actioning on the result will copy the first result to the clipboard.
 
@@ -103,9 +98,9 @@ The recognized syntax is:
 
 Examples:
 
-  * `translate it to en Ciao mondo`
-  * `t it en Ciao mondo`
-  * `t it Hello`
+- `translate it to en Ciao mondo`
+- `t it en Ciao mondo`
+- `t it Hello`
 
 ### View location in Google Maps
 
@@ -113,16 +108,16 @@ You can view locations on [Google Maps](http://maps.google.com).
 
 The recognized syntax is:
 
-* `map $LOCATION`
-* `m $LOCATION`
+- `map $LOCATION`
+- `m $LOCATION`
 
 Actioning on the result will open the location in Google Maps on the default browser.
 
 Examples:
 
-  * `map Campobasso, Italy`
-  * `m San Mateo, CA`
-  * `m 12.34,56.78`
+- `map Campobasso, Italy`
+- `m San Mateo, CA`
+- `m 12.34,56.78`
 
 ### Yahoo! Weather Forecast
 
@@ -130,14 +125,14 @@ You can view the current weather condition and tomorrow's forecast on [Yahoo! We
 
 The recognized syntax is:
 
-* `forecast $LOCATION`
+- `forecast $LOCATION`
 
 The location can be a name or a WOEID. Actioning on the result will open the forecast in Yahoo! Weather on the default browser.
 
 Examples:
 
-  * `forecast San Mateo`
-  * `forecast 2406170`
+- `forecast San Mateo`
+- `forecast 2406170`
 
 ### Fetch the list of local and public IP
 
@@ -145,7 +140,7 @@ You can view the list of all IP address of the current machine, including the pu
 
 The recognized syntax is:
 
-* `ip $INTERFACE`
+- `ip $INTERFACE`
 
 `$INTERFACE` is optional and it is only used to filter results (use `public` to get only the public IP).
 
@@ -153,10 +148,10 @@ Actioning on the results will copy the IP on the clipboard.
 
 Examples:
 
-  * `ip`
-  * `ip Ethernet`
-  * `ip lo0`
-  * `ip public`
+- `ip`
+- `ip Ethernet`
+- `ip lo0`
+- `ip public`
 
 ### Connect or disconnect from VPNs
 
@@ -164,14 +159,14 @@ You can connect or disconnect from your VPNs.
 
 The recognized syntax is:
 
-* `vpn $NAME`
+- `vpn $NAME`
 
 `$NAME` is optional and it is only used to filter results.
 
 Examples:
 
-  * `vpn`
-  * `vpn Office`
+- `vpn`
+- `vpn Office`
 
 ### Open Chrome, Firefox or Safari bookmarks
 
@@ -179,17 +174,17 @@ You can search and open your Chrome, Firefox or Safari bookmarks and open in the
 
 The recognized syntax is:
 
-* `bc $NAME` for Chrome
-* `bs $NAME` for Safari
-* `bf $NAME` for Firefox
+- `bc $NAME` for Chrome
+- `bs $NAME` for Safari
+- `bf $NAME` for Firefox
 
 `$NAME` is optional and it is only used to filter results.
 
 Examples:
 
-  * `bc Google`
-  * `bf Google`
-  * `bs Google`
+- `bc Google`
+- `bf Google`
+- `bs Google`
 
 Actioning on the results will open the bookmark in the browser. Note that this won't use the default browser but the one the bookmarks belongs to.
 
@@ -199,13 +194,13 @@ The API documentation can be found [here](https://sw.cowtech.it/pincerna/docs).
 
 ## Contributing to pincerna
 
-* Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
-* Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it.
-* Fork the project.
-* Start a feature/bugfix branch.
-* Commit and push until you are happy with your contribution.
-* Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
-* Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
+- Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
+- Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it.
+- Fork the project.
+- Start a feature/bugfix branch.
+- Commit and push until you are happy with your contribution.
+- Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
+- Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
 
 ## Copyright
 
@@ -213,4 +208,4 @@ Copyright (C) 2013 and above Shogun (shogun@cowtech.it).
 
 Licensed under the MIT license, which can be found at https://choosealicense.com/licenses/mit.
 
-The icons used are by the [Cold Fusion HD set](http://chrisbanks2.deviantart.com/art/Cold-Fusion-HD-Icon-Pack-277808597) by *chrisbanks2*.
+The icons used are by the [Cold Fusion HD set](http://chrisbanks2.deviantart.com/art/Cold-Fusion-HD-Icon-Pack-277808597) by _chrisbanks2_.
